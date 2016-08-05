@@ -1,0 +1,8 @@
+C:\Ishita.Net\Ishita\capstonproject\SmartOpinionPollingSystem\SOP.Data\bin\Debug\SOP.Data.dll.config
+C:\Ishita.Net\Ishita\capstonproject\SmartOpinionPollingSystem\SOP.Data\bin\Debug\SOP.Data.dll
+C:\Ishita.Net\Ishita\capstonproject\SmartOpinionPollingSystem\SOP.Data\bin\Debug\SOP.Data.pdb
+C:\Ishita.Net\Ishita\capstonproject\SmartOpinionPollingSystem\SOP.Data\bin\Debug\SOP.Common.dll
+C:\Ishita.Net\Ishita\capstonproject\SmartOpinionPollingSystem\SOP.Data\bin\Debug\SOP.Common.pdb
+C:\Ishita.Net\Ishita\capstonproject\SmartOpinionPollingSystem\SOP.Data\obj\Debug\SOP.Data.csprojResolveAssemblyReference.cache
+C:\Ishita.Net\Ishita\capstonproject\SmartOpinionPollingSystem\SOP.Data\obj\Debug\SOP.Data.dll
+C:\Ishita.Net\Ishita\capstonproject\SmartOpinionPollingSystem\SOP.Data\obj\Debug\SOP.Data.pdb
