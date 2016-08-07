@@ -41,3 +41,9 @@ C:\Ishita.Net\Ishita\capstonproject\SmartOpinionPollingSystem\SmartOpinionPollin
 C:\Ishita.Net\Ishita\capstonproject\SmartOpinionPollingSystem\SmartOpinionPollingSystem\obj\Debug\SmartOpinionPollingSystem.csprojResolveAssemblyReference.cache
 C:\Ishita.Net\Ishita\capstonproject\SmartOpinionPollingSystem\SmartOpinionPollingSystem\obj\Debug\SmartOpinionPollingSystem.dll
 C:\Ishita.Net\Ishita\capstonproject\SmartOpinionPollingSystem\SmartOpinionPollingSystem\obj\Debug\SmartOpinionPollingSystem.pdb
+C:\Ishita.Net\Ishita\capstonproject\SmartOpinionPollingSystem\SmartOpinionPollingSystem\bin\GW2NET.Core.dll
+C:\Ishita.Net\Ishita\capstonproject\SmartOpinionPollingSystem\SmartOpinionPollingSystem\bin\GW2NET.Newtonsoft.dll
+C:\Ishita.Net\Ishita\capstonproject\SmartOpinionPollingSystem\SmartOpinionPollingSystem\bin\Newtonsoft.Json.dll
+C:\Ishita.Net\Ishita\capstonproject\SmartOpinionPollingSystem\SmartOpinionPollingSystem\bin\GW2NET.Core.xml
+C:\Ishita.Net\Ishita\capstonproject\SmartOpinionPollingSystem\SmartOpinionPollingSystem\bin\GW2NET.Newtonsoft.xml
+C:\Ishita.Net\Ishita\capstonproject\SmartOpinionPollingSystem\SmartOpinionPollingSystem\bin\Newtonsoft.Json.xml

@@ -22,6 +22,7 @@ namespace WebApplicationLoginTest.Account
 
         protected void Page_Load()
         {
+            
             if (!IsPostBack)
             {
                 // Determine the sections to render

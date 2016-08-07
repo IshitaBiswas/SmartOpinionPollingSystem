@@ -11,5 +11,7 @@ namespace SOP.Services.Interfaces
    public interface IReportingService
     {
        IEnumerable<OrgCategoryBreakup> GetOrgCategoryBreakup();
+       IEnumerable<VotingQuestionDetail> GetVotingQuestionDetails(string OrgID, PollingWindowEnum pwEnum);
+      
     }
 }

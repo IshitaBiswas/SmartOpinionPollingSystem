@@ -38,7 +38,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="GW2NET.Core">
+      <HintPath>..\packages\GW2NET.Core.1.4.0\lib\portable-net45+win+wpa81\GW2NET.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="GW2NET.Newtonsoft">
+      <HintPath>..\packages\GW2NET.Newtonsoft.1.4.0\lib\portable-net45+win+wpa81\GW2NET.Newtonsoft.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.6.0.6\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Core" />
@@ -227,8 +237,132 @@
     <Content Include="js\TweenLite.min.js" />
     <Content Include="js\TweenMax.min.js" />
     <Content Include="OrganizationPages\OrgDashboard.aspx" />
+    <Content Include="OrganizationPages\OrgPollingDetails.aspx" />
     <Content Include="packages.config" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
+    <Content Include="Scripts\JqGrid\css\ellipsis-xbl.xml" />
+    <Content Include="Scripts\JqGrid\css\ui.jqgrid.css" />
+    <Content Include="Scripts\JqGrid\js\Changes.txt" />
+    <Content Include="Scripts\JqGrid\js\i18n\grid.locale-ar.js" />
+    <Content Include="Scripts\JqGrid\js\i18n\grid.locale-bg.js" />
+    <Content Include="Scripts\JqGrid\js\i18n\grid.locale-bg1251.js" />
+    <Content Include="Scripts\JqGrid\js\i18n\grid.locale-cat.js" />
+    <Content Include="Scripts\JqGrid\js\i18n\grid.locale-cn.js" />
+    <Content Include="Scripts\JqGrid\js\i18n\grid.locale-cs.js" />
+    <Content Include="Scripts\JqGrid\js\i18n\grid.locale-da.js" />
+    <Content Include="Scripts\JqGrid\js\i18n\grid.locale-de.js" />
+    <Content Include="Scripts\JqGrid\js\i18n\grid.locale-dk.js" />
+    <Content Include="Scripts\JqGrid\js\i18n\grid.locale-el.js" />
+    <Content Include="Scripts\JqGrid\js\i18n\grid.locale-en.js" />
+    <Content Include="Scripts\JqGrid\js\i18n\grid.locale-es.js" />
+    <Content Include="Scripts\JqGrid\js\i18n\grid.locale-fa.js" />
+    <Content Include="Scripts\JqGrid\js\i18n\grid.locale-fi.js" />
+    <Content Include="Scripts\JqGrid\js\i18n\grid.locale-fr.js" />
+    <Content Include="Scripts\JqGrid\js\i18n\grid.locale-gl.js" />
+    <Content Include="Scripts\JqGrid\js\i18n\grid.locale-he.js" />
+    <Content Include="Scripts\JqGrid\js\i18n\grid.locale-hr.js" />
+    <Content Include="Scripts\JqGrid\js\i18n\grid.locale-hr1250.js" />
+    <Content Include="Scripts\JqGrid\js\i18n\grid.locale-hu.js" />
+    <Content Include="Scripts\JqGrid\js\i18n\grid.locale-id.js" />
+    <Content Include="Scripts\JqGrid\js\i18n\grid.locale-is.js" />
+    <Content Include="Scripts\JqGrid\js\i18n\grid.locale-it.js" />
+    <Content Include="Scripts\JqGrid\js\i18n\grid.locale-ja.js" />
+    <Content Include="Scripts\JqGrid\js\i18n\grid.locale-kr.js" />
+    <Content Include="Scripts\JqGrid\js\i18n\grid.locale-lt.js" />
+    <Content Include="Scripts\JqGrid\js\i18n\grid.locale-mne.js" />
+    <Content Include="Scripts\JqGrid\js\i18n\grid.locale-nl.js" />
+    <Content Include="Scripts\JqGrid\js\i18n\grid.locale-no.js" />
+    <Content Include="Scripts\JqGrid\js\i18n\grid.locale-pl.js" />
+    <Content Include="Scripts\JqGrid\js\i18n\grid.locale-pt-br.js" />
+    <Content Include="Scripts\JqGrid\js\i18n\grid.locale-pt.js" />
+    <Content Include="Scripts\JqGrid\js\i18n\grid.locale-ro.js" />
+    <Content Include="Scripts\JqGrid\js\i18n\grid.locale-ru.js" />
+    <Content Include="Scripts\JqGrid\js\i18n\grid.locale-sk.js" />
+    <Content Include="Scripts\JqGrid\js\i18n\grid.locale-sr-latin.js" />
+    <Content Include="Scripts\JqGrid\js\i18n\grid.locale-sr.js" />
+    <Content Include="Scripts\JqGrid\js\i18n\grid.locale-sv.js" />
+    <Content Include="Scripts\JqGrid\js\i18n\grid.locale-th.js" />
+    <Content Include="Scripts\JqGrid\js\i18n\grid.locale-tr.js" />
+    <Content Include="Scripts\JqGrid\js\i18n\grid.locale-tw.js" />
+    <Content Include="Scripts\JqGrid\js\i18n\grid.locale-ua.js" />
+    <Content Include="Scripts\JqGrid\js\i18n\grid.locale-vi.js" />
+    <Content Include="Scripts\JqGrid\js\install.txt" />
+    <Content Include="Scripts\JqGrid\js\jquery-1.7.2.min.js" />
+    <Content Include="Scripts\JqGrid\js\jquery.jqGrid.min.js" />
+    <Content Include="Scripts\JqGrid\js\jquery.jqGrid.src.js" />
+    <Content Include="Scripts\JqGrid\plugins\grid.addons.js" />
+    <Content Include="Scripts\JqGrid\plugins\grid.postext.js" />
+    <Content Include="Scripts\JqGrid\plugins\grid.setcolumns.js" />
+    <Content Include="Scripts\JqGrid\plugins\jquery.contextmenu.js" />
+    <Content Include="Scripts\JqGrid\plugins\jquery.searchFilter.js" />
+    <Content Include="Scripts\JqGrid\plugins\jquery.tablednd.js" />
+    <Content Include="Scripts\JqGrid\plugins\searchFilter.css" />
+    <Content Include="Scripts\JqGrid\plugins\ui.multiselect.css" />
+    <Content Include="Scripts\JqGrid\plugins\ui.multiselect.js" />
+    <Content Include="Scripts\JqGrid\src\css\ellipsis-xbl.xml" />
+    <Content Include="Scripts\JqGrid\src\css\ui.jqgrid.css" />
+    <Content Include="Scripts\JqGrid\src\css\ui.multiselect.css" />
+    <Content Include="Scripts\JqGrid\src\grid.base.js" />
+    <Content Include="Scripts\JqGrid\src\grid.celledit.js" />
+    <Content Include="Scripts\JqGrid\src\grid.common.js" />
+    <Content Include="Scripts\JqGrid\src\grid.custom.js" />
+    <Content Include="Scripts\JqGrid\src\grid.filter.js" />
+    <Content Include="Scripts\JqGrid\src\grid.formedit.js" />
+    <Content Include="Scripts\JqGrid\src\grid.grouping.js" />
+    <Content Include="Scripts\JqGrid\src\grid.import.js" />
+    <Content Include="Scripts\JqGrid\src\grid.inlinedit.js" />
+    <Content Include="Scripts\JqGrid\src\grid.jqueryui.js" />
+    <Content Include="Scripts\JqGrid\src\grid.loader.js" />
+    <Content Include="Scripts\JqGrid\src\grid.subgrid.js" />
+    <Content Include="Scripts\JqGrid\src\grid.tbltogrid.js" />
+    <Content Include="Scripts\JqGrid\src\grid.treegrid.js" />
+    <Content Include="Scripts\JqGrid\src\i18n\grid.locale-ar.js" />
+    <Content Include="Scripts\JqGrid\src\i18n\grid.locale-bg.js" />
+    <Content Include="Scripts\JqGrid\src\i18n\grid.locale-bg1251.js" />
+    <Content Include="Scripts\JqGrid\src\i18n\grid.locale-cat.js" />
+    <Content Include="Scripts\JqGrid\src\i18n\grid.locale-cn.js" />
+    <Content Include="Scripts\JqGrid\src\i18n\grid.locale-cs.js" />
+    <Content Include="Scripts\JqGrid\src\i18n\grid.locale-da.js" />
+    <Content Include="Scripts\JqGrid\src\i18n\grid.locale-de.js" />
+    <Content Include="Scripts\JqGrid\src\i18n\grid.locale-dk.js" />
+    <Content Include="Scripts\JqGrid\src\i18n\grid.locale-el.js" />
+    <Content Include="Scripts\JqGrid\src\i18n\grid.locale-en.js" />
+    <Content Include="Scripts\JqGrid\src\i18n\grid.locale-es.js" />
+    <Content Include="Scripts\JqGrid\src\i18n\grid.locale-fa.js" />
+    <Content Include="Scripts\JqGrid\src\i18n\grid.locale-fi.js" />
+    <Content Include="Scripts\JqGrid\src\i18n\grid.locale-fr.js" />
+    <Content Include="Scripts\JqGrid\src\i18n\grid.locale-gl.js" />
+    <Content Include="Scripts\JqGrid\src\i18n\grid.locale-he.js" />
+    <Content Include="Scripts\JqGrid\src\i18n\grid.locale-hr.js" />
+    <Content Include="Scripts\JqGrid\src\i18n\grid.locale-hr1250.js" />
+    <Content Include="Scripts\JqGrid\src\i18n\grid.locale-hu.js" />
+    <Content Include="Scripts\JqGrid\src\i18n\grid.locale-id.js" />
+    <Content Include="Scripts\JqGrid\src\i18n\grid.locale-is.js" />
+    <Content Include="Scripts\JqGrid\src\i18n\grid.locale-it.js" />
+    <Content Include="Scripts\JqGrid\src\i18n\grid.locale-ja.js" />
+    <Content Include="Scripts\JqGrid\src\i18n\grid.locale-kr.js" />
+    <Content Include="Scripts\JqGrid\src\i18n\grid.locale-lt.js" />
+    <Content Include="Scripts\JqGrid\src\i18n\grid.locale-mne.js" />
+    <Content Include="Scripts\JqGrid\src\i18n\grid.locale-nl.js" />
+    <Content Include="Scripts\JqGrid\src\i18n\grid.locale-no.js" />
+    <Content Include="Scripts\JqGrid\src\i18n\grid.locale-pl.js" />
+    <Content Include="Scripts\JqGrid\src\i18n\grid.locale-pt-br.js" />
+    <Content Include="Scripts\JqGrid\src\i18n\grid.locale-pt.js" />
+    <Content Include="Scripts\JqGrid\src\i18n\grid.locale-ro.js" />
+    <Content Include="Scripts\JqGrid\src\i18n\grid.locale-ru.js" />
+    <Content Include="Scripts\JqGrid\src\i18n\grid.locale-sk.js" />
+    <Content Include="Scripts\JqGrid\src\i18n\grid.locale-sr-latin.js" />
+    <Content Include="Scripts\JqGrid\src\i18n\grid.locale-sr.js" />
+    <Content Include="Scripts\JqGrid\src\i18n\grid.locale-sv.js" />
+    <Content Include="Scripts\JqGrid\src\i18n\grid.locale-th.js" />
+    <Content Include="Scripts\JqGrid\src\i18n\grid.locale-tr.js" />
+    <Content Include="Scripts\JqGrid\src\i18n\grid.locale-tw.js" />
+    <Content Include="Scripts\JqGrid\src\i18n\grid.locale-ua.js" />
+    <Content Include="Scripts\JqGrid\src\i18n\grid.locale-vi.js" />
+    <Content Include="Scripts\JqGrid\src\jqDnR.js" />
+    <Content Include="Scripts\JqGrid\src\jqModal.js" />
+    <Content Include="Scripts\JqGrid\src\jquery.fmatter.js" />
+    <Content Include="Scripts\JqGrid\src\JsonXml.js" />
     <Content Include="Scripts\jquery-1.7.1.min.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
     <Content Include="Scripts\jquery-1.8.2.min.js" />
@@ -336,6 +470,13 @@
     </Compile>
     <Compile Include="OrganizationPages\OrgDashboard.aspx.designer.cs">
       <DependentUpon>OrgDashboard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OrganizationPages\OrgPollingDetails.aspx.cs">
+      <DependentUpon>OrgPollingDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="OrganizationPages\OrgPollingDetails.aspx.designer.cs">
+      <DependentUpon>OrgPollingDetails.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Site.Master.cs">

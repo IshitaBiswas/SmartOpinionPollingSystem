@@ -23,5 +23,10 @@ namespace SOP.Services
              return _rptAcessor.GetOrgCategoryBreakup();
          }
 
+        public IEnumerable<VotingQuestionDetail> GetVotingQuestionDetails(string OrgID, PollingWindowEnum pwEnum) // enum
+        {
+              return _rptAcessor.GetVotingQuestionDetails(OrgID,pwEnum);
+        }
+
     }
 }

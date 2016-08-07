@@ -11,5 +11,6 @@ namespace SOP.Data.Interfaces
   public  interface IReportingAccessor
     {
       IEnumerable<OrgCategoryBreakup> GetOrgCategoryBreakup();
+      IEnumerable<VotingQuestionDetail> GetVotingQuestionDetails(string OrgID, PollingWindowEnum pwEnum);
     }
 }

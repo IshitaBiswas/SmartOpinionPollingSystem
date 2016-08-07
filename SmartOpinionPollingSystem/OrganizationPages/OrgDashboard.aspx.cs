@@ -9,6 +9,10 @@ using System.Web.UI.WebControls;
 using SOP.Common.Model;
 using SOP.Services.Interfaces;
 using SOP.Services;
+using System.Linq;
+using Newtonsoft.Json;
+using SOP.Common;
+
 
 
 namespace SmartOpinionPollingSystem.OrganizationPages
@@ -17,12 +21,15 @@ namespace SmartOpinionPollingSystem.OrganizationPages
     {
 
        static IReportingService _rptService;
+       static PollingWindowEnum _pollingWindow;
 
 
         public OrgDashboard()
         {
             _rptService = new ReportingService();
-
+        }
+        protected void Page_Preload(object sender, EventArgs e)
+        {
         }
 
         protected void Page_Load(object sender, EventArgs e)
@@ -30,9 +37,6 @@ namespace SmartOpinionPollingSystem.OrganizationPages
             if (Request.IsAuthenticated)
             {
                 GetChartData();
-
-                dgTest.DataSource = _rptService.GetOrgCategoryBreakup().ToList();
-                dgTest.DataBind();
             }
             
         }
@@ -57,7 +61,41 @@ namespace SmartOpinionPollingSystem.OrganizationPages
 
             return chartData;
         }
+
+
+               
+
+
+        protected void btnAddQuestion_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnPrevPollingStatus_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/OrganizationPages/OrgPollingDetails.aspx?pollingwindow=previous");
+        }
+
+        protected void btnCurrentPollingStatus_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/OrganizationPages/OrgPollingDetails.aspx?pollingwindow=current");
+        }
+
+        protected void btnFuturePollingStatus_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/OrganizationPages/OrgPollingDetails.aspx?pollingwindow=future");
+        }
+
+
+       
+
+
     
 
-    }
+        }
+
+
+    
+
+    
 }
