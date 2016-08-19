@@ -7,29 +7,24 @@
       <Column Name="OrgWebsite" Type="System.String" DbType="NVarChar(300) NOT NULL" CanBeNull="false" />
       <Column Name="OrgCategory" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
       <Column Name="OrgRegPassword" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Association Name="tblOrganization_tblVotingQuestionDetail" Member="tblVotingQuestionDetails" ThisKey="OrgID" OtherKey="OrgID" Type="tblVotingQuestionDetail" />
+      <Association Name="tblOrganization_tblOrgQuestionTargetAudience" Member="tblOrgQuestionTargetAudiences" ThisKey="OrgID" OtherKey="OrgID" Type="tblOrgQuestionTargetAudience" />
       <Association Name="tblOrganization_tblOrgVotingCategory" Member="tblOrgVotingCategories" ThisKey="OrgID" OtherKey="OrgID" Type="tblOrgVotingCategory" />
     </Type>
   </Table>
-  <Table Name="dbo.tblVotingQuestionDetails" Member="tblVotingQuestionDetails">
-    <Type Name="tblVotingQuestionDetail">
-      <Column Name="QuestionID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="VotingQuestionCategoryID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="OrgID" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="QuestionText" Type="System.String" DbType="NVarChar(1000) NOT NULL" CanBeNull="false" />
-      <Column Name="VotedYes" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="VotedNo" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="VotingStartDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Column Name="VotingEndDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Association Name="tblVotingQuestionDetail_tblUserVotingDetail" Member="tblUserVotingDetails" ThisKey="QuestionID" OtherKey="QuestionID" Type="tblUserVotingDetail" />
-      <Association Name="tblOrganization_tblVotingQuestionDetail" Member="tblOrganization" ThisKey="OrgID" OtherKey="OrgID" Type="tblOrganization" IsForeignKey="true" />
-      <Association Name="tblVotingCategoryDesc_tblVotingQuestionDetail" Member="tblVotingCategoryDesc" ThisKey="VotingQuestionCategoryID" OtherKey="VotingCategoryID" Type="tblVotingCategoryDesc" IsForeignKey="true" />
+  <Table Name="dbo.tblOrgQuestionTargetAudience" Member="tblOrgQuestionTargetAudiences">
+    <Type Name="tblOrgQuestionTargetAudience">
+      <Column Name="OrgID" Type="System.String" DbType="NVarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="QuestionID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="VotingQuestionCategoryID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="tblOrganization_tblOrgQuestionTargetAudience" Member="tblOrganization" ThisKey="OrgID" OtherKey="OrgID" Type="tblOrganization" IsForeignKey="true" />
+      <Association Name="tblVotingCategoryDesc_tblOrgQuestionTargetAudience" Member="tblVotingCategoryDesc" ThisKey="VotingQuestionCategoryID" OtherKey="VotingCategoryID" Type="tblVotingCategoryDesc" IsForeignKey="true" />
+      <Association Name="tblVotingQuestionDetail_tblOrgQuestionTargetAudience" Member="tblVotingQuestionDetail" ThisKey="QuestionID" OtherKey="QuestionID" Type="tblVotingQuestionDetail" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.tblOrgVotingCategory" Member="tblOrgVotingCategories">
     <Type Name="tblOrgVotingCategory">
-      <Column Name="OrgID" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="OrgVotingCategoryID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="OrgID" Type="System.String" DbType="NVarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="OrgVotingCategoryID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Association Name="tblOrganization_tblOrgVotingCategory" Member="tblOrganization" ThisKey="OrgID" OtherKey="OrgID" Type="tblOrganization" IsForeignKey="true" />
       <Association Name="tblVotingCategoryDesc_tblOrgVotingCategory" Member="tblVotingCategoryDesc" ThisKey="OrgVotingCategoryID" OtherKey="VotingCategoryID" Type="tblVotingCategoryDesc" IsForeignKey="true" />
     </Type>
@@ -45,27 +40,8 @@
       <Column Name="Password" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="Phoneno" Type="System.String" DbType="VarChar(22) NOT NULL" CanBeNull="false" />
       <Column Name="Occupation" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
-      <Association Name="tblUser_tblUserVotingDetail" Member="tblUserVotingDetails" ThisKey="UserID" OtherKey="UserID" Type="tblUserVotingDetail" />
       <Association Name="tblUser_tblUserVotingCategory" Member="tblUserVotingCategories" ThisKey="UserID" OtherKey="UserID" Type="tblUserVotingCategory" />
-    </Type>
-  </Table>
-  <Table Name="dbo.tblUserVotingDetails" Member="tblUserVotingDetails">
-    <Type Name="tblUserVotingDetail">
-      <Column Name="UserID" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="QuestionID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="B_UserVote" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Column Name="DtVoteCasted" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Association Name="tblVotingQuestionDetail_tblUserVotingDetail" Member="tblVotingQuestionDetail" ThisKey="QuestionID" OtherKey="QuestionID" Type="tblVotingQuestionDetail" IsForeignKey="true" />
-      <Association Name="tblUser_tblUserVotingDetail" Member="tblUser" ThisKey="UserID" OtherKey="UserID" Type="tblUser" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.tblVotingCategoryDesc" Member="tblVotingCategoryDescs">
-    <Type Name="tblVotingCategoryDesc">
-      <Column Name="VotingCategoryID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="CategoryDescription" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
-      <Association Name="tblVotingCategoryDesc_tblVotingQuestionDetail" Member="tblVotingQuestionDetails" ThisKey="VotingCategoryID" OtherKey="VotingQuestionCategoryID" Type="tblVotingQuestionDetail" />
-      <Association Name="tblVotingCategoryDesc_tblOrgVotingCategory" Member="tblOrgVotingCategories" ThisKey="VotingCategoryID" OtherKey="OrgVotingCategoryID" Type="tblOrgVotingCategory" />
-      <Association Name="tblVotingCategoryDesc_tblUserVotingCategory" Member="tblUserVotingCategories" ThisKey="VotingCategoryID" OtherKey="UserVotingCategoryID" Type="tblUserVotingCategory" />
+      <Association Name="tblUser_tblUserVotingDetail" Member="tblUserVotingDetails" ThisKey="UserID" OtherKey="UserID" Type="tblUserVotingDetail" />
     </Type>
   </Table>
   <Table Name="dbo.tblUserVotingCategory" Member="tblUserVotingCategories">
@@ -74,6 +50,40 @@
       <Column Name="UserVotingCategoryID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Association Name="tblUser_tblUserVotingCategory" Member="tblUser" ThisKey="UserID" OtherKey="UserID" Type="tblUser" IsForeignKey="true" />
       <Association Name="tblVotingCategoryDesc_tblUserVotingCategory" Member="tblVotingCategoryDesc" ThisKey="UserVotingCategoryID" OtherKey="VotingCategoryID" Type="tblVotingCategoryDesc" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblUserVotingDetails" Member="tblUserVotingDetails">
+    <Type Name="tblUserVotingDetail">
+      <Column Name="UserID" Type="System.String" DbType="NVarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="QuestionID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="B_UserVote" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="DtVoteCasted" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="tblUser_tblUserVotingDetail" Member="tblUser" ThisKey="UserID" OtherKey="UserID" Type="tblUser" IsForeignKey="true" />
+      <Association Name="tblVotingQuestionDetail_tblUserVotingDetail" Member="tblVotingQuestionDetail" ThisKey="QuestionID" OtherKey="QuestionID" Type="tblVotingQuestionDetail" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblVotingCategoryDesc" Member="tblVotingCategoryDescs">
+    <Type Name="tblVotingCategoryDesc">
+      <Column Name="VotingCategoryID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="CategoryDescription" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Association Name="tblVotingCategoryDesc_tblOrgQuestionTargetAudience" Member="tblOrgQuestionTargetAudiences" ThisKey="VotingCategoryID" OtherKey="VotingQuestionCategoryID" Type="tblOrgQuestionTargetAudience" />
+      <Association Name="tblVotingCategoryDesc_tblOrgVotingCategory" Member="tblOrgVotingCategories" ThisKey="VotingCategoryID" OtherKey="OrgVotingCategoryID" Type="tblOrgVotingCategory" />
+      <Association Name="tblVotingCategoryDesc_tblUserVotingCategory" Member="tblUserVotingCategories" ThisKey="VotingCategoryID" OtherKey="UserVotingCategoryID" Type="tblUserVotingCategory" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblVotingQuestionDetails" Member="tblVotingQuestionDetails">
+    <Type Name="tblVotingQuestionDetail">
+      <Column Name="QuestionID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="QuestionText" Type="System.String" DbType="NVarChar(1000) NOT NULL" CanBeNull="false" />
+      <Column Name="VotedYes" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="VotedNo" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="VotingStartDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="VotingEndDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="MinVotingAge" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="MaxVotingAge" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TargetAudienceGender" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Association Name="tblVotingQuestionDetail_tblOrgQuestionTargetAudience" Member="tblOrgQuestionTargetAudiences" ThisKey="QuestionID" OtherKey="QuestionID" Type="tblOrgQuestionTargetAudience" />
+      <Association Name="tblVotingQuestionDetail_tblUserVotingDetail" Member="tblUserVotingDetails" ThisKey="QuestionID" OtherKey="QuestionID" Type="tblUserVotingDetail" />
     </Type>
   </Table>
 </Database>

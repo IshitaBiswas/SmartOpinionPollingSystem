@@ -1,103 +1,116 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 9.5" name="SOPDb">
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 14.125, 12" name="SOPDb">
   <DataContextMoniker Name="/SOPDbDataContext" />
   <nestedChildShapes>
-    <classShape Id="6c394426-ae70-4a9c-a8e9-7a19c23f5008" absoluteBounds="0.75, 7.125, 2, 1.7708968098958327">
+    <classShape Id="94ce6461-8e02-4e19-8231-e0e4f0ac478e" absoluteBounds="4.75, 2.375, 2, 1.7708968098958331">
       <DataClassMoniker Name="/SOPDbDataContext/tblOrganization" />
       <nestedChildShapes>
-        <elementListCompartment Id="98253e62-2f42-41c8-b7b5-ae7f96085524" absoluteBounds="0.765, 7.585, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="0cd1d868-ab2d-4c53-9900-34b1bc720da7" absoluteBounds="4.765, 2.835, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="6d263aca-d43c-406f-b8d7-8dce55d73e35" absoluteBounds="3.5, 6.875, 2, 2.3478011067708335">
-      <DataClassMoniker Name="/SOPDbDataContext/tblVotingQuestionDetail" />
+    <classShape Id="8311c6a8-918a-4277-ab56-782d932fc82a" absoluteBounds="3.5, 7, 2, 1.3862939453125005">
+      <DataClassMoniker Name="/SOPDbDataContext/tblOrgQuestionTargetAudience" />
       <nestedChildShapes>
-        <elementListCompartment Id="9dd58bfa-68cb-4df4-8791-7ecd3cc2c0e4" absoluteBounds="3.515, 7.335, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="e7d7f1dc-0b45-42aa-a34d-9f1d9645b196" absoluteBounds="3.515, 7.46, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="0299f768-c865-47ea-94ff-8c1e103e4a13" absoluteBounds="3.5, 4.375, 2, 1.1939925130208344">
+    <classShape Id="206fcd67-e86d-4dd2-8b78-deaff3799e40" absoluteBounds="5.125, 5.375, 2, 1.1939925130208335">
       <DataClassMoniker Name="/SOPDbDataContext/tblOrgVotingCategory" />
       <nestedChildShapes>
-        <elementListCompartment Id="1134b60a-92c3-44ff-9907-f35e7eda7ec1" absoluteBounds="3.515, 4.835, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="a8267a3a-ad3d-4ab5-860a-e64ff79dc23e" absoluteBounds="5.1400000000000006, 5.835, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="fc732cf9-1613-4856-8d68-f4ed8c437a4a" absoluteBounds="0.75, 0.75, 2, 2.5401025390625005">
+    <classShape Id="6b7f6739-889f-4f94-9013-5c8ec9b0fd87" absoluteBounds="8.375, 9.25, 2, 2.5401025390625014">
       <DataClassMoniker Name="/SOPDbDataContext/tblUser" />
       <nestedChildShapes>
-        <elementListCompartment Id="728833af-7091-4767-bfb7-076f78013e0f" absoluteBounds="0.765, 1.21, 1.9700000000000002, 1.9801025390625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="f1c016b1-c243-4b24-b747-114dd6248fab" absoluteBounds="8.39, 9.71, 1.9700000000000002, 1.9801025390625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="8e597128-8b52-4864-89f8-edef70178462" absoluteBounds="6.25, 7.25, 2, 1.5785953776041657">
-      <DataClassMoniker Name="/SOPDbDataContext/tblUserVotingDetail" />
-      <nestedChildShapes>
-        <elementListCompartment Id="89d395d6-f339-4db1-a1a5-2022d89317e0" absoluteBounds="6.265, 7.71, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="df1bd97a-f5e5-4479-a950-fc97ed2cf4c9" absoluteBounds="0.75, 4.375, 2, 1.1939925130208344">
-      <DataClassMoniker Name="/SOPDbDataContext/tblVotingCategoryDesc" />
-      <nestedChildShapes>
-        <elementListCompartment Id="6176151c-d667-4935-8442-6aa2b5b34899" absoluteBounds="0.765, 4.835, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <associationConnector edgePoints="[(2.75 : 8.01044840494792); (3.5 : 8.01044840494792)]" fixedFrom="NotFixed" fixedTo="NotFixed">
-      <AssociationMoniker Name="/SOPDbDataContext/tblOrganization/tblOrganization_tblVotingQuestionDetail" />
-      <nodes>
-        <classShapeMoniker Id="6c394426-ae70-4a9c-a8e9-7a19c23f5008" />
-        <classShapeMoniker Id="6d263aca-d43c-406f-b8d7-8dce55d73e35" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(2.75 : 7.125); (3.125 : 6.75); (3.125 : 4.97199625651042); (3.5 : 4.97199625651042)]" fixedFrom="NotFixed" fixedTo="NotFixed">
-      <AssociationMoniker Name="/SOPDbDataContext/tblOrganization/tblOrganization_tblOrgVotingCategory" />
-      <nodes>
-        <classShapeMoniker Id="6c394426-ae70-4a9c-a8e9-7a19c23f5008" />
-        <classShapeMoniker Id="0299f768-c865-47ea-94ff-8c1e103e4a13" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(5.5 : 8.03929768880208); (6.25 : 8.03929768880208)]" fixedFrom="NotFixed" fixedTo="NotFixed">
-      <AssociationMoniker Name="/SOPDbDataContext/tblVotingQuestionDetail/tblVotingQuestionDetail_tblUserVotingDetail" />
-      <nodes>
-        <classShapeMoniker Id="6d263aca-d43c-406f-b8d7-8dce55d73e35" />
-        <classShapeMoniker Id="8e597128-8b52-4864-89f8-edef70178462" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(2.75 : 1.78125); (7.90625 : 1.78125); (7.90625 : 7.25)]" fixedFrom="Algorithm" fixedTo="Algorithm">
-      <AssociationMoniker Name="/SOPDbDataContext/tblUser/tblUser_tblUserVotingDetail" />
-      <nodes>
-        <classShapeMoniker Id="fc732cf9-1613-4856-8d68-f4ed8c437a4a" />
-        <classShapeMoniker Id="8e597128-8b52-4864-89f8-edef70178462" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(2.75 : 5.53776401652644); (3.06607443490112 : 5.85383845142756 : JumpStart); (3.18392556509888 : 5.97168958162532 : JumpEnd); (3.28125 : 6.06901401652644); (3.28125 : 8.64787675585938); (3.5 : 8.64787675585938)]" fixedFrom="NotFixed" fixedTo="NotFixed">
-      <AssociationMoniker Name="/SOPDbDataContext/tblVotingCategoryDesc/tblVotingCategoryDesc_tblVotingQuestionDetail" />
-      <nodes>
-        <classShapeMoniker Id="df1bd97a-f5e5-4479-a950-fc97ed2cf4c9" />
-        <classShapeMoniker Id="6d263aca-d43c-406f-b8d7-8dce55d73e35" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(2.75 : 4.61099812825521); (3.5 : 4.61099812825521)]" fixedFrom="NotFixed" fixedTo="NotFixed">
-      <AssociationMoniker Name="/SOPDbDataContext/tblVotingCategoryDesc/tblVotingCategoryDesc_tblOrgVotingCategory" />
-      <nodes>
-        <classShapeMoniker Id="df1bd97a-f5e5-4479-a950-fc97ed2cf4c9" />
-        <classShapeMoniker Id="0299f768-c865-47ea-94ff-8c1e103e4a13" />
-      </nodes>
-    </associationConnector>
-    <classShape Id="7c1da1b8-6f94-418a-b314-66a7859d3d01" absoluteBounds="5.5, 2.875, 2, 1.1939925130208333">
+    <classShape Id="d32fb73b-c44e-4de1-9d3e-8048e73ed331" absoluteBounds="10.5, 2.75, 2, 1.1939925130208335">
       <DataClassMoniker Name="/SOPDbDataContext/tblUserVotingCategory" />
       <nestedChildShapes>
-        <elementListCompartment Id="1f830f73-5ed7-4ebd-b612-ddf299d36738" absoluteBounds="5.515, 3.335, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="1f2ea19c-b2f5-4ca4-bce2-3685fc9beadb" absoluteBounds="10.515, 3.21, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(2.75 : 3.08255126953125); (5.5 : 3.08255126953125)]" fixedFrom="Algorithm" fixedTo="Algorithm">
-      <AssociationMoniker Name="/SOPDbDataContext/tblUser/tblUser_tblUserVotingCategory" />
+    <classShape Id="e4476c0c-f4b3-4ef6-bb07-2c1e5fb910ed" absoluteBounds="11.875, 8.5, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/SOPDbDataContext/tblUserVotingDetail" />
+      <nestedChildShapes>
+        <elementListCompartment Id="ffe0bda7-b445-4937-9c45-13f4cd81802a" absoluteBounds="11.89, 8.96, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="049eb7f4-50b4-4da0-a767-f370c13ce3c4" absoluteBounds="10, 4.875, 2, 1.1939925130208335">
+      <DataClassMoniker Name="/SOPDbDataContext/tblVotingCategoryDesc" />
+      <nestedChildShapes>
+        <elementListCompartment Id="61a04ce4-83ee-4259-b583-5a8c74796061" absoluteBounds="10.015, 5.335, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(4.90625 : 4.14589680989583); (4.90625 : 7)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/SOPDbDataContext/tblOrganization/tblOrganization_tblOrgQuestionTargetAudience" />
       <nodes>
-        <classShapeMoniker Id="fc732cf9-1613-4856-8d68-f4ed8c437a4a" />
-        <classShapeMoniker Id="7c1da1b8-6f94-418a-b314-66a7859d3d01" />
+        <classShapeMoniker Id="94ce6461-8e02-4e19-8231-e0e4f0ac478e" />
+        <classShapeMoniker Id="8311c6a8-918a-4277-ab56-782d932fc82a" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(1.75 : 4.375); (1.75 : 3.47199625651042); (5.5 : 3.47199625651042)]" fixedFrom="Algorithm" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(5.9375 : 4.14589680989583); (5.9375 : 5.375)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/SOPDbDataContext/tblOrganization/tblOrganization_tblOrgVotingCategory" />
+      <nodes>
+        <classShapeMoniker Id="94ce6461-8e02-4e19-8231-e0e4f0ac478e" />
+        <classShapeMoniker Id="206fcd67-e86d-4dd2-8b78-deaff3799e40" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(9.15625 : 9.25); (9.15625 : 3.34699625651042); (10.5 : 3.34699625651042)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/SOPDbDataContext/tblUser/tblUser_tblUserVotingCategory" />
+      <nodes>
+        <classShapeMoniker Id="6b7f6739-889f-4f94-9013-5c8ec9b0fd87" />
+        <classShapeMoniker Id="d32fb73b-c44e-4de1-9d3e-8048e73ed331" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(10.375 : 9.66429768880208); (11.875 : 9.66429768880208)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/SOPDbDataContext/tblUser/tblUser_tblUserVotingDetail" />
+      <nodes>
+        <classShapeMoniker Id="6b7f6739-889f-4f94-9013-5c8ec9b0fd87" />
+        <classShapeMoniker Id="e4476c0c-f4b3-4ef6-bb07-2c1e5fb910ed" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(11 : 6.06899251302083); (11 : 7.69314697265625); (5.5 : 7.69314697265625)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/SOPDbDataContext/tblVotingCategoryDesc/tblVotingCategoryDesc_tblOrgQuestionTargetAudience" />
+      <nodes>
+        <classShapeMoniker Id="049eb7f4-50b4-4da0-a767-f370c13ce3c4" />
+        <classShapeMoniker Id="8311c6a8-918a-4277-ab56-782d932fc82a" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(10 : 5.72199625651042); (7.125 : 5.72199625651042)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/SOPDbDataContext/tblVotingCategoryDesc/tblVotingCategoryDesc_tblOrgVotingCategory" />
+      <nodes>
+        <classShapeMoniker Id="049eb7f4-50b4-4da0-a767-f370c13ce3c4" />
+        <classShapeMoniker Id="206fcd67-e86d-4dd2-8b78-deaff3799e40" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(11.25 : 4.875); (11.25 : 3.94399251302083)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/SOPDbDataContext/tblVotingCategoryDesc/tblVotingCategoryDesc_tblUserVotingCategory" />
       <nodes>
-        <classShapeMoniker Id="df1bd97a-f5e5-4479-a950-fc97ed2cf4c9" />
-        <classShapeMoniker Id="7c1da1b8-6f94-418a-b314-66a7859d3d01" />
+        <classShapeMoniker Id="049eb7f4-50b4-4da0-a767-f370c13ce3c4" />
+        <classShapeMoniker Id="d32fb73b-c44e-4de1-9d3e-8048e73ed331" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="ee42fc16-024b-4d4e-98a6-cb24004424db" absoluteBounds="5, 9.25, 2, 2.5401025390625">
+      <DataClassMoniker Name="/SOPDbDataContext/tblVotingQuestionDetail" />
+      <nestedChildShapes>
+        <elementListCompartment Id="c323403e-dd9e-409a-9ef2-0e66b6921664" absoluteBounds="5.015, 9.71, 1.9700000000000002, 1.9801025390625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(5.25 : 9.25); (5.25 : 8.3862939453125)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/SOPDbDataContext/tblVotingQuestionDetail/tblVotingQuestionDetail_tblOrgQuestionTargetAudience" />
+      <nodes>
+        <classShapeMoniker Id="ee42fc16-024b-4d4e-98a6-cb24004424db" />
+        <classShapeMoniker Id="8311c6a8-918a-4277-ab56-782d932fc82a" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(6.1562525 : 9.25); (6.1562525 : 8.8437475); (9.07291666666667 : 8.8437475 : JumpStart); (9.23958333333333 : 8.8437475 : JumpEnd); (11.875 : 8.8437475)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/SOPDbDataContext/tblVotingQuestionDetail/tblVotingQuestionDetail_tblUserVotingDetail" />
+      <nodes>
+        <classShapeMoniker Id="ee42fc16-024b-4d4e-98a6-cb24004424db" />
+        <classShapeMoniker Id="e4476c0c-f4b3-4ef6-bb07-2c1e5fb910ed" />
       </nodes>
     </associationConnector>
   </nestedChildShapes>

@@ -58,7 +58,8 @@
 
             var options = {
                 title: " Registered Organization Categories - Breakup",
-                pointSize: 5
+                pointSize: 5,
+                is3D: true
             };
 
             var pieChart = new google.visualization.PieChart(document.getElementById('chart_div'));
@@ -78,9 +79,8 @@
         </tr>
         <tr>
             <td>
-                    <button ID="btnAddQuestion" runat="server" Text="Add a New Polling Question"  OnServerClick="btnAddQuestion_Click" Width="295px">
-                        Add a New Polling Question <%--<i class="fa fa-plus"> --%>
-                    </button>
+                 
+                    <asp:Button ID="btnAddQuestion" runat="server" Text="Add a New Polling Question" Width="295px" OnClick="btnAddQuestion_Click"/>
                     <br />
                     <asp:Button ID="btnPrevPollingStatus" runat="server" Text="Check Previous Polling Status" Width="295px" OnClick="btnPrevPollingStatus_Click" />
                     <br />

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Data.Linq;
 
 
-namespace SOP.Common
+namespace SOP.Common.Model
 {
     public class User
     {

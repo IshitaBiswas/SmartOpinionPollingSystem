@@ -7,6 +7,7 @@ using SOP.Services.Interfaces;
 using SOP.Data;
 using SOP.Data.Interfaces;
 using SOP.Common;
+using SOP.Common.Model;
 
 namespace SOP.Services
 {
@@ -27,9 +28,9 @@ namespace SOP.Services
             _udAcessor.RegisterUser(user);
         }
 
-
-
-        
-      
+        public void SaveUserVote(UserVotingDetail vd)
+        {
+            _udAcessor.SaveUserVote(vd);
+        }
     }
 }

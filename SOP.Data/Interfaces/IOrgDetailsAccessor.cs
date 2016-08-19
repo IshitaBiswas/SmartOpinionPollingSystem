@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SOP.Common.Model;
+using SOP.Common;
+using System.Data;
 
 namespace SOP.Data.Interfaces
 {
@@ -11,6 +13,8 @@ namespace SOP.Data.Interfaces
     {
          void AddOrganization(Organization org);
          bool DoesOrgExist(string OrgID);
+         DataSet GetOrgPollingQuestionCategories(String orgID);
+         void AddOrgPollingQuestionDetails(VotingQuestionDetail orgqstndetail);
 
          bool OrgLogin(Organization org);
 

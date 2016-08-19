@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Configuration;
 using SOP.Common;
 using SOP.Data.Interfaces;
+using SOP.Common.Model;
 
 namespace SOP.Data
 {
@@ -52,6 +53,9 @@ namespace SOP.Data
 
                 _db.tblUsers.InsertOnSubmit(singleUserRecord);
 
+
+               // user.UserVotingCategoryIDs.ForEach(v => { });
+
                 user.UserVotingCategoryIDs.ForEach(v =>  {
                                                       var singleVotingCategoryRecord = new tblUserVotingCategory
                                                         {
@@ -72,6 +76,37 @@ namespace SOP.Data
         {
             var _db = new SOPDbDataContext();
             return _db.tblUsers.Any(u =>  u.UserID == user.UserID);
+        }
+
+
+        public void SaveUserVote(UserVotingDetail vd)
+        {
+            using (var _db = new SOPDbDataContext())
+            {
+                var singleUserVotingDetail = new tblUserVotingDetail
+                {
+                    UserID = vd.UserID,
+                    QuestionID = vd.QuestionID,
+                    B_UserVote = Convert.ToBoolean(vd.B_UserVote),
+                    DtVoteCasted = DateTime.Now
+                
+                };
+
+                //Insert 
+                _db.tblUserVotingDetails.InsertOnSubmit(singleUserVotingDetail);
+
+                //Update 
+                tblVotingQuestionDetail vqd = _db.tblVotingQuestionDetails.First(r => r.QuestionID == vd.QuestionID);
+                if (Convert.ToBoolean(vd.B_UserVote))
+                     vqd.VotedYes = (vqd.VotedYes??0) + 1;
+                 else 
+                     vqd.VotedNo = (vqd.VotedNo ?? 0) + 1;
+
+
+             _db.SubmitChanges();  //Insert & update happen on SubmitChanges()
+            }
+
+
         }
 
 

@@ -33,18 +33,27 @@ namespace SOP.Data
     partial void InserttblOrganization(tblOrganization instance);
     partial void UpdatetblOrganization(tblOrganization instance);
     partial void DeletetblOrganization(tblOrganization instance);
-    partial void InserttblVotingQuestionDetail(tblVotingQuestionDetail instance);
-    partial void UpdatetblVotingQuestionDetail(tblVotingQuestionDetail instance);
-    partial void DeletetblVotingQuestionDetail(tblVotingQuestionDetail instance);
+    partial void InserttblOrgQuestionTargetAudience(tblOrgQuestionTargetAudience instance);
+    partial void UpdatetblOrgQuestionTargetAudience(tblOrgQuestionTargetAudience instance);
+    partial void DeletetblOrgQuestionTargetAudience(tblOrgQuestionTargetAudience instance);
+    partial void InserttblOrgVotingCategory(tblOrgVotingCategory instance);
+    partial void UpdatetblOrgVotingCategory(tblOrgVotingCategory instance);
+    partial void DeletetblOrgVotingCategory(tblOrgVotingCategory instance);
     partial void InserttblUser(tblUser instance);
     partial void UpdatetblUser(tblUser instance);
     partial void DeletetblUser(tblUser instance);
-    partial void InserttblVotingCategoryDesc(tblVotingCategoryDesc instance);
-    partial void UpdatetblVotingCategoryDesc(tblVotingCategoryDesc instance);
-    partial void DeletetblVotingCategoryDesc(tblVotingCategoryDesc instance);
     partial void InserttblUserVotingCategory(tblUserVotingCategory instance);
     partial void UpdatetblUserVotingCategory(tblUserVotingCategory instance);
     partial void DeletetblUserVotingCategory(tblUserVotingCategory instance);
+    partial void InserttblUserVotingDetail(tblUserVotingDetail instance);
+    partial void UpdatetblUserVotingDetail(tblUserVotingDetail instance);
+    partial void DeletetblUserVotingDetail(tblUserVotingDetail instance);
+    partial void InserttblVotingCategoryDesc(tblVotingCategoryDesc instance);
+    partial void UpdatetblVotingCategoryDesc(tblVotingCategoryDesc instance);
+    partial void DeletetblVotingCategoryDesc(tblVotingCategoryDesc instance);
+    partial void InserttblVotingQuestionDetail(tblVotingQuestionDetail instance);
+    partial void UpdatetblVotingQuestionDetail(tblVotingQuestionDetail instance);
+    partial void DeletetblVotingQuestionDetail(tblVotingQuestionDetail instance);
     #endregion
 		
 		public SOPDbDataContext() : 
@@ -85,11 +94,11 @@ namespace SOP.Data
 			}
 		}
 		
-		public System.Data.Linq.Table<tblVotingQuestionDetail> tblVotingQuestionDetails
+		public System.Data.Linq.Table<tblOrgQuestionTargetAudience> tblOrgQuestionTargetAudiences
 		{
 			get
 			{
-				return this.GetTable<tblVotingQuestionDetail>();
+				return this.GetTable<tblOrgQuestionTargetAudience>();
 			}
 		}
 		
@@ -109,6 +118,14 @@ namespace SOP.Data
 			}
 		}
 		
+		public System.Data.Linq.Table<tblUserVotingCategory> tblUserVotingCategories
+		{
+			get
+			{
+				return this.GetTable<tblUserVotingCategory>();
+			}
+		}
+		
 		public System.Data.Linq.Table<tblUserVotingDetail> tblUserVotingDetails
 		{
 			get
@@ -125,11 +142,11 @@ namespace SOP.Data
 			}
 		}
 		
-		public System.Data.Linq.Table<tblUserVotingCategory> tblUserVotingCategories
+		public System.Data.Linq.Table<tblVotingQuestionDetail> tblVotingQuestionDetails
 		{
 			get
 			{
-				return this.GetTable<tblUserVotingCategory>();
+				return this.GetTable<tblVotingQuestionDetail>();
 			}
 		}
 	}
@@ -150,7 +167,9 @@ namespace SOP.Data
 		
 		private string _OrgRegPassword;
 		
-		private EntitySet<tblVotingQuestionDetail> _tblVotingQuestionDetails;
+		private EntitySet<tblOrgQuestionTargetAudience> _tblOrgQuestionTargetAudiences;
+		
+		private EntitySet<tblOrgVotingCategory> _tblOrgVotingCategories;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -170,7 +189,8 @@ namespace SOP.Data
 		
 		public tblOrganization()
 		{
-			this._tblVotingQuestionDetails = new EntitySet<tblVotingQuestionDetail>(new Action<tblVotingQuestionDetail>(this.attach_tblVotingQuestionDetails), new Action<tblVotingQuestionDetail>(this.detach_tblVotingQuestionDetails));
+			this._tblOrgQuestionTargetAudiences = new EntitySet<tblOrgQuestionTargetAudience>(new Action<tblOrgQuestionTargetAudience>(this.attach_tblOrgQuestionTargetAudiences), new Action<tblOrgQuestionTargetAudience>(this.detach_tblOrgQuestionTargetAudiences));
+			this._tblOrgVotingCategories = new EntitySet<tblOrgVotingCategory>(new Action<tblOrgVotingCategory>(this.attach_tblOrgVotingCategories), new Action<tblOrgVotingCategory>(this.detach_tblOrgVotingCategories));
 			OnCreated();
 		}
 		
@@ -274,16 +294,29 @@ namespace SOP.Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblOrganization_tblVotingQuestionDetail", Storage="_tblVotingQuestionDetails", ThisKey="OrgID", OtherKey="OrgID")]
-		public EntitySet<tblVotingQuestionDetail> tblVotingQuestionDetails
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblOrganization_tblOrgQuestionTargetAudience", Storage="_tblOrgQuestionTargetAudiences", ThisKey="OrgID", OtherKey="OrgID")]
+		public EntitySet<tblOrgQuestionTargetAudience> tblOrgQuestionTargetAudiences
 		{
 			get
 			{
-				return this._tblVotingQuestionDetails;
+				return this._tblOrgQuestionTargetAudiences;
 			}
 			set
 			{
-				this._tblVotingQuestionDetails.Assign(value);
+				this._tblOrgQuestionTargetAudiences.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblOrganization_tblOrgVotingCategory", Storage="_tblOrgVotingCategories", ThisKey="OrgID", OtherKey="OrgID")]
+		public EntitySet<tblOrgVotingCategory> tblOrgVotingCategories
+		{
+			get
+			{
+				return this._tblOrgVotingCategories;
+			}
+			set
+			{
+				this._tblOrgVotingCategories.Assign(value);
 			}
 		}
 		
@@ -307,119 +340,70 @@ namespace SOP.Data
 			}
 		}
 		
-		private void attach_tblVotingQuestionDetails(tblVotingQuestionDetail entity)
+		private void attach_tblOrgQuestionTargetAudiences(tblOrgQuestionTargetAudience entity)
 		{
 			this.SendPropertyChanging();
 			entity.tblOrganization = this;
 		}
 		
-		private void detach_tblVotingQuestionDetails(tblVotingQuestionDetail entity)
+		private void detach_tblOrgQuestionTargetAudiences(tblOrgQuestionTargetAudience entity)
+		{
+			this.SendPropertyChanging();
+			entity.tblOrganization = null;
+		}
+		
+		private void attach_tblOrgVotingCategories(tblOrgVotingCategory entity)
+		{
+			this.SendPropertyChanging();
+			entity.tblOrganization = this;
+		}
+		
+		private void detach_tblOrgVotingCategories(tblOrgVotingCategory entity)
 		{
 			this.SendPropertyChanging();
 			entity.tblOrganization = null;
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tblVotingQuestionDetails")]
-	public partial class tblVotingQuestionDetail : INotifyPropertyChanging, INotifyPropertyChanged
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tblOrgQuestionTargetAudience")]
+	public partial class tblOrgQuestionTargetAudience : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private string _OrgID;
 		
 		private int _QuestionID;
 		
 		private int _VotingQuestionCategoryID;
 		
-		private string _OrgID;
-		
-		private string _QuestionText;
-		
-		private System.Nullable<int> _VotedYes;
-		
-		private System.Nullable<int> _VotedNo;
-		
-		private System.DateTime _VotingStartDate;
-		
-		private System.DateTime _VotingEndDate;
-		
 		private EntityRef<tblOrganization> _tblOrganization;
 		
 		private EntityRef<tblVotingCategoryDesc> _tblVotingCategoryDesc;
+		
+		private EntityRef<tblVotingQuestionDetail> _tblVotingQuestionDetail;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
+    partial void OnOrgIDChanging(string value);
+    partial void OnOrgIDChanged();
     partial void OnQuestionIDChanging(int value);
     partial void OnQuestionIDChanged();
     partial void OnVotingQuestionCategoryIDChanging(int value);
     partial void OnVotingQuestionCategoryIDChanged();
-    partial void OnOrgIDChanging(string value);
-    partial void OnOrgIDChanged();
-    partial void OnQuestionTextChanging(string value);
-    partial void OnQuestionTextChanged();
-    partial void OnVotedYesChanging(System.Nullable<int> value);
-    partial void OnVotedYesChanged();
-    partial void OnVotedNoChanging(System.Nullable<int> value);
-    partial void OnVotedNoChanged();
-    partial void OnVotingStartDateChanging(System.DateTime value);
-    partial void OnVotingStartDateChanged();
-    partial void OnVotingEndDateChanging(System.DateTime value);
-    partial void OnVotingEndDateChanged();
     #endregion
 		
-		public tblVotingQuestionDetail()
+		public tblOrgQuestionTargetAudience()
 		{
 			this._tblOrganization = default(EntityRef<tblOrganization>);
 			this._tblVotingCategoryDesc = default(EntityRef<tblVotingCategoryDesc>);
+			this._tblVotingQuestionDetail = default(EntityRef<tblVotingQuestionDetail>);
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_QuestionID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int QuestionID
-		{
-			get
-			{
-				return this._QuestionID;
-			}
-			set
-			{
-				if ((this._QuestionID != value))
-				{
-					this.OnQuestionIDChanging(value);
-					this.SendPropertyChanging();
-					this._QuestionID = value;
-					this.SendPropertyChanged("QuestionID");
-					this.OnQuestionIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VotingQuestionCategoryID", DbType="Int NOT NULL")]
-		public int VotingQuestionCategoryID
-		{
-			get
-			{
-				return this._VotingQuestionCategoryID;
-			}
-			set
-			{
-				if ((this._VotingQuestionCategoryID != value))
-				{
-					if (this._tblVotingCategoryDesc.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnVotingQuestionCategoryIDChanging(value);
-					this.SendPropertyChanging();
-					this._VotingQuestionCategoryID = value;
-					this.SendPropertyChanged("VotingQuestionCategoryID");
-					this.OnVotingQuestionCategoryIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OrgID", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OrgID", DbType="NVarChar(50) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
 		public string OrgID
 		{
 			get
@@ -443,107 +427,55 @@ namespace SOP.Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_QuestionText", DbType="NVarChar(1000) NOT NULL", CanBeNull=false)]
-		public string QuestionText
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_QuestionID", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int QuestionID
 		{
 			get
 			{
-				return this._QuestionText;
+				return this._QuestionID;
 			}
 			set
 			{
-				if ((this._QuestionText != value))
+				if ((this._QuestionID != value))
 				{
-					this.OnQuestionTextChanging(value);
+					if (this._tblVotingQuestionDetail.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnQuestionIDChanging(value);
 					this.SendPropertyChanging();
-					this._QuestionText = value;
-					this.SendPropertyChanged("QuestionText");
-					this.OnQuestionTextChanged();
+					this._QuestionID = value;
+					this.SendPropertyChanged("QuestionID");
+					this.OnQuestionIDChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VotedYes", DbType="Int")]
-		public System.Nullable<int> VotedYes
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VotingQuestionCategoryID", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int VotingQuestionCategoryID
 		{
 			get
 			{
-				return this._VotedYes;
+				return this._VotingQuestionCategoryID;
 			}
 			set
 			{
-				if ((this._VotedYes != value))
+				if ((this._VotingQuestionCategoryID != value))
 				{
-					this.OnVotedYesChanging(value);
+					if (this._tblVotingCategoryDesc.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnVotingQuestionCategoryIDChanging(value);
 					this.SendPropertyChanging();
-					this._VotedYes = value;
-					this.SendPropertyChanged("VotedYes");
-					this.OnVotedYesChanged();
+					this._VotingQuestionCategoryID = value;
+					this.SendPropertyChanged("VotingQuestionCategoryID");
+					this.OnVotingQuestionCategoryIDChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VotedNo", DbType="Int")]
-		public System.Nullable<int> VotedNo
-		{
-			get
-			{
-				return this._VotedNo;
-			}
-			set
-			{
-				if ((this._VotedNo != value))
-				{
-					this.OnVotedNoChanging(value);
-					this.SendPropertyChanging();
-					this._VotedNo = value;
-					this.SendPropertyChanged("VotedNo");
-					this.OnVotedNoChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VotingStartDate", DbType="DateTime NOT NULL")]
-		public System.DateTime VotingStartDate
-		{
-			get
-			{
-				return this._VotingStartDate;
-			}
-			set
-			{
-				if ((this._VotingStartDate != value))
-				{
-					this.OnVotingStartDateChanging(value);
-					this.SendPropertyChanging();
-					this._VotingStartDate = value;
-					this.SendPropertyChanged("VotingStartDate");
-					this.OnVotingStartDateChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VotingEndDate", DbType="DateTime NOT NULL")]
-		public System.DateTime VotingEndDate
-		{
-			get
-			{
-				return this._VotingEndDate;
-			}
-			set
-			{
-				if ((this._VotingEndDate != value))
-				{
-					this.OnVotingEndDateChanging(value);
-					this.SendPropertyChanging();
-					this._VotingEndDate = value;
-					this.SendPropertyChanged("VotingEndDate");
-					this.OnVotingEndDateChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblOrganization_tblVotingQuestionDetail", Storage="_tblOrganization", ThisKey="OrgID", OtherKey="OrgID", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblOrganization_tblOrgQuestionTargetAudience", Storage="_tblOrganization", ThisKey="OrgID", OtherKey="OrgID", IsForeignKey=true)]
 		public tblOrganization tblOrganization
 		{
 			get
@@ -560,12 +492,12 @@ namespace SOP.Data
 					if ((previousValue != null))
 					{
 						this._tblOrganization.Entity = null;
-						previousValue.tblVotingQuestionDetails.Remove(this);
+						previousValue.tblOrgQuestionTargetAudiences.Remove(this);
 					}
 					this._tblOrganization.Entity = value;
 					if ((value != null))
 					{
-						value.tblVotingQuestionDetails.Add(this);
+						value.tblOrgQuestionTargetAudiences.Add(this);
 						this._OrgID = value.OrgID;
 					}
 					else
@@ -577,7 +509,7 @@ namespace SOP.Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblVotingCategoryDesc_tblVotingQuestionDetail", Storage="_tblVotingCategoryDesc", ThisKey="VotingQuestionCategoryID", OtherKey="VotingCategoryID", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblVotingCategoryDesc_tblOrgQuestionTargetAudience", Storage="_tblVotingCategoryDesc", ThisKey="VotingQuestionCategoryID", OtherKey="VotingCategoryID", IsForeignKey=true)]
 		public tblVotingCategoryDesc tblVotingCategoryDesc
 		{
 			get
@@ -594,12 +526,12 @@ namespace SOP.Data
 					if ((previousValue != null))
 					{
 						this._tblVotingCategoryDesc.Entity = null;
-						previousValue.tblVotingQuestionDetails.Remove(this);
+						previousValue.tblOrgQuestionTargetAudiences.Remove(this);
 					}
 					this._tblVotingCategoryDesc.Entity = value;
 					if ((value != null))
 					{
-						value.tblVotingQuestionDetails.Add(this);
+						value.tblOrgQuestionTargetAudiences.Add(this);
 						this._VotingQuestionCategoryID = value.VotingCategoryID;
 					}
 					else
@@ -607,6 +539,40 @@ namespace SOP.Data
 						this._VotingQuestionCategoryID = default(int);
 					}
 					this.SendPropertyChanged("tblVotingCategoryDesc");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblVotingQuestionDetail_tblOrgQuestionTargetAudience", Storage="_tblVotingQuestionDetail", ThisKey="QuestionID", OtherKey="QuestionID", IsForeignKey=true)]
+		public tblVotingQuestionDetail tblVotingQuestionDetail
+		{
+			get
+			{
+				return this._tblVotingQuestionDetail.Entity;
+			}
+			set
+			{
+				tblVotingQuestionDetail previousValue = this._tblVotingQuestionDetail.Entity;
+				if (((previousValue != value) 
+							|| (this._tblVotingQuestionDetail.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._tblVotingQuestionDetail.Entity = null;
+						previousValue.tblOrgQuestionTargetAudiences.Remove(this);
+					}
+					this._tblVotingQuestionDetail.Entity = value;
+					if ((value != null))
+					{
+						value.tblOrgQuestionTargetAudiences.Add(this);
+						this._QuestionID = value.QuestionID;
+					}
+					else
+					{
+						this._QuestionID = default(int);
+					}
+					this.SendPropertyChanged("tblVotingQuestionDetail");
 				}
 			}
 		}
@@ -633,18 +599,37 @@ namespace SOP.Data
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tblOrgVotingCategory")]
-	public partial class tblOrgVotingCategory
+	public partial class tblOrgVotingCategory : INotifyPropertyChanging, INotifyPropertyChanged
 	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
 		private string _OrgID;
 		
 		private int _OrgVotingCategoryID;
 		
+		private EntityRef<tblOrganization> _tblOrganization;
+		
+		private EntityRef<tblVotingCategoryDesc> _tblVotingCategoryDesc;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnOrgIDChanging(string value);
+    partial void OnOrgIDChanged();
+    partial void OnOrgVotingCategoryIDChanging(int value);
+    partial void OnOrgVotingCategoryIDChanged();
+    #endregion
+		
 		public tblOrgVotingCategory()
 		{
+			this._tblOrganization = default(EntityRef<tblOrganization>);
+			this._tblVotingCategoryDesc = default(EntityRef<tblVotingCategoryDesc>);
+			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OrgID", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OrgID", DbType="NVarChar(50) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
 		public string OrgID
 		{
 			get
@@ -655,12 +640,20 @@ namespace SOP.Data
 			{
 				if ((this._OrgID != value))
 				{
+					if (this._tblOrganization.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnOrgIDChanging(value);
+					this.SendPropertyChanging();
 					this._OrgID = value;
+					this.SendPropertyChanged("OrgID");
+					this.OnOrgIDChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OrgVotingCategoryID", DbType="Int NOT NULL")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OrgVotingCategoryID", DbType="Int NOT NULL", IsPrimaryKey=true)]
 		public int OrgVotingCategoryID
 		{
 			get
@@ -671,8 +664,104 @@ namespace SOP.Data
 			{
 				if ((this._OrgVotingCategoryID != value))
 				{
+					if (this._tblVotingCategoryDesc.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnOrgVotingCategoryIDChanging(value);
+					this.SendPropertyChanging();
 					this._OrgVotingCategoryID = value;
+					this.SendPropertyChanged("OrgVotingCategoryID");
+					this.OnOrgVotingCategoryIDChanged();
 				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblOrganization_tblOrgVotingCategory", Storage="_tblOrganization", ThisKey="OrgID", OtherKey="OrgID", IsForeignKey=true)]
+		public tblOrganization tblOrganization
+		{
+			get
+			{
+				return this._tblOrganization.Entity;
+			}
+			set
+			{
+				tblOrganization previousValue = this._tblOrganization.Entity;
+				if (((previousValue != value) 
+							|| (this._tblOrganization.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._tblOrganization.Entity = null;
+						previousValue.tblOrgVotingCategories.Remove(this);
+					}
+					this._tblOrganization.Entity = value;
+					if ((value != null))
+					{
+						value.tblOrgVotingCategories.Add(this);
+						this._OrgID = value.OrgID;
+					}
+					else
+					{
+						this._OrgID = default(string);
+					}
+					this.SendPropertyChanged("tblOrganization");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblVotingCategoryDesc_tblOrgVotingCategory", Storage="_tblVotingCategoryDesc", ThisKey="OrgVotingCategoryID", OtherKey="VotingCategoryID", IsForeignKey=true)]
+		public tblVotingCategoryDesc tblVotingCategoryDesc
+		{
+			get
+			{
+				return this._tblVotingCategoryDesc.Entity;
+			}
+			set
+			{
+				tblVotingCategoryDesc previousValue = this._tblVotingCategoryDesc.Entity;
+				if (((previousValue != value) 
+							|| (this._tblVotingCategoryDesc.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._tblVotingCategoryDesc.Entity = null;
+						previousValue.tblOrgVotingCategories.Remove(this);
+					}
+					this._tblVotingCategoryDesc.Entity = value;
+					if ((value != null))
+					{
+						value.tblOrgVotingCategories.Add(this);
+						this._OrgVotingCategoryID = value.VotingCategoryID;
+					}
+					else
+					{
+						this._OrgVotingCategoryID = default(int);
+					}
+					this.SendPropertyChanged("tblVotingCategoryDesc");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
 		}
 	}
@@ -703,6 +792,8 @@ namespace SOP.Data
 		
 		private EntitySet<tblUserVotingCategory> _tblUserVotingCategories;
 		
+		private EntitySet<tblUserVotingDetail> _tblUserVotingDetails;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -730,6 +821,7 @@ namespace SOP.Data
 		public tblUser()
 		{
 			this._tblUserVotingCategories = new EntitySet<tblUserVotingCategory>(new Action<tblUserVotingCategory>(this.attach_tblUserVotingCategories), new Action<tblUserVotingCategory>(this.detach_tblUserVotingCategories));
+			this._tblUserVotingDetails = new EntitySet<tblUserVotingDetail>(new Action<tblUserVotingDetail>(this.attach_tblUserVotingDetails), new Action<tblUserVotingDetail>(this.detach_tblUserVotingDetails));
 			OnCreated();
 		}
 		
@@ -926,6 +1018,19 @@ namespace SOP.Data
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblUser_tblUserVotingDetail", Storage="_tblUserVotingDetails", ThisKey="UserID", OtherKey="UserID")]
+		public EntitySet<tblUserVotingDetail> tblUserVotingDetails
+		{
+			get
+			{
+				return this._tblUserVotingDetails;
+			}
+			set
+			{
+				this._tblUserVotingDetails.Assign(value);
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -957,228 +1062,17 @@ namespace SOP.Data
 			this.SendPropertyChanging();
 			entity.tblUser = null;
 		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tblUserVotingDetails")]
-	public partial class tblUserVotingDetail
-	{
 		
-		private string _UserID;
-		
-		private int _QuestionID;
-		
-		private bool _B_UserVote;
-		
-		private System.DateTime _DtVoteCasted;
-		
-		public tblUserVotingDetail()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserID", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
-		public string UserID
-		{
-			get
-			{
-				return this._UserID;
-			}
-			set
-			{
-				if ((this._UserID != value))
-				{
-					this._UserID = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_QuestionID", DbType="Int NOT NULL")]
-		public int QuestionID
-		{
-			get
-			{
-				return this._QuestionID;
-			}
-			set
-			{
-				if ((this._QuestionID != value))
-				{
-					this._QuestionID = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_B_UserVote", DbType="Bit NOT NULL")]
-		public bool B_UserVote
-		{
-			get
-			{
-				return this._B_UserVote;
-			}
-			set
-			{
-				if ((this._B_UserVote != value))
-				{
-					this._B_UserVote = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DtVoteCasted", DbType="DateTime NOT NULL")]
-		public System.DateTime DtVoteCasted
-		{
-			get
-			{
-				return this._DtVoteCasted;
-			}
-			set
-			{
-				if ((this._DtVoteCasted != value))
-				{
-					this._DtVoteCasted = value;
-				}
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tblVotingCategoryDesc")]
-	public partial class tblVotingCategoryDesc : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _VotingCategoryID;
-		
-		private string _CategoryDescription;
-		
-		private EntitySet<tblVotingQuestionDetail> _tblVotingQuestionDetails;
-		
-		private EntitySet<tblUserVotingCategory> _tblUserVotingCategories;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnVotingCategoryIDChanging(int value);
-    partial void OnVotingCategoryIDChanged();
-    partial void OnCategoryDescriptionChanging(string value);
-    partial void OnCategoryDescriptionChanged();
-    #endregion
-		
-		public tblVotingCategoryDesc()
-		{
-			this._tblVotingQuestionDetails = new EntitySet<tblVotingQuestionDetail>(new Action<tblVotingQuestionDetail>(this.attach_tblVotingQuestionDetails), new Action<tblVotingQuestionDetail>(this.detach_tblVotingQuestionDetails));
-			this._tblUserVotingCategories = new EntitySet<tblUserVotingCategory>(new Action<tblUserVotingCategory>(this.attach_tblUserVotingCategories), new Action<tblUserVotingCategory>(this.detach_tblUserVotingCategories));
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VotingCategoryID", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int VotingCategoryID
-		{
-			get
-			{
-				return this._VotingCategoryID;
-			}
-			set
-			{
-				if ((this._VotingCategoryID != value))
-				{
-					this.OnVotingCategoryIDChanging(value);
-					this.SendPropertyChanging();
-					this._VotingCategoryID = value;
-					this.SendPropertyChanged("VotingCategoryID");
-					this.OnVotingCategoryIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CategoryDescription", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
-		public string CategoryDescription
-		{
-			get
-			{
-				return this._CategoryDescription;
-			}
-			set
-			{
-				if ((this._CategoryDescription != value))
-				{
-					this.OnCategoryDescriptionChanging(value);
-					this.SendPropertyChanging();
-					this._CategoryDescription = value;
-					this.SendPropertyChanged("CategoryDescription");
-					this.OnCategoryDescriptionChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblVotingCategoryDesc_tblVotingQuestionDetail", Storage="_tblVotingQuestionDetails", ThisKey="VotingCategoryID", OtherKey="VotingQuestionCategoryID")]
-		public EntitySet<tblVotingQuestionDetail> tblVotingQuestionDetails
-		{
-			get
-			{
-				return this._tblVotingQuestionDetails;
-			}
-			set
-			{
-				this._tblVotingQuestionDetails.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblVotingCategoryDesc_tblUserVotingCategory", Storage="_tblUserVotingCategories", ThisKey="VotingCategoryID", OtherKey="UserVotingCategoryID")]
-		public EntitySet<tblUserVotingCategory> tblUserVotingCategories
-		{
-			get
-			{
-				return this._tblUserVotingCategories;
-			}
-			set
-			{
-				this._tblUserVotingCategories.Assign(value);
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_tblVotingQuestionDetails(tblVotingQuestionDetail entity)
+		private void attach_tblUserVotingDetails(tblUserVotingDetail entity)
 		{
 			this.SendPropertyChanging();
-			entity.tblVotingCategoryDesc = this;
+			entity.tblUser = this;
 		}
 		
-		private void detach_tblVotingQuestionDetails(tblVotingQuestionDetail entity)
+		private void detach_tblUserVotingDetails(tblUserVotingDetail entity)
 		{
 			this.SendPropertyChanging();
-			entity.tblVotingCategoryDesc = null;
-		}
-		
-		private void attach_tblUserVotingCategories(tblUserVotingCategory entity)
-		{
-			this.SendPropertyChanging();
-			entity.tblVotingCategoryDesc = this;
-		}
-		
-		private void detach_tblUserVotingCategories(tblUserVotingCategory entity)
-		{
-			this.SendPropertyChanging();
-			entity.tblVotingCategoryDesc = null;
+			entity.tblUser = null;
 		}
 	}
 	
@@ -1347,6 +1241,702 @@ namespace SOP.Data
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tblUserVotingDetails")]
+	public partial class tblUserVotingDetail : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private string _UserID;
+		
+		private int _QuestionID;
+		
+		private bool _B_UserVote;
+		
+		private System.DateTime _DtVoteCasted;
+		
+		private EntityRef<tblUser> _tblUser;
+		
+		private EntityRef<tblVotingQuestionDetail> _tblVotingQuestionDetail;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnUserIDChanging(string value);
+    partial void OnUserIDChanged();
+    partial void OnQuestionIDChanging(int value);
+    partial void OnQuestionIDChanged();
+    partial void OnB_UserVoteChanging(bool value);
+    partial void OnB_UserVoteChanged();
+    partial void OnDtVoteCastedChanging(System.DateTime value);
+    partial void OnDtVoteCastedChanged();
+    #endregion
+		
+		public tblUserVotingDetail()
+		{
+			this._tblUser = default(EntityRef<tblUser>);
+			this._tblVotingQuestionDetail = default(EntityRef<tblVotingQuestionDetail>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserID", DbType="NVarChar(50) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string UserID
+		{
+			get
+			{
+				return this._UserID;
+			}
+			set
+			{
+				if ((this._UserID != value))
+				{
+					if (this._tblUser.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnUserIDChanging(value);
+					this.SendPropertyChanging();
+					this._UserID = value;
+					this.SendPropertyChanged("UserID");
+					this.OnUserIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_QuestionID", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int QuestionID
+		{
+			get
+			{
+				return this._QuestionID;
+			}
+			set
+			{
+				if ((this._QuestionID != value))
+				{
+					if (this._tblVotingQuestionDetail.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnQuestionIDChanging(value);
+					this.SendPropertyChanging();
+					this._QuestionID = value;
+					this.SendPropertyChanged("QuestionID");
+					this.OnQuestionIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_B_UserVote", DbType="Bit NOT NULL")]
+		public bool B_UserVote
+		{
+			get
+			{
+				return this._B_UserVote;
+			}
+			set
+			{
+				if ((this._B_UserVote != value))
+				{
+					this.OnB_UserVoteChanging(value);
+					this.SendPropertyChanging();
+					this._B_UserVote = value;
+					this.SendPropertyChanged("B_UserVote");
+					this.OnB_UserVoteChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DtVoteCasted", DbType="DateTime NOT NULL")]
+		public System.DateTime DtVoteCasted
+		{
+			get
+			{
+				return this._DtVoteCasted;
+			}
+			set
+			{
+				if ((this._DtVoteCasted != value))
+				{
+					this.OnDtVoteCastedChanging(value);
+					this.SendPropertyChanging();
+					this._DtVoteCasted = value;
+					this.SendPropertyChanged("DtVoteCasted");
+					this.OnDtVoteCastedChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblUser_tblUserVotingDetail", Storage="_tblUser", ThisKey="UserID", OtherKey="UserID", IsForeignKey=true)]
+		public tblUser tblUser
+		{
+			get
+			{
+				return this._tblUser.Entity;
+			}
+			set
+			{
+				tblUser previousValue = this._tblUser.Entity;
+				if (((previousValue != value) 
+							|| (this._tblUser.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._tblUser.Entity = null;
+						previousValue.tblUserVotingDetails.Remove(this);
+					}
+					this._tblUser.Entity = value;
+					if ((value != null))
+					{
+						value.tblUserVotingDetails.Add(this);
+						this._UserID = value.UserID;
+					}
+					else
+					{
+						this._UserID = default(string);
+					}
+					this.SendPropertyChanged("tblUser");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblVotingQuestionDetail_tblUserVotingDetail", Storage="_tblVotingQuestionDetail", ThisKey="QuestionID", OtherKey="QuestionID", IsForeignKey=true)]
+		public tblVotingQuestionDetail tblVotingQuestionDetail
+		{
+			get
+			{
+				return this._tblVotingQuestionDetail.Entity;
+			}
+			set
+			{
+				tblVotingQuestionDetail previousValue = this._tblVotingQuestionDetail.Entity;
+				if (((previousValue != value) 
+							|| (this._tblVotingQuestionDetail.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._tblVotingQuestionDetail.Entity = null;
+						previousValue.tblUserVotingDetails.Remove(this);
+					}
+					this._tblVotingQuestionDetail.Entity = value;
+					if ((value != null))
+					{
+						value.tblUserVotingDetails.Add(this);
+						this._QuestionID = value.QuestionID;
+					}
+					else
+					{
+						this._QuestionID = default(int);
+					}
+					this.SendPropertyChanged("tblVotingQuestionDetail");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tblVotingCategoryDesc")]
+	public partial class tblVotingCategoryDesc : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _VotingCategoryID;
+		
+		private string _CategoryDescription;
+		
+		private EntitySet<tblOrgQuestionTargetAudience> _tblOrgQuestionTargetAudiences;
+		
+		private EntitySet<tblOrgVotingCategory> _tblOrgVotingCategories;
+		
+		private EntitySet<tblUserVotingCategory> _tblUserVotingCategories;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnVotingCategoryIDChanging(int value);
+    partial void OnVotingCategoryIDChanged();
+    partial void OnCategoryDescriptionChanging(string value);
+    partial void OnCategoryDescriptionChanged();
+    #endregion
+		
+		public tblVotingCategoryDesc()
+		{
+			this._tblOrgQuestionTargetAudiences = new EntitySet<tblOrgQuestionTargetAudience>(new Action<tblOrgQuestionTargetAudience>(this.attach_tblOrgQuestionTargetAudiences), new Action<tblOrgQuestionTargetAudience>(this.detach_tblOrgQuestionTargetAudiences));
+			this._tblOrgVotingCategories = new EntitySet<tblOrgVotingCategory>(new Action<tblOrgVotingCategory>(this.attach_tblOrgVotingCategories), new Action<tblOrgVotingCategory>(this.detach_tblOrgVotingCategories));
+			this._tblUserVotingCategories = new EntitySet<tblUserVotingCategory>(new Action<tblUserVotingCategory>(this.attach_tblUserVotingCategories), new Action<tblUserVotingCategory>(this.detach_tblUserVotingCategories));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VotingCategoryID", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int VotingCategoryID
+		{
+			get
+			{
+				return this._VotingCategoryID;
+			}
+			set
+			{
+				if ((this._VotingCategoryID != value))
+				{
+					this.OnVotingCategoryIDChanging(value);
+					this.SendPropertyChanging();
+					this._VotingCategoryID = value;
+					this.SendPropertyChanged("VotingCategoryID");
+					this.OnVotingCategoryIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CategoryDescription", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
+		public string CategoryDescription
+		{
+			get
+			{
+				return this._CategoryDescription;
+			}
+			set
+			{
+				if ((this._CategoryDescription != value))
+				{
+					this.OnCategoryDescriptionChanging(value);
+					this.SendPropertyChanging();
+					this._CategoryDescription = value;
+					this.SendPropertyChanged("CategoryDescription");
+					this.OnCategoryDescriptionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblVotingCategoryDesc_tblOrgQuestionTargetAudience", Storage="_tblOrgQuestionTargetAudiences", ThisKey="VotingCategoryID", OtherKey="VotingQuestionCategoryID")]
+		public EntitySet<tblOrgQuestionTargetAudience> tblOrgQuestionTargetAudiences
+		{
+			get
+			{
+				return this._tblOrgQuestionTargetAudiences;
+			}
+			set
+			{
+				this._tblOrgQuestionTargetAudiences.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblVotingCategoryDesc_tblOrgVotingCategory", Storage="_tblOrgVotingCategories", ThisKey="VotingCategoryID", OtherKey="OrgVotingCategoryID")]
+		public EntitySet<tblOrgVotingCategory> tblOrgVotingCategories
+		{
+			get
+			{
+				return this._tblOrgVotingCategories;
+			}
+			set
+			{
+				this._tblOrgVotingCategories.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblVotingCategoryDesc_tblUserVotingCategory", Storage="_tblUserVotingCategories", ThisKey="VotingCategoryID", OtherKey="UserVotingCategoryID")]
+		public EntitySet<tblUserVotingCategory> tblUserVotingCategories
+		{
+			get
+			{
+				return this._tblUserVotingCategories;
+			}
+			set
+			{
+				this._tblUserVotingCategories.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_tblOrgQuestionTargetAudiences(tblOrgQuestionTargetAudience entity)
+		{
+			this.SendPropertyChanging();
+			entity.tblVotingCategoryDesc = this;
+		}
+		
+		private void detach_tblOrgQuestionTargetAudiences(tblOrgQuestionTargetAudience entity)
+		{
+			this.SendPropertyChanging();
+			entity.tblVotingCategoryDesc = null;
+		}
+		
+		private void attach_tblOrgVotingCategories(tblOrgVotingCategory entity)
+		{
+			this.SendPropertyChanging();
+			entity.tblVotingCategoryDesc = this;
+		}
+		
+		private void detach_tblOrgVotingCategories(tblOrgVotingCategory entity)
+		{
+			this.SendPropertyChanging();
+			entity.tblVotingCategoryDesc = null;
+		}
+		
+		private void attach_tblUserVotingCategories(tblUserVotingCategory entity)
+		{
+			this.SendPropertyChanging();
+			entity.tblVotingCategoryDesc = this;
+		}
+		
+		private void detach_tblUserVotingCategories(tblUserVotingCategory entity)
+		{
+			this.SendPropertyChanging();
+			entity.tblVotingCategoryDesc = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tblVotingQuestionDetails")]
+	public partial class tblVotingQuestionDetail : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _QuestionID;
+		
+		private string _QuestionText;
+		
+		private System.Nullable<int> _VotedYes;
+		
+		private System.Nullable<int> _VotedNo;
+		
+		private System.DateTime _VotingStartDate;
+		
+		private System.DateTime _VotingEndDate;
+		
+		private System.Nullable<int> _MinVotingAge;
+		
+		private System.Nullable<int> _MaxVotingAge;
+		
+		private string _TargetAudienceGender;
+		
+		private EntitySet<tblOrgQuestionTargetAudience> _tblOrgQuestionTargetAudiences;
+		
+		private EntitySet<tblUserVotingDetail> _tblUserVotingDetails;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnQuestionIDChanging(int value);
+    partial void OnQuestionIDChanged();
+    partial void OnQuestionTextChanging(string value);
+    partial void OnQuestionTextChanged();
+    partial void OnVotedYesChanging(System.Nullable<int> value);
+    partial void OnVotedYesChanged();
+    partial void OnVotedNoChanging(System.Nullable<int> value);
+    partial void OnVotedNoChanged();
+    partial void OnVotingStartDateChanging(System.DateTime value);
+    partial void OnVotingStartDateChanged();
+    partial void OnVotingEndDateChanging(System.DateTime value);
+    partial void OnVotingEndDateChanged();
+    partial void OnMinVotingAgeChanging(System.Nullable<int> value);
+    partial void OnMinVotingAgeChanged();
+    partial void OnMaxVotingAgeChanging(System.Nullable<int> value);
+    partial void OnMaxVotingAgeChanged();
+    partial void OnTargetAudienceGenderChanging(string value);
+    partial void OnTargetAudienceGenderChanged();
+    #endregion
+		
+		public tblVotingQuestionDetail()
+		{
+			this._tblOrgQuestionTargetAudiences = new EntitySet<tblOrgQuestionTargetAudience>(new Action<tblOrgQuestionTargetAudience>(this.attach_tblOrgQuestionTargetAudiences), new Action<tblOrgQuestionTargetAudience>(this.detach_tblOrgQuestionTargetAudiences));
+			this._tblUserVotingDetails = new EntitySet<tblUserVotingDetail>(new Action<tblUserVotingDetail>(this.attach_tblUserVotingDetails), new Action<tblUserVotingDetail>(this.detach_tblUserVotingDetails));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_QuestionID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int QuestionID
+		{
+			get
+			{
+				return this._QuestionID;
+			}
+			set
+			{
+				if ((this._QuestionID != value))
+				{
+					this.OnQuestionIDChanging(value);
+					this.SendPropertyChanging();
+					this._QuestionID = value;
+					this.SendPropertyChanged("QuestionID");
+					this.OnQuestionIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_QuestionText", DbType="NVarChar(1000) NOT NULL", CanBeNull=false)]
+		public string QuestionText
+		{
+			get
+			{
+				return this._QuestionText;
+			}
+			set
+			{
+				if ((this._QuestionText != value))
+				{
+					this.OnQuestionTextChanging(value);
+					this.SendPropertyChanging();
+					this._QuestionText = value;
+					this.SendPropertyChanged("QuestionText");
+					this.OnQuestionTextChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VotedYes", DbType="Int")]
+		public System.Nullable<int> VotedYes
+		{
+			get
+			{
+				return this._VotedYes;
+			}
+			set
+			{
+				if ((this._VotedYes != value))
+				{
+					this.OnVotedYesChanging(value);
+					this.SendPropertyChanging();
+					this._VotedYes = value;
+					this.SendPropertyChanged("VotedYes");
+					this.OnVotedYesChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VotedNo", DbType="Int")]
+		public System.Nullable<int> VotedNo
+		{
+			get
+			{
+				return this._VotedNo;
+			}
+			set
+			{
+				if ((this._VotedNo != value))
+				{
+					this.OnVotedNoChanging(value);
+					this.SendPropertyChanging();
+					this._VotedNo = value;
+					this.SendPropertyChanged("VotedNo");
+					this.OnVotedNoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VotingStartDate", DbType="DateTime NOT NULL")]
+		public System.DateTime VotingStartDate
+		{
+			get
+			{
+				return this._VotingStartDate;
+			}
+			set
+			{
+				if ((this._VotingStartDate != value))
+				{
+					this.OnVotingStartDateChanging(value);
+					this.SendPropertyChanging();
+					this._VotingStartDate = value;
+					this.SendPropertyChanged("VotingStartDate");
+					this.OnVotingStartDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VotingEndDate", DbType="DateTime NOT NULL")]
+		public System.DateTime VotingEndDate
+		{
+			get
+			{
+				return this._VotingEndDate;
+			}
+			set
+			{
+				if ((this._VotingEndDate != value))
+				{
+					this.OnVotingEndDateChanging(value);
+					this.SendPropertyChanging();
+					this._VotingEndDate = value;
+					this.SendPropertyChanged("VotingEndDate");
+					this.OnVotingEndDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MinVotingAge", DbType="Int")]
+		public System.Nullable<int> MinVotingAge
+		{
+			get
+			{
+				return this._MinVotingAge;
+			}
+			set
+			{
+				if ((this._MinVotingAge != value))
+				{
+					this.OnMinVotingAgeChanging(value);
+					this.SendPropertyChanging();
+					this._MinVotingAge = value;
+					this.SendPropertyChanged("MinVotingAge");
+					this.OnMinVotingAgeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaxVotingAge", DbType="Int")]
+		public System.Nullable<int> MaxVotingAge
+		{
+			get
+			{
+				return this._MaxVotingAge;
+			}
+			set
+			{
+				if ((this._MaxVotingAge != value))
+				{
+					this.OnMaxVotingAgeChanging(value);
+					this.SendPropertyChanging();
+					this._MaxVotingAge = value;
+					this.SendPropertyChanged("MaxVotingAge");
+					this.OnMaxVotingAgeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TargetAudienceGender", DbType="VarChar(10) NOT NULL", CanBeNull=false)]
+		public string TargetAudienceGender
+		{
+			get
+			{
+				return this._TargetAudienceGender;
+			}
+			set
+			{
+				if ((this._TargetAudienceGender != value))
+				{
+					this.OnTargetAudienceGenderChanging(value);
+					this.SendPropertyChanging();
+					this._TargetAudienceGender = value;
+					this.SendPropertyChanged("TargetAudienceGender");
+					this.OnTargetAudienceGenderChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblVotingQuestionDetail_tblOrgQuestionTargetAudience", Storage="_tblOrgQuestionTargetAudiences", ThisKey="QuestionID", OtherKey="QuestionID")]
+		public EntitySet<tblOrgQuestionTargetAudience> tblOrgQuestionTargetAudiences
+		{
+			get
+			{
+				return this._tblOrgQuestionTargetAudiences;
+			}
+			set
+			{
+				this._tblOrgQuestionTargetAudiences.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblVotingQuestionDetail_tblUserVotingDetail", Storage="_tblUserVotingDetails", ThisKey="QuestionID", OtherKey="QuestionID")]
+		public EntitySet<tblUserVotingDetail> tblUserVotingDetails
+		{
+			get
+			{
+				return this._tblUserVotingDetails;
+			}
+			set
+			{
+				this._tblUserVotingDetails.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_tblOrgQuestionTargetAudiences(tblOrgQuestionTargetAudience entity)
+		{
+			this.SendPropertyChanging();
+			entity.tblVotingQuestionDetail = this;
+		}
+		
+		private void detach_tblOrgQuestionTargetAudiences(tblOrgQuestionTargetAudience entity)
+		{
+			this.SendPropertyChanging();
+			entity.tblVotingQuestionDetail = null;
+		}
+		
+		private void attach_tblUserVotingDetails(tblUserVotingDetail entity)
+		{
+			this.SendPropertyChanging();
+			entity.tblVotingQuestionDetail = this;
+		}
+		
+		private void detach_tblUserVotingDetails(tblUserVotingDetail entity)
+		{
+			this.SendPropertyChanging();
+			entity.tblVotingQuestionDetail = null;
 		}
 	}
 }

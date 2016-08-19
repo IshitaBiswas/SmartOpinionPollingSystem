@@ -14,6 +14,7 @@ namespace SOP.Data
         IEnumerable<VotingCategoryDesc> ChooseUserVotingCategories();
 
         DataSet ChooseOrgVotingCategories();
+        
         LoginTypeEnum ValidateLogin(GenericLogin genlogin);
 
     }

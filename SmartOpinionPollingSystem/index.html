@@ -43,7 +43,7 @@ body{
 	color:#FFF;
 	font-size:25px;
 	font-family:"Lucida Sans Unicode", "Lucida Grande", sans-serif;
-	line-height:300px;
+	/*line-height:300px;*/
 	padding-left:10px;
 	text-align:left;
 }
@@ -61,7 +61,7 @@ body{
 	color:#FFF;
 	font-size:25px;
 	font-family:"Lucida Sans Unicode", "Lucida Grande", sans-serif;
-	line-height:300px;
+	/*line-height:300px;*/
 	padding-left:10px;
 	text-align:left;
 }
@@ -116,7 +116,7 @@ body{
 	color:#FFF;
 	font-size:25px;
 	font-family:"Lucida Sans Unicode", "Lucida Grande", sans-serif;
-	line-height:300px;
+	/*line-height:300px;*/
 	padding-left:10px;
 	text-align:left;
 }
@@ -145,14 +145,18 @@ body{
 	font-family:"Lucida Sans Unicode", "Lucida Grande", sans-serif;
 }
 
-#pagecaption{
-	position:relative;
-	top:-60px;
-	
-	color:#FFF;
-	font-size:25px;
-	font-family:"Lucida Sans Unicode", "Lucida Grande", sans-serif;
-}
+    #pagecaption {
+        position: relative;
+        top: -60px;
+        color: #FFF;
+        font-size: 25px;
+        font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    }
+.btnctrl
+    {
+        padding-top: 95px;
+    }
+
 </style>
 </head>
 
@@ -161,12 +165,13 @@ body{
 <div style="width:100%; height:80px; overflow:hidden; margin: 0 auto; background-color:#333">
 
   <div style="width:750px; height:80px; margin: 0 auto; overflow:hidden; position:relative">
-		
-        <div id="caption" style="height:44px; margin-top:20px;float:left; margin-left:12px; position:absolute"> ITU_SmartOpinionPollingSystem </div>
+      <div id="logo" style="height:44px; margin-top:2px;float:left; margin-left:10px; position:absolute"><img src="https://upload.wikimedia.org/wikipedia/commons/1/1d/ITU_Logo.png" alt="Smart Poll" style="height: 80px" /></div>
+        <div id="caption" style="height:44px; margin-top:20px;float:left; margin-left:100px; position:absolute"> ITU Smart Opinion Polling System </div>
+
         
         <div id="backbutton" style="height:44px; width:44px; margin-top:15px; float:left; position:absolute"> <img src="imgs/backbtn.png" width="44" height="44" /> </div>
         
-       <div id="pagecaption" style="height:44px; margin-top:20px;float:left; margin-left:12px; position:absolute"> Caption </div>
+       <div id="pagecaption" style="height:44px; margin-top:20px;float:left; margin-left:100px; position:absolute"> Caption </div>
   </div>
 
 </div>
@@ -175,13 +180,12 @@ body{
 <div style="width:1500px; height:550px; overflow:hidden; margin: 0 auto; position:relative; margin-top:35px;">
 
     <div style="width:750px; height:450px; overflow:hidden; margin: 0 auto; position:relative; margin-top:35px;">
-        <a href="1.html" target="main"><div id="btn1" style="float:left"> <p> About Us </p> </div> </a>
-        <a href="2.html" target="main"><div id="btn2" style="float:left"> <p> Our Products </p> </div> </a>
-        <a href="3.html" target="main"><div id="btn3" style="float:left"> <p> Who We Are? </p> </div> </a>
-        <!--<a href="OrganizationPages/OrgDashboard.aspx" target="main"><div id="btn4" style="float:left"> <p> Go to Home </p> </div> </a>-->
+        <a href="Account/Login.aspx" target="main"><div id="btn1" style="float:left"> <p>  Member Log In </p> </div> </a>
+        <a href="Account/UserRegistration.aspx" target="main"><div id="btn2" style="float:left; text-wrap:normal;"> <p class="btnctrl"> User Registration </p> </div> </a>
+        <a href="Account/OrgRegistration.aspx" target="main"><div id="btn3" style="float:left"> <p class="btnctrl"> Organization Registration </p> </div> </a>
         <a href="Default.aspx" target="main"><div id="btn4" style="float:left"> <p> Go to Home </p> </div> </a>
         <a href="5.html" target="main"><div id="btn5" style="float:left"> <p> Contact Us </p> </div> </a>
-        <a href="6.html" target="main"><div id="btn6" style="float:left"> <p> Feedback </p> </div> </a>
+        <!--<a href="6.html" target="main"><div id="btn6" style="float:left"> <p> Feedback </p> </div> </a>-->
      </div>
 
      <div id="content" style="position:absolute"> <iframe name="main" frameborder=0 height=550 width=1500></iframe>  </div>
@@ -191,7 +195,7 @@ body{
 <!--footer-->
 <div style="width:100%; height:120px; overflow:hidden; margin: 0 auto; background-color:#333; margin-top:20px;">
     <div style="width:750px; height:20px; margin: 0 auto;">
-    <p style="text-align:center; color:#FFF; font-family:'Lucida Sans Unicode', 'Lucida Grande', sans-serif; font-size:x-small">Smart Polling Option Sytem - ITU by IshitaBiswas(88476) blog &copy; 2016 All rights reserved. </p>
+    <p style="text-align:center; color:#FFF; font-family:'Lucida Sans Unicode', 'Lucida Grande', sans-serif; font-size:x-small">Smart Polling Option Sytem - ITU  &copy; 2016 All rights reserved. </p>
     </div>
 </div>
 
@@ -201,9 +205,9 @@ $(document).ready(function(){
   TweenLite.to($("#btn1"),2,{css:{left:0},delay:2, ease:Power2.easeOut});
   TweenLite.to($("#btn2"),2,{css:{left:20},delay:2.5, ease:Power2.easeOut});
   TweenLite.to($("#btn3"),2,{css:{left:40},delay:3, ease:Power2.easeOut});
-  TweenLite.to($("#btn4"),2,{css:{left:0},delay:3.5, ease:Power2.easeOut});
-  TweenLite.to($("#btn5"),2,{css:{left:20},delay:4, ease:Power2.easeOut});
-  TweenLite.to($("#btn6"),2,{css:{left:40},delay:4.5, ease:Power2.easeOut});
+  TweenLite.to($("#btn4"),2,{css:{left:120},delay:3.5, ease:Power2.easeOut});
+  TweenLite.to($("#btn5"),2,{css:{left:140},delay:4, ease:Power2.easeOut});
+  //TweenLite.to($("#btn6"), 2, { css: { left: 40 }, delay: 4.5, ease: Power2.easeOut });
   
   });
   
@@ -213,7 +217,7 @@ $(document).ready(function(){
 	  TweenLite.to($("#backbutton"),1,{css:{left:650, rotation:-180}, ease:Power2.easeOut});
 	  TweenLite.to($("#pagecaption"),1,{css:{top:0}, ease:Power2.easeOut});
 	  TweenLite.to($("#caption"),1,{css:{top:90}, ease:Power2.easeOut});
-	  $("#pagecaption").text("About Us");
+	  $("#pagecaption").text("Member Log In");
 	 
   });
   
@@ -222,7 +226,7 @@ $(document).ready(function(){
 	  TweenLite.to($("#backbutton"),1,{css:{left:650, rotation:-180}, ease:Power2.easeOut});
 	  TweenLite.to($("#pagecaption"),1,{css:{top:0}, ease:Power2.easeOut});
 	  TweenLite.to($("#caption"),1,{css:{top:90}, ease:Power2.easeOut});
-	  $("#pagecaption").text("Our Products");
+	  $("#pagecaption").text(" User Registration");
 	 
   });
   
@@ -231,7 +235,7 @@ $(document).ready(function(){
 	  TweenLite.to($("#backbutton"),1,{css:{left:650, rotation:-180}, ease:Power2.easeOut});
 	  TweenLite.to($("#pagecaption"),1,{css:{top:0}, ease:Power2.easeOut});
 	  TweenLite.to($("#caption"),1,{css:{top:90}, ease:Power2.easeOut});
-	  $("#pagecaption").text("Who We Are?");
+	  $("#pagecaption").text("Organization Registration");
 	 
   });
   
@@ -253,14 +257,14 @@ $(document).ready(function(){
 	 
   });
   
-   $("#btn6").click(function(){
-	  TweenLite.to($("#content"),0.5,{css:{top:0}, ease:Power2.easeOut});
-	  TweenLite.to($("#backbutton"),1,{css:{left:650, rotation:-180}, ease:Power2.easeOut});
-	  TweenLite.to($("#pagecaption"),1,{css:{top:0}, ease:Power2.easeOut});
-	  TweenLite.to($("#caption"),1,{css:{top:90}, ease:Power2.easeOut});
-	  $("#pagecaption").text("Feedback");
+  // $("#btn6").click(function(){
+  //    TweenLite.to($("#content"),0.5,{css:{top:0}, ease:Power2.easeOut});
+  //    TweenLite.to($("#backbutton"),1,{css:{left:650, rotation:-180}, ease:Power2.easeOut});
+  //    TweenLite.to($("#pagecaption"),1,{css:{top:0}, ease:Power2.easeOut});
+  //    TweenLite.to($("#caption"),1,{css:{top:90}, ease:Power2.easeOut});
+  //    $("#pagecaption").text("Organization Dashboard");
 	 
-  });
+  //});
   
   
    $("#backbutton").click(function(){

@@ -41,6 +41,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="LoginTypeEnum.cs" />
+    <Compile Include="Model\OrgQuestionTargetAudience.cs" />
+    <Compile Include="Model\UserVotingCategoryBreakup.cs" />
+    <Compile Include="Model\UserVotingDetail.cs" />
     <Compile Include="Model\VotingQuestionDetail.cs" />
     <Compile Include="Model\GenericLogin.cs" />
     <Compile Include="Model\Organization.cs" />
@@ -48,6 +51,7 @@
     <Compile Include="Model\OrgVotingCategory.cs" />
     <Compile Include="Model\User.cs" />
     <Compile Include="Model\VotingCategoryDesc.cs" />
+    <Compile Include="Model\VotingResultContainer.cs" />
     <Compile Include="PollingWindowEnum.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

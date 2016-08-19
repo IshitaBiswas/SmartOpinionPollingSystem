@@ -30,6 +30,24 @@ namespace SOP.Data
 
       }
 
+      public IEnumerable<UserVotingCategoryBreakup> GetUserVotingCategoryBreakup()
+      {
+          using (var _db = new SOPDbDataContext())
+          {
+              return _db.tblUserVotingCategories
+                  .GroupBy(o => o.UserVotingCategoryID)
+                  .Select(g => new UserVotingCategoryBreakup
+                  {
+                      VotingCategoryID = g.Key,
+                      NumberOfUsers = g.Count(),
+                      CategoryDescription  = _db.tblVotingCategoryDescs.FirstOrDefault(v => v.VotingCategoryID == g.Key ).CategoryDescription
+                  })
+                  .OrderBy(x => x.VotingCategoryID)
+                  .ToArray();
+          }
+
+      }
+
 
       public IEnumerable<VotingQuestionDetail> GetVotingQuestionDetails(string OrgID, PollingWindowEnum pwEnum) // enum
       {
@@ -40,27 +58,87 @@ namespace SOP.Data
               {
                   case PollingWindowEnum.Previous:
                       vqds = _db.tblVotingQuestionDetails
-                             .Where(q => q.OrgID == OrgID && q.VotingEndDate < DateTime.Now)
-                             .Select(GetVotingQuestionDetailFromEntityExpression())
+                          .Join(_db.tblOrgQuestionTargetAudiences,
+                          qd => qd.QuestionID,
+                          ta => ta.QuestionID,
+                          (qd,ta) => new { qd, ta})
+                          .Where(z => z.ta.OrgID == OrgID && z.qd.VotingEndDate < DateTime.Now)
+                          .Select(z=> new  VotingQuestionDetail
+                                  {  
+                                      OrgID =  z.ta.OrgID,
+                                      QuestionID = z.ta.QuestionID,
+                                      QuestionText = z.qd.QuestionText,
+                                      VotedYes = z.qd.VotedYes,
+                                      VotedNo = z.qd.VotedNo,
+                                      VotingQuestionCategoryID = z.ta.VotingQuestionCategoryID,
+                                      VotingStartDate = z.qd.VotingStartDate,
+                                      VotingEndDate = z.qd.VotingEndDate,
+                                      CategoryDescription =  GetVotingQuestionCategory(z.ta.VotingQuestionCategoryID)
+                                  })
                          .ToArray();
                      break;
                   case PollingWindowEnum.Current:
                   vqds =    _db.tblVotingQuestionDetails
-                          .Where(q => q.OrgID == OrgID &&  q.VotingStartDate <= DateTime.Now &&  q.VotingEndDate >= DateTime.Now )
-                          .Select(GetVotingQuestionDetailFromEntityExpression())
-                          .ToArray();
+                      .Join(_db.tblOrgQuestionTargetAudiences,
+                          qd => qd.QuestionID,
+                          ta => ta.QuestionID,
+                          (qd, ta) => new { qd, ta })
+                         .Where(z => z.ta.OrgID == OrgID && z.qd.VotingStartDate <= DateTime.Now && z.qd.VotingEndDate >= DateTime.Now)
+                           .Select(z => new VotingQuestionDetail
+                           {
+                               OrgID = z.ta.OrgID,
+                               QuestionID = z.ta.QuestionID,
+                               QuestionText = z.qd.QuestionText,
+                               VotedYes = z.qd.VotedYes,
+                               VotedNo = z.qd.VotedNo,
+                               VotingQuestionCategoryID = z.ta.VotingQuestionCategoryID,
+                               VotingStartDate = z.qd.VotingStartDate,
+                               VotingEndDate = z.qd.VotingEndDate,
+                               CategoryDescription = GetVotingQuestionCategory(z.ta.VotingQuestionCategoryID)
+                           })
+                         .ToArray();
                       break;
                   case PollingWindowEnum.Future:
                   vqds =    _db.tblVotingQuestionDetails
-                          .Where(q => q.OrgID == OrgID && q.VotingStartDate > DateTime.Now )
-                          .Select(GetVotingQuestionDetailFromEntityExpression())
-                          .ToArray();
+                      .Join(_db.tblOrgQuestionTargetAudiences,
+                          qd => qd.QuestionID,
+                          ta => ta.QuestionID,
+                          (qd, ta) => new { qd, ta })
+                         .Where(z => z.ta.OrgID == OrgID && z.qd.VotingStartDate > DateTime.Now)
+                          .Select(z => new VotingQuestionDetail
+                          {
+                              OrgID = z.ta.OrgID,
+                              QuestionID = z.ta.QuestionID,
+                              QuestionText = z.qd.QuestionText,
+                              VotedYes = z.qd.VotedYes,
+                              VotedNo = z.qd.VotedNo,
+                              VotingQuestionCategoryID = z.ta.VotingQuestionCategoryID,
+                              VotingStartDate = z.qd.VotingStartDate,
+                              VotingEndDate = z.qd.VotingEndDate,
+                              CategoryDescription = GetVotingQuestionCategory(z.ta.VotingQuestionCategoryID)
+                          })
+                         .ToArray();
                       break;
                   case PollingWindowEnum.All:
                   vqds =    _db.tblVotingQuestionDetails
-                          .Where(q => q.OrgID == OrgID)
-                          .Select(GetVotingQuestionDetailFromEntityExpression())
-                          .ToArray();
+                        .Join(_db.tblOrgQuestionTargetAudiences,
+                          qd => qd.QuestionID,
+                          ta => ta.QuestionID,
+                          (qd, ta) => new { qd, ta })
+                         .Where(z => z.ta.OrgID == OrgID)
+                          .Select(z => new VotingQuestionDetail
+                          {
+                              OrgID = z.ta.OrgID,
+                              QuestionID = z.ta.QuestionID,
+                              QuestionText = z.qd.QuestionText,
+                              VotedYes = z.qd.VotedYes,
+                              VotedNo = z.qd.VotedNo,
+                              VotingQuestionCategoryID = z.ta.VotingQuestionCategoryID,
+                              VotingStartDate = z.qd.VotingStartDate,
+                              VotingEndDate = z.qd.VotingEndDate,
+                              CategoryDescription = GetVotingQuestionCategory(z.ta.VotingQuestionCategoryID)
+                          })
+                         .ToArray();
                       break;
                   default:
                       vqds = new List<VotingQuestionDetail>();
@@ -72,20 +150,161 @@ namespace SOP.Data
 
 
 
-          private static Expression<Func<tblVotingQuestionDetail, VotingQuestionDetail>> GetVotingQuestionDetailFromEntityExpression()
+          //private static Expression<Func<Object, VotingQuestionDetail>> GetVotingQuestionDetailFromEntityExpression(tblVotingQuestionDetail s, tblOrgQuestionTargetAudience t)
+          //{
+          //  return  o => new  VotingQuestionDetail
+          //                        {  
+          //                            OrgID =  t.OrgID,
+          //                            QuestionID = t.QuestionID,
+          //                            QuestionText = s.QuestionText,
+          //                            VotedYes = s.VotedYes,
+          //                            VotedNo = s.VotedNo,
+          //                            VotingQuestionCategoryID = t.VotingQuestionCategoryID,
+          //                            VotingStartDate = s.VotingStartDate,
+          //                            VotingEndDate = s.VotingEndDate,
+          //                            CategoryDescription =  GetVotingQuestionCategory(t.VotingQuestionCategoryID)
+          //                        };
+          //}
+
+
+          private static string GetVotingQuestionCategory(int votingQuestionCategoryID)
           {
-            return  s => new  VotingQuestionDetail
-                                  {
-                                      OrgID = s.OrgID,
-                                      QuestionID = s.QuestionID,
-                                      QuestionText = s.QuestionText,
-                                      VotedYes = s.VotedYes,
-                                      VotedNo = s.VotedNo,
-                                      VotingQuestionCategoryID = s.VotingQuestionCategoryID,
-                                      VotingStartDate = s.VotingStartDate,
-                                      VotingEndDate = s.VotingEndDate
-                                  };
+              using (var _db = new SOPDbDataContext())
+              {
+                  return _db.tblVotingCategoryDescs
+                      .FirstOrDefault(v => v.VotingCategoryID == votingQuestionCategoryID).CategoryDescription;
+              }
           }
+
+
+
+          private  tblOrganization GetOrgDetails(string orgID)
+          {
+              using (var _db = new SOPDbDataContext())
+              {
+                  return _db.tblOrganizations
+                      .FirstOrDefault(v => v.OrgID == orgID);
+              }
+          }
+
+      //wrong///////////////////////////////////////
+          public IEnumerable<UserVotingDetail> GetUserVotingQuestionDetails(string userID, PollingWindowEnum pwEnum) // enum
+          {
+              using (var _db = new SOPDbDataContext())
+              {
+
+                  IEnumerable<UserVotingDetail> vqds;
+                  switch (pwEnum)
+                  {
+                      case PollingWindowEnum.Previous:
+                          vqds = _db.tblVotingQuestionDetails
+                              .Join(_db.tblUserVotingDetails,
+                              qd => qd.QuestionID,
+                              uv => uv.QuestionID,
+                              (qd, uv) => new { qd, uv })
+                              .Where(z => z.uv.UserID == userID && z.qd.VotingEndDate < DateTime.Now)
+                              .Select(z => new UserVotingDetail
+                              {
+                                  OrgName =  GetOrgDetails(z.qd.tblOrgQuestionTargetAudiences.FirstOrDefault(a => a.QuestionID == z.uv.QuestionID).OrgID).OrgName,
+                                  UserID = z.uv.UserID,
+                                  QuestionID = z.uv.QuestionID,
+                                  QuestionText = z.qd.QuestionText,
+                                  VotedYes = z.qd.VotedYes,
+                                  VotedNo = z.qd.VotedNo,
+                                  VotingStartDate = z.qd.VotingStartDate, 
+                                  VotingEndDate = z.qd.VotingEndDate,
+                                  B_UserVote = z.uv.B_UserVote ? "Yes": "No",
+                                  DtVoteCasted = z.uv.DtVoteCasted,
+                                  CategoryDescription = GetVotingQuestionCategory( z.qd.tblOrgQuestionTargetAudiences
+                                                                                    .FirstOrDefault(a => a.QuestionID == z.uv.QuestionID)
+                                                                                    .VotingQuestionCategoryID)
+                              })
+                             .ToArray();
+                          break;
+                      case PollingWindowEnum.Current:
+                          vqds = _db.tblVotingQuestionDetails
+                              .Join(_db.tblUserVotingDetails,
+                              qd => qd.QuestionID,
+                              uv => uv.QuestionID,
+                              (qd, uv) => new { qd, uv })
+                               .Where(z => z.uv.UserID == userID && z.qd.VotingStartDate <= DateTime.Now && z.qd.VotingEndDate >= DateTime.Now)
+                              .Select(z => new UserVotingDetail
+                              {
+                                  OrgName = GetOrgDetails(z.qd.tblOrgQuestionTargetAudiences.FirstOrDefault(a => a.QuestionID == z.uv.QuestionID).OrgID).OrgName,
+                                  UserID = z.uv.UserID,
+                                  QuestionID = z.uv.QuestionID,
+                                  QuestionText = z.qd.QuestionText,
+                                  VotedYes = z.qd.VotedYes,
+                                  VotedNo = z.qd.VotedNo,
+                                  VotingStartDate = z.qd.VotingStartDate,
+                                  VotingEndDate = z.qd.VotingEndDate,
+                                  B_UserVote = z.uv.B_UserVote ? "Yes": "No",
+                                  DtVoteCasted = z.uv.DtVoteCasted,
+                                  CategoryDescription = GetVotingQuestionCategory(z.qd.tblOrgQuestionTargetAudiences
+                                                                                .FirstOrDefault(a => a.QuestionID == z.uv.QuestionID)
+                                                                                .VotingQuestionCategoryID)
+                              })
+                             .ToArray();
+                          break;
+                      case PollingWindowEnum.Future:
+                          vqds = _db.tblVotingQuestionDetails
+                               .Join(_db.tblUserVotingDetails,
+                               qd => qd.QuestionID,
+                               uv => uv.QuestionID,
+                               (qd, uv) => new { qd, uv })
+                                .Where(z => z.uv.UserID == userID && z.qd.VotingStartDate > DateTime.Now)
+                               .Select(z => new UserVotingDetail
+                               {
+                                   OrgName = GetOrgDetails(z.qd.tblOrgQuestionTargetAudiences.FirstOrDefault(a => a.QuestionID == z.uv.QuestionID).OrgID).OrgName,
+                                   UserID = z.uv.UserID,
+                                   QuestionID = z.uv.QuestionID,
+                                   QuestionText = z.qd.QuestionText,
+                                   VotedYes = z.qd.VotedYes,
+                                   VotedNo = z.qd.VotedNo,
+                                   VotingStartDate = z.qd.VotingStartDate,
+                                   VotingEndDate = z.qd.VotingEndDate,
+                                   B_UserVote = z.uv.B_UserVote ? "Yes" : "No",
+                                   DtVoteCasted = z.uv.DtVoteCasted,
+                                   CategoryDescription = GetVotingQuestionCategory(z.qd.tblOrgQuestionTargetAudiences
+                                                                                .FirstOrDefault(a => a.QuestionID == z.uv.QuestionID)
+                                                                                .VotingQuestionCategoryID)
+                               })
+                              .ToArray();
+                          break;
+                      case PollingWindowEnum.All:
+                          vqds = _db.tblVotingQuestionDetails
+                               .Join(_db.tblUserVotingDetails,
+                               qd => qd.QuestionID,
+                               uv => uv.QuestionID,
+                               (qd, uv) => new { qd, uv })
+                                .Where(z => z.uv.UserID == userID)
+                               .Select(z => new UserVotingDetail
+                               {
+                                   OrgName = GetOrgDetails(z.qd.tblOrgQuestionTargetAudiences.FirstOrDefault(a => a.QuestionID == z.uv.QuestionID).OrgID).OrgName,
+                                   UserID = z.uv.UserID,
+                                   QuestionID = z.uv.QuestionID,
+                                   QuestionText = z.qd.QuestionText,
+                                   VotedYes = z.qd.VotedYes,
+                                   VotedNo = z.qd.VotedNo,
+                                   VotingStartDate = z.qd.VotingStartDate,
+                                   VotingEndDate = z.qd.VotingEndDate,
+                                   B_UserVote = z.uv.B_UserVote ? "Yes" : "No",
+                                   DtVoteCasted = z.uv.DtVoteCasted,
+                                   CategoryDescription = GetVotingQuestionCategory(z.qd.tblOrgQuestionTargetAudiences
+                                                                                .FirstOrDefault(a => a.QuestionID == z.uv.QuestionID)
+                                                                                .VotingQuestionCategoryID)
+                               })
+                              .ToArray();
+                          break;
+                      default:
+                          vqds = new List<UserVotingDetail>();
+                          break;
+                  }
+                  return vqds;
+              }
+            
+          }
+
 
       }
 }

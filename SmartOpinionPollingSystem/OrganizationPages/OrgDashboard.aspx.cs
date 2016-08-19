@@ -20,8 +20,8 @@ namespace SmartOpinionPollingSystem.OrganizationPages
     public partial class OrgDashboard : System.Web.UI.Page
     {
 
-       static IReportingService _rptService;
-       static PollingWindowEnum _pollingWindow;
+        static IReportingService _rptService;
+        static PollingWindowEnum _pollingWindow;
 
 
         public OrgDashboard()
@@ -38,7 +38,7 @@ namespace SmartOpinionPollingSystem.OrganizationPages
             {
                 GetChartData();
             }
-            
+
         }
         [WebMethod]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
@@ -56,20 +56,17 @@ namespace SmartOpinionPollingSystem.OrganizationPages
             foreach (var i in data)
             {
                 j++;
-                chartData[j] = new object[] {i.OrgCategory, i.NumberOfOrganizations };
+                chartData[j] = new object[] { i.OrgCategory, i.NumberOfOrganizations };
             }
 
             return chartData;
         }
 
 
-               
 
 
-        protected void btnAddQuestion_Click(object sender, EventArgs e)
-        {
 
-        }
+
 
         protected void btnPrevPollingStatus_Click(object sender, EventArgs e)
         {
@@ -86,16 +83,10 @@ namespace SmartOpinionPollingSystem.OrganizationPages
             Response.Redirect("~/OrganizationPages/OrgPollingDetails.aspx?pollingwindow=future");
         }
 
-
-       
-
-
-    
-
+        protected void btnAddQuestion_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/OrganizationPages/AddNewQuestion.aspx");
         }
 
-
-    
-
-    
+    }
 }

@@ -12,6 +12,12 @@
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
     <meta name="viewport" content="width=device-width" />
     <asp:ContentPlaceHolder runat="server" ID="HeadContent" />
+    <style type="text/css">
+        .auto-style1 {
+            width: 960px;
+            height: 540px;
+        }
+    </style>
 </head>
 <body>
     <form runat="server">
@@ -40,14 +46,14 @@
         <div class="content-wrapper">
             <div class="float-left">
                 <p class="site-title">
-                    <a runat="server" href="~/Images/Logo1.png">Smart Poll</a>
+                    Smart Poll
                 </p>
             </div>
             <div class="float-right">
                 <section id="login">
                     <asp:LoginView runat="server" ViewStateMode="Disabled">
                         <AnonymousTemplate>
-                            <ul>
+                            <ul id="func" >
                                 <li><a id="registerLinkOrg" runat="server" href="~/Account/OrgRegistration">Organization Register</a></li>
                                 <li><a id="registerLinkUser" runat="server" href="~/Account/UserRegistration">User Register</a></li>
                                 <li><a id="loginLink" runat="server" href="~/Account/Login">Log in</a></li>
@@ -78,13 +84,13 @@
             <asp:ContentPlaceHolder runat="server" ID="MainContent" />
         </section>
     </div>
-    <footer>
+<%--    <footer>
         <div class="content-wrapper">
             <div class="float-left">
                 <p>&copy; <%: DateTime.Now.Year %> - My ASP.NET Application</p>
             </div>
         </div>
-    </footer>
+    </footer>--%>
     </form>
 </body>
 </html>

@@ -132,6 +132,8 @@ footer {
     font-family: Rockwell, Consolas, "Courier New", Courier, monospace;
     font-size: 2.3em;
     margin: 0;
+    height: 84px;
+    width: 376px;
 }
 
 .site-title a, .site-title a:hover, .site-title a:active {
@@ -201,6 +203,12 @@ ul#menu {
             color: #333;
             text-decoration: none;
         }
+
+ul#func li{
+    display: inline;
+        list-style: none;
+        /*padding-left: 15px;*/
+}
 
 
 /* page elements
@@ -407,13 +415,11 @@ fieldset {
         font-size: 1.2em;
         margin: 5px 0 6px 12px;
         padding: 5px;
-        width: 300px;
-    }
+        }
 
     textarea {
         font-family: inherit;
-        width: 500px;
-    }
+        }
     
         input:focus, textarea:focus {
             border: 1px solid #7ac0da;

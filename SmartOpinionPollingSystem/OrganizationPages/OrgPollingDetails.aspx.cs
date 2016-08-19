@@ -9,12 +9,10 @@ using SOP.Common.Model;
 using SOP.Services.Interfaces;
 using SOP.Services;
 using System.Linq;
-using Newtonsoft.Json;
 using System.Security.Principal;
 using SOP.Common;
 using System.IO;
 using System.Web.Script.Serialization;
-using System.Web.Script.Services;
 
 
 namespace SmartOpinionPollingSystem.OrganizationPages
@@ -34,6 +32,8 @@ namespace SmartOpinionPollingSystem.OrganizationPages
 
             if (Request.IsAuthenticated)
             {
+                OrgDashBoard.NavigateUrl = "OrgDashBoard";
+
 
                 if (Request.QueryString["pollingwindow"] != null)
                 {
@@ -44,6 +44,14 @@ namespace SmartOpinionPollingSystem.OrganizationPages
                              ? PollingWindowEnum.Current
                              : (qString == "future" ? PollingWindowEnum.Future : PollingWindowEnum.All));
                 }
+
+
+                var returnUrl = HttpUtility.UrlEncode(Request.QueryString["ReturnUrl"]);
+                if (!String.IsNullOrEmpty(returnUrl))
+                {
+                    OrgDashBoard.NavigateUrl += "?ReturnUrl=" + returnUrl;
+                }
+
             }
         }
 

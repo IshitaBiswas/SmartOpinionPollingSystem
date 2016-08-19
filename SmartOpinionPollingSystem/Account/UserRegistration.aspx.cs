@@ -7,6 +7,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Microsoft.AspNet.Membership.OpenAuth;
 using SOP.Common;
+using SOP.Common.Model;
 using SOP.Services.Interfaces;
 using SOP.Services;
 

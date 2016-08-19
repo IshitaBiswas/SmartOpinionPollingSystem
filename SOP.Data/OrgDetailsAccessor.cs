@@ -120,5 +120,55 @@ namespace SOP.Data
 
             return (count > 0);
         }
+
+        public DataSet GetOrgPollingQuestionCategories(String orgID)
+        {
+            string sql = "SELECT OrgVotingCategoryID,CategoryDescription FROM tblOrgVotingCategory vcat inner join tblVotingCategoryDesc vdes on vcat.OrgVotingCategoryID = vdes.VotingCategoryID where OrgID = @orgID";
+            string ConnectionString = ConfigurationManager.ConnectionStrings["dbSmartOpinionConnectionString"].ConnectionString;
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            {
+                SqlDataAdapter sda = new SqlDataAdapter(sql, connection);
+                sda.SelectCommand.Parameters.AddWithValue("@orgID", orgID);
+                DataSet ds = new DataSet();
+                sda.Fill(ds);
+                //Console.WriteLine(ds.);
+                return ds;
+            }
+        }
+
+        public void AddOrgPollingQuestionDetails(VotingQuestionDetail orgqstndetail)
+        {
+            using (var _db = new SOPDbDataContext())
+            {
+                var singleAddQuestionRecord = new tblVotingQuestionDetail
+                {
+                    QuestionText = orgqstndetail.QuestionText,
+                    VotingStartDate = orgqstndetail.VotingStartDate,
+                    VotingEndDate = orgqstndetail.VotingEndDate,
+                    MinVotingAge = orgqstndetail.MinVotingAge,
+                    MaxVotingAge = orgqstndetail.MaxVotingAge,
+                    TargetAudienceGender = orgqstndetail.TargetAudienceGender
+
+                };
+
+                _db.tblVotingQuestionDetails.InsertOnSubmit(singleAddQuestionRecord);
+
+                _db.SubmitChanges();
+
+                orgqstndetail.OrgAddVotingCategoryIDs.ForEach(v =>
+                                                    {
+                                                        var singleTargetaudienceCategoryrecord = new tblOrgQuestionTargetAudience
+                                                        {
+                                                          OrgID =  orgqstndetail.OrgID,
+                                                          QuestionID =  _db.tblVotingQuestionDetails.Max(q => q.QuestionID),
+                                                          VotingQuestionCategoryID = v
+                                                        };
+                                                        _db.tblOrgQuestionTargetAudiences.InsertOnSubmit(singleTargetaudienceCategoryrecord);
+
+                });
+
+                _db.SubmitChanges();
+            }
+        }
     }
 }

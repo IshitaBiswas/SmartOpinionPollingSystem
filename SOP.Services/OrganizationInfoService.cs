@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -31,6 +32,16 @@ namespace SOP.Services
             
             _odAccessor.AddOrganization(org);
 
+        }
+
+        public void AddOrgPollingQuestionDetails(VotingQuestionDetail orgqstndetail)
+        {
+            _odAccessor.AddOrgPollingQuestionDetails(orgqstndetail);
+        }
+
+        public DataSet GetOrgPollingQuestionCategories(String orgID)
+        {
+            return _odAccessor.GetOrgPollingQuestionCategories(orgID);
         }
 
         public bool OrgLogin(Organization org)

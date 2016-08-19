@@ -10,7 +10,7 @@ namespace SOP.Services.Interfaces
         System.Collections.Generic.IEnumerable<SOP.Common.Model.VotingCategoryDesc> GetVotingCategories();
 
         DataSet ChooseOrgVotingCategories();
-
+        
         LoginTypeEnum ValidateLogin(GenericLogin genlogin);
 
     }
