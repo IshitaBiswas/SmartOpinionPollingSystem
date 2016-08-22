@@ -1,11 +1,11 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ViewUserVotingRecordDetails.aspx.cs" Inherits="SmartOpinionPollingSystem.UserPages.ViewUserVotingRecordDetails" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ViewOrgVotingRecordDetails.aspx.cs" Inherits="SmartOpinionPollingSystem.OrganizationPages.ViewOrgVotingRecordDetails" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="FeaturedContent" runat="server">
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="server">
 
-<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
 <link href="../Content/themes/base/jquery-ui.css" rel="stylesheet" />
 <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
 
@@ -53,7 +53,7 @@
 
         $(document).ready(function () {
             $.ajax({
-                url: "ViewUserVotingRecordDetails.aspx/GetPieChartData",
+                url: "ViewOrgVotingRecordDetails.aspx/GetPieChartData",
                 data: "",   
                 dataType: "json",
                 type: "POST",
@@ -113,15 +113,12 @@
                 <article>
                     <header>
                         <hgroup>
-                            <h2>My Polling Summary Highlight</h2>
-
+                            <h2>Previous Polling Summary Highlight</h2>
                         </hgroup>
                     </header>
                     <table>
-
                         <tr>
                             <td>
-
                                 <b>Question:</b>
                             </td>
                             <td>
@@ -130,28 +127,10 @@
                         </tr>
                         <tr>
                             <td>
-                                <b>CategoryDescription:</b>
+                                <b>Target Audience Domain:</b>
                             </td>
                             <td>
                                 <asp:Label ID="lblCategoryDescription" runat="server"></asp:Label>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <b>OrgName:</b>
-
-                            </td>
-                            <td>
-                                <asp:Label ID="lblOrgName" runat="server"></asp:Label>
-                            </td>
-                        </tr>
-                        <tr>
-                           <td>
-                                <b>I voted:</b>
-
-                            </td>
-                            <td>
-                                <asp:Label ID="lblB_UserVote" runat="server"></asp:Label>
                             </td>
                         </tr>
                         <tr>
@@ -160,7 +139,6 @@
                             </td>
                            <td>
                                 <asp:Label ID="lblVotingStartDate" runat="server"></asp:Label>
-
                             </td>
                         </tr>
                         <tr>
@@ -184,9 +162,7 @@
                     <table>
                         <tr>
                            <td>
-
                                 <b>Number of votes in favour:</b>
-
                             </td>
                             <td>
                                 <asp:Label ID="lblVotedYes" runat="server"></asp:Label>
@@ -195,7 +171,6 @@
                         <tr>
                            <td>
                                 <b>Number of votes against:</b>
-
                             </td>
                             <td>
                                 <asp:Label ID="lblVotedNo" runat="server"></asp:Label>
@@ -208,7 +183,6 @@
                             </td>
                             <td>
                                 <asp:Label ID="lblWinner" runat="server"></asp:Label>
-
                             </td>
                         </tr>
 
@@ -231,30 +205,22 @@
     </asp:Panel>
     <asp:Panel runat="server" ID="pnlCurrent" Visible="false">
 
-        <h1 class="main_header" style="text-align: center">Current Polling</h1>
+        <h1 class="main_header" style="text-align: center">Ongoing Polling Summary</h1>
 
         <div class="flex-container">
             <div class="flex-item1">
                 <header>
                     <hgroup>
-                        <h2>My Polling Summary Highlight</h2>
+                        <h2>Ongoing Polling Summary Highlight</h2>
                     </hgroup>
                 </header>
                 <table>
                     <tr>
                         <td>
-                            <b>Category Description:</b>
+                            <b>Target Audience Domain:</b>
                         </td>
                         <td>
                             <asp:Label ID="lblCurrentCategoryDescription" runat="server"></asp:Label>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <b>Organization conducting the poll:</b>
-                        </td>
-                        <td>
-                            <asp:Label ID="lblCurrentOrgName" runat="server"></asp:Label>
                         </td>
                     </tr>
                     <tr>
@@ -265,52 +231,33 @@
                             <asp:Label ID="lblCurrentQuestion" runat="server"></asp:Label><br>
                         </td>
                     </tr>
-                </table>
-                <asp:Panel runat="server" ID="pnlToCastVote" Visible="false">
-                    <table >
+                     <tr>
+                           <td>
+                                <b>Voting StartDate:</b>
+                            </td>
+                           <td>
+                                <asp:Label ID="lblCurrentStartDate" runat="server"></asp:Label>
+                            </td>
+                        </tr>
                         <tr>
-                            <td colspan="2">
-                                <asp:Label ID="lblUserVote" runat="server" Text ="Cast your vote : " Font-Bold="True"></asp:Label>
-                            </td>
-                        </tr>
-                        <tr class="votingpanelwhite">
-                            <td style="text-align: center">
-                                <asp:ImageButton runat="server" Width="50px" Height="50px" OnClientClick="return confirm('Are you sure about your vote?');" ID="imgThumsUp" ImageUrl="http://image.flaticon.com/icons/png/128/25/25297.png" OnClick="imgThumsUp_Click" />
-                            </td>
                             <td>
-                                <asp:ImageButton runat="server" Width="50px" Height="50px" OnClientClick="return confirm('Are you sure about your vote?');" ID="imgThumsDown" ImageUrl="http://cdn.mysitemyway.com/icons-watermarks/simple-black/bfa/bfa_thumbs-o-down/bfa_thumbs-o-down_simple-black_128x128.png" OnClick="imgThumsDown_Click" />
-                            </td>
-                        </tr>
-                    </table>
-                </asp:Panel>
+                                <b>Voting EndDate:</b>
 
-                <asp:Panel runat="server" ID="pnlVoteCasted" Visible="false">
-                    <table>
-                        <tr>
-                            <td class="auto-style2">
-                                <asp:Label ID="lblVoteCastedmessage" runat="server" Text="Your vote has been casted as :" Font-Bold="True"></asp:Label><br>
                             </td>
-                            
-                            <td class="auto-style3">
-                                <asp:Panel runat="server" ID="pnlVotedYesImg" Visible="false">
-                                    <asp:Image runat="server" Width="50px" Height="50px" ID="imgVotedYes" ImageUrl="http://image.flaticon.com/icons/png/128/25/25297.png" />
-                                </asp:Panel>
-                            </td>
-                            <td>
-                                <asp:Panel runat="server" ID="pnlVotedNoImg" Visible="false">
-                                    <asp:Image runat="server" Width="50px" Height="50px" ID="imgVotedNo" ImageUrl="http://cdn.mysitemyway.com/icons-watermarks/simple-black/bfa/bfa_thumbs-o-down/bfa_thumbs-o-down_simple-black_128x128.png" />
-                                </asp:Panel>
+
+                           <td>
+                                <asp:Label ID="lblCurrentEndDate" runat="server"></asp:Label>
                             </td>
                         </tr>
-                    </table>
-                </asp:Panel>
+                </table>
+
             </div>
 
 
             <div class="flex-item2">
 
                 <div id="wrapper">
-                    <asp:Panel class="wrapperasideleft" runat="server" ID="pnlGraphVoteCast" Visible="true">
+                    <asp:Panel class="wrapperasideleft" runat="server" ID="pnlGraphVoteCast">
                         <%--<div class="wrapperasideleft">--%>
                         <figure>
                             <div id="chart_div1" style="width: 400px; height: 400px; text-align: center">
@@ -368,8 +315,4 @@
     </asp:Panel>
 
 
-
-
-   
-  
 </asp:Content>

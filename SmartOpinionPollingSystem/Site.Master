@@ -13,10 +13,10 @@
     <meta name="viewport" content="width=device-width" />
     <asp:ContentPlaceHolder runat="server" ID="HeadContent" />
     <style type="text/css">
-        .auto-style1 {
+        /*.auto-style1 {
             width: 960px;
             height: 540px;
-        }
+        }*/
     </style>
 </head>
 <body>

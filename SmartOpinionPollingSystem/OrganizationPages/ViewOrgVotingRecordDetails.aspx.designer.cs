@@ -7,10 +7,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SmartOpinionPollingSystem.UserPages {
+namespace SmartOpinionPollingSystem.OrganizationPages {
     
     
-    public partial class ViewUserVotingRecordDetails {
+    public partial class ViewOrgVotingRecordDetails {
         
         /// <summary>
         /// pnlMessage control.
@@ -56,24 +56,6 @@ namespace SmartOpinionPollingSystem.UserPages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblCategoryDescription;
-        
-        /// <summary>
-        /// lblOrgName control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblOrgName;
-        
-        /// <summary>
-        /// lblB_UserVote control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblB_UserVote;
         
         /// <summary>
         /// lblVotingStartDate control.
@@ -139,15 +121,6 @@ namespace SmartOpinionPollingSystem.UserPages {
         protected global::System.Web.UI.WebControls.Label lblCurrentCategoryDescription;
         
         /// <summary>
-        /// lblCurrentOrgName control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblCurrentOrgName;
-        
-        /// <summary>
         /// lblCurrentQuestion control.
         /// </summary>
         /// <remarks>
@@ -157,94 +130,22 @@ namespace SmartOpinionPollingSystem.UserPages {
         protected global::System.Web.UI.WebControls.Label lblCurrentQuestion;
         
         /// <summary>
-        /// pnlToCastVote control.
+        /// lblCurrentStartDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlToCastVote;
+        protected global::System.Web.UI.WebControls.Label lblCurrentStartDate;
         
         /// <summary>
-        /// lblUserVote control.
+        /// lblCurrentEndDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblUserVote;
-        
-        /// <summary>
-        /// imgThumsUp control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton imgThumsUp;
-        
-        /// <summary>
-        /// imgThumsDown control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton imgThumsDown;
-        
-        /// <summary>
-        /// pnlVoteCasted control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlVoteCasted;
-        
-        /// <summary>
-        /// lblVoteCastedmessage control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblVoteCastedmessage;
-        
-        /// <summary>
-        /// pnlVotedYesImg control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlVotedYesImg;
-        
-        /// <summary>
-        /// imgVotedYes control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Image imgVotedYes;
-        
-        /// <summary>
-        /// pnlVotedNoImg control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlVotedNoImg;
-        
-        /// <summary>
-        /// imgVotedNo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Image imgVotedNo;
+        protected global::System.Web.UI.WebControls.Label lblCurrentEndDate;
         
         /// <summary>
         /// pnlGraphVoteCast control.

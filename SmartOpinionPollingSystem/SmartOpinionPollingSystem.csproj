@@ -139,7 +139,7 @@
   <ItemGroup>
     <Content Include="1.html" />
     <Content Include="2.html" />
-    <Content Include="3.html" />
+    <Content Include="AboutUs.html" />
     <Content Include="4.html" />
     <Content Include="5.html" />
     <Content Include="6.html" />
@@ -243,6 +243,7 @@
     <Content Include="OrganizationPages\AddNewQuestion.aspx" />
     <Content Include="OrganizationPages\OrgDashboard.aspx" />
     <Content Include="OrganizationPages\OrgPollingDetails.aspx" />
+    <Content Include="OrganizationPages\ViewOrgVotingRecordDetails.aspx" />
     <Content Include="packages.config" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\JqGrid\css\ellipsis-xbl.xml" />
@@ -619,6 +620,13 @@
     </Compile>
     <Compile Include="OrganizationPages\OrgPollingDetails.aspx.designer.cs">
       <DependentUpon>OrgPollingDetails.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OrganizationPages\ViewOrgVotingRecordDetails.aspx.cs">
+      <DependentUpon>ViewOrgVotingRecordDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="OrganizationPages\ViewOrgVotingRecordDetails.aspx.designer.cs">
+      <DependentUpon>ViewOrgVotingRecordDetails.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Site.Master.cs">

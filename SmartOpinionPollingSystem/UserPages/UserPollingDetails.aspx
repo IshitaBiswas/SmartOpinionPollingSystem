@@ -48,7 +48,6 @@
                  colNames: [ 'QID#', 'CategoryDescription', 'Organization',  'QuestionText', 'UserVote' , 'DateVoteCasted',  'CountOfYes', 'CountOfNo', 'VotingStartDate', 'VotingEndDate'],
                  colModel: [
                                  { name: 'QuestionID', index: 'QuestionID', width: 180, editable: false,  key: true, formatter: returnHyperLink },//added custom formatter function 
-                                // { name: 'QuestionID', index: 'QuestionID', width: 60, editable: false },
                                  { name: 'CategoryDescription', index: 'CategoryDescription', width: 180, editable: true },
                                  { name: 'OrgName', index: 'OrgName', width: 180, editable: false },
                                  { name: 'QuestionText', index: 'QuestionText', width: 180, editable: true },
@@ -65,7 +64,7 @@
                  height: 'auto',
                  pager: '#pager',
                  viewrecords: true,
-                 caption: 'Dash Summary',
+                 caption: 'User Voting Summary - Current Voting Window',
                  sortorder: 'asc',
                  emptyrecords: 'No records to display',
                  gridview: true,
@@ -90,27 +89,21 @@
                  },
                  jsonReader: { repeatitems: false, root: "d.rows", page: "d.page", total: "d.total", records: "d.records" },
                  loadonce: true,
-                 colNames: ['QID#', 'CategoryDescription', 'Organization', 'QuestionText', 'UserVote', 'DateVoteCasted', 'CountOfYes', 'CountOfNo', 'VotingStartDate', 'VotingEndDate'],
+                 colNames: ['QID#', 'Organization', 'QuestionText', 'VotingStartDate', 'VotingEndDate'],
                  colModel: [
                                  { name: 'QuestionID', index: 'QuestionID', width: 180, editable: false, key: true, formatter: returnHyperLink },//added custom formatter function 
-                                // { name: 'QuestionID', index: 'QuestionID', width: 60, editable: false },
-                                 { name: 'CategoryDescription', index: 'CategoryDescription', width: 180, editable: true },
                                  { name: 'OrgName', index: 'OrgName', width: 180, editable: false },
                                  { name: 'QuestionText', index: 'QuestionText', width: 180, editable: true },
-                                 { name: 'B_UserVote', index: 'B_UserVote', width: 100, editable: false },
-                                 { name: 'DtVoteCasted', index: 'DtVoteCasted', width: 100, editable: false, formatter: 'date' },
-                                 { name: 'VotedYes', index: 'VotedYes', width: 180, editable: false },
-                                 { name: 'VotedNo', index: 'VotedNo', width: 180, editable: false },
                                  { name: 'VotingStartDate', index: 'VotingStartDate', width: 180, editable: false, formatter: 'date' },
                                  { name: 'VotingEndDate', index: 'VotingEndDate', width: 180, editable: false, formatter: 'date' },
                  ],
-                 pager: jQuery('#pager'),
+                 pager: jQuery('#pagerPendingVotes'),
                  //  rowNum: 5,
                  rowList: [5, 10, 15, 20],
                  height: 'auto',
                  pager: '#pagerPendingVotes',
                  viewrecords: true,
-                 caption: 'Dash Summary',
+                 caption: 'Polling Queue - Waiting for user vote',
                  sortorder: 'asc',
                  emptyrecords: 'No records to display',
                  gridview: true,
@@ -127,17 +120,20 @@
 
 
 
-
+    <asp:Panel runat ="server" ID="pnlAlreadyVotedRecord">
    <table id="dataGrid">
     </table>
     <div id="pager" class="scroll" style="text-align: center;">
     </div>
+    </asp:Panel>
     <br/>
     <br/>
+    <asp:Panel runat ="server" ID="pnlPendingVotingRecord" Visible="false">
     <table id="dataGridPendingVotes">
     </table>
     <div id="pagerPendingVotes" class="scroll" style="text-align: center;">
     </div>
+    </asp:Panel>
 
     <br/>
     <div>

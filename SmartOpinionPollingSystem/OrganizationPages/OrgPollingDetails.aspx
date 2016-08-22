@@ -34,9 +34,10 @@
         <%--JQGrid--%>
      <script type="text/javascript">
 
-         //function returnHyperLink(cellValue, options, rowdata, action) {
-         //    return "<a href='./test.do?custId=" + options.rowId + "' >View</a>";
-         //}
+
+         function returnHyperLink(cellValue, options, rowdata, action) {
+             return "<a href='ViewOrgVotingRecordDetails.aspx?QuestionID=" + options.rowId + "' >View Details</a>";
+         }
 
          $(function () {
              $("#dataGrid").jqGrid({
@@ -50,17 +51,16 @@
                  },
                  jsonReader: { repeatitems: false, root: "d.rows", page: "d.page", total: "d.total", records: "d.records" },
                  loadonce: true,
-                 colNames: ['QID', 'CategoryDescription', 'QuestionText', 'VotedYes', 'VotedNo', 'VotingStartDate', 'VotingEndDate'],
+                 colNames: ['ViewDetails', 'CategoryDescription', 'QuestionText', 'VotedYes', 'VotedNo', 'VotingStartDate', 'VotingEndDate'],
                  colModel: [
-                                 { name: 'QuestionID', index: 'QuestionID', width: 60, editable: false },
+                                 { name: 'QuestionID', index: 'QuestionID', width: 180, editable: false, key: true, formatter: returnHyperLink },//added custom formatter function 
                                  { name: 'CategoryDescription', index: 'CategoryDescription', width: 180, editable: true },
-                                 //{ name: 'OrgID', index: 'OrgID',  width: 60, editable: false },
                                  { name: 'QuestionText', index: 'QuestionText', width: 180, editable: true },
                                  { name: 'VotedYes', index: 'VotedYes', width: 60, editable: false },
                                  { name: 'VotedNo', index: 'VotedNo', width: 60, editable: false },
                                  { name: 'VotingStartDate', index: 'VotingStartDate', width: 180, editable: true, formatter: 'date' },
                                  { name: 'VotingEndDate', index: 'VotingEndDate', width: 180, editable: true, formatter: 'date' },
-                                 //{ name: 'c_myname', index: 'OrgCategory', width: 60, editable: false, formatter: returnHyperLink }//added custom formatter function 
+                                 
                  ],
                  pager: jQuery('#pager'),
                  //  rowNum: 5,

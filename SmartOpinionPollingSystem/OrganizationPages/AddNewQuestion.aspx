@@ -59,10 +59,6 @@ tr .age{
 
     <table>
         <tr>
-            <th class="auto-style1">First Name</th>
-            <th>Last Name</th>
-        </tr>
-        <tr>
             <td class="auto-style1">
                 <asp:Label AssociatedControlID="lstTargetAudience" runat="server" Text="Select Target Audience"></asp:Label>
             </td>

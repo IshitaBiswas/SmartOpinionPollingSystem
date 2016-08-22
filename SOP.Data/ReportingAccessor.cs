@@ -167,13 +167,27 @@ namespace SOP.Data
           //}
 
 
-          private static string GetVotingQuestionCategory(int votingQuestionCategoryID)
+          private string GetVotingQuestionCategory(int votingQuestionCategoryID)
           {
               using (var _db = new SOPDbDataContext())
               {
                   return _db.tblVotingCategoryDescs
                       .FirstOrDefault(v => v.VotingCategoryID == votingQuestionCategoryID).CategoryDescription;
               }
+          }
+
+          public IEnumerable<string> GetVotingCategorybyQuestionID(int questionID)
+          {
+               using (var _db = new SOPDbDataContext())
+               {
+                   return _db.tblVotingCategoryDescs
+                          .Join(_db.tblOrgQuestionTargetAudiences,
+                          cd => cd.VotingCategoryID,
+                          ta => ta.VotingQuestionCategoryID,
+                          (cd, ta) => new { cd, ta })
+                          .Where(z => z.ta.QuestionID == questionID)
+                          .Select(z=> z.cd.CategoryDescription).ToList();
+               }
           }
 
 
@@ -187,7 +201,6 @@ namespace SOP.Data
               }
           }
 
-      //wrong///////////////////////////////////////
           public IEnumerable<UserVotingDetail> GetUserVotingQuestionDetails(string userID, PollingWindowEnum pwEnum) // enum
           {
               using (var _db = new SOPDbDataContext())
@@ -215,6 +228,9 @@ namespace SOP.Data
                                   VotingEndDate = z.qd.VotingEndDate,
                                   B_UserVote = z.uv.B_UserVote ? "Yes": "No",
                                   DtVoteCasted = z.uv.DtVoteCasted,
+                                  MinVotingAge = z.qd.MinVotingAge,
+                                  MaxVotingAge = z.qd.MaxVotingAge,
+                                  TargetAudienceGender = z.qd.TargetAudienceGender,
                                   CategoryDescription = GetVotingQuestionCategory( z.qd.tblOrgQuestionTargetAudiences
                                                                                     .FirstOrDefault(a => a.QuestionID == z.uv.QuestionID)
                                                                                     .VotingQuestionCategoryID)
@@ -240,36 +256,14 @@ namespace SOP.Data
                                   VotingEndDate = z.qd.VotingEndDate,
                                   B_UserVote = z.uv.B_UserVote ? "Yes": "No",
                                   DtVoteCasted = z.uv.DtVoteCasted,
+                                  MinVotingAge = z.qd.MinVotingAge,
+                                  MaxVotingAge = z.qd.MaxVotingAge,
+                                  TargetAudienceGender = z.qd.TargetAudienceGender,
                                   CategoryDescription = GetVotingQuestionCategory(z.qd.tblOrgQuestionTargetAudiences
                                                                                 .FirstOrDefault(a => a.QuestionID == z.uv.QuestionID)
                                                                                 .VotingQuestionCategoryID)
                               })
                              .ToArray();
-                          break;
-                      case PollingWindowEnum.Future:
-                          vqds = _db.tblVotingQuestionDetails
-                               .Join(_db.tblUserVotingDetails,
-                               qd => qd.QuestionID,
-                               uv => uv.QuestionID,
-                               (qd, uv) => new { qd, uv })
-                                .Where(z => z.uv.UserID == userID && z.qd.VotingStartDate > DateTime.Now)
-                               .Select(z => new UserVotingDetail
-                               {
-                                   OrgName = GetOrgDetails(z.qd.tblOrgQuestionTargetAudiences.FirstOrDefault(a => a.QuestionID == z.uv.QuestionID).OrgID).OrgName,
-                                   UserID = z.uv.UserID,
-                                   QuestionID = z.uv.QuestionID,
-                                   QuestionText = z.qd.QuestionText,
-                                   VotedYes = z.qd.VotedYes,
-                                   VotedNo = z.qd.VotedNo,
-                                   VotingStartDate = z.qd.VotingStartDate,
-                                   VotingEndDate = z.qd.VotingEndDate,
-                                   B_UserVote = z.uv.B_UserVote ? "Yes" : "No",
-                                   DtVoteCasted = z.uv.DtVoteCasted,
-                                   CategoryDescription = GetVotingQuestionCategory(z.qd.tblOrgQuestionTargetAudiences
-                                                                                .FirstOrDefault(a => a.QuestionID == z.uv.QuestionID)
-                                                                                .VotingQuestionCategoryID)
-                               })
-                              .ToArray();
                           break;
                       case PollingWindowEnum.All:
                           vqds = _db.tblVotingQuestionDetails
@@ -290,6 +284,9 @@ namespace SOP.Data
                                    VotingEndDate = z.qd.VotingEndDate,
                                    B_UserVote = z.uv.B_UserVote ? "Yes" : "No",
                                    DtVoteCasted = z.uv.DtVoteCasted,
+                                   MinVotingAge = z.qd.MinVotingAge,
+                                   MaxVotingAge = z.qd.MaxVotingAge,
+                                   TargetAudienceGender = z.qd.TargetAudienceGender,
                                    CategoryDescription = GetVotingQuestionCategory(z.qd.tblOrgQuestionTargetAudiences
                                                                                 .FirstOrDefault(a => a.QuestionID == z.uv.QuestionID)
                                                                                 .VotingQuestionCategoryID)
@@ -300,11 +297,42 @@ namespace SOP.Data
                           vqds = new List<UserVotingDetail>();
                           break;
                   }
+                  
+                  
                   return vqds;
               }
             
           }
 
+          public IEnumerable<UserVotingDetail> GetPendingPollingQueue(string userID,  PollingWindowEnum pwEnum = PollingWindowEnum.Current)
+          {
+              var query = "select distinct qd.QuestionID" +
+                                       ", qd.QuestionText" +
+                                       ", qd.VotingStartDate" +
+                                       ", qd.VotingEndDate" +
+                                       ", o.OrgName" +
+                                       ", qd.MinVotingAge" +
+                                       ", qd.MaxVotingAge" +
+                                       ", qd.TargetAudienceGender" +
+                                       " FROM tblVotingQuestionDetails qd" +
+                                       " join tblOrgQuestionTargetAudience ta" +
+                                       " on qd.QuestionID = ta.QuestionID" +
+                                       " join tblUserVotingCategory vc" +
+                                       " on ta.VotingQuestionCategoryID = vc.UserVotingCategoryID" +
+                                       " join tblOrganization o" +
+                                       " on o.OrgID = ta.OrgID" +
+                                       " where qd.VotingStartDate " + (pwEnum == PollingWindowEnum.Current ? "<=": ">=")  +  " GETDATE()" +
+                                       " and qd.VotingEndDate >= GETDATE()" +
+                                       " and vc.UserID ='" + userID +"' and  not exists (select 1 from tblUserVotingDetails vd" +
+                                                     " where vd.UserID =  vc.UserID" +
+                                                     " and vd.QuestionID  = qd.QuestionID)";
 
+
+              using (var _db = new SOPDbDataContext())
+              {
+                  return _db.ExecuteQuery<UserVotingDetail>(query).ToList();
+
+              };
+          }
       }
 }

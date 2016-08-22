@@ -43,6 +43,8 @@ namespace SmartOpinionPollingSystem.OrganizationPages
                         : (qString == "current"
                              ? PollingWindowEnum.Current
                              : (qString == "future" ? PollingWindowEnum.Future : PollingWindowEnum.All));
+
+                    Session["pollingWindow"] = _pollingWindow; //Save to session
                 }
 
 

@@ -39,10 +39,11 @@ namespace SmartOpinionPollingSystem.UserPages
                     _questionID = Request.QueryString["QuestionID"];
                     PollingWindowEnum _pollingWindow = (PollingWindowEnum)Session["pollingWindow"];
 
-                    IEnumerable<UserVotingDetail> userVotingDetails = _rptService.GetUserVotingQuestionDetails(HttpContext.Current.User.Identity.Name, _pollingWindow);
-                    UserVotingDetail votingRecord = userVotingDetails.FirstOrDefault(r => r.QuestionID == Convert.ToInt32(_questionID));
+                    UserVotingDetail votingRecord = _rptService
+                                                    .GetUserVotingQuestionDetails(HttpContext.Current.User.Identity.Name, _pollingWindow)
+                                                    .FirstOrDefault(r => r.QuestionID == Convert.ToInt32(_questionID));
 
-                    if (userVotingDetails.Any() && _pollingWindow == PollingWindowEnum.Previous)
+                    if (votingRecord != null && _pollingWindow == PollingWindowEnum.Previous)
                     {
                         pnlPrevious.Visible = true;
 
@@ -62,11 +63,10 @@ namespace SmartOpinionPollingSystem.UserPages
                         GetPieChartData(); //Fill the chart
 
                     }
-                    else  if (userVotingDetails.Any() && _pollingWindow == PollingWindowEnum.Current)
+                    else if (votingRecord != null && _pollingWindow == PollingWindowEnum.Current)
                     {
                                         
                         pnlCurrent.Visible = true;
-
                         pnlVoteCasted.Visible = true;
                         pnlGraphVoteCast.Visible = true; //This will only be set to true post casting of the vote
 
@@ -80,10 +80,25 @@ namespace SmartOpinionPollingSystem.UserPages
                         GetPieChartData(); 
 
                     }
+                    else if (votingRecord == null && _pollingWindow == PollingWindowEnum.Current)
+                    {
+                        //Retrive the Pending Polling Queue for the user
+                        IEnumerable<UserVotingDetail> pendingVotingRecords = _rptService.GetPendingPollingQueue(HttpContext.Current.User.Identity.Name);
+                        UserVotingDetail pendingVotingRecord = pendingVotingRecords.FirstOrDefault(r => r.QuestionID == Convert.ToInt32(_questionID));
+                        pnlCurrent.Visible = true;
+                        pnlGraphVoteCast.Visible = false;
+
+                        pnlToCastVote.Visible = true;
+                        lblCurrentOrgName.Text = pendingVotingRecord.OrgName; 
+                        lblCurrentQuestion.Text = pendingVotingRecord.QuestionText;
+
+                        lblCurrentCategoryDescription.Text = String.Join(" , ", _rptService.GetVotingCategorybyQuestionID(Convert.ToInt32(_questionID)));
+                       
+                    }
                     else
                     {
                         pnlMessage.Visible = true;
-                        lblMesage.Text = "No votes were casted for this question!!!";
+                        lblMesage.Text = "The polling window has not started for this question!!!";
                     }
 
                 }
@@ -105,9 +120,8 @@ namespace SmartOpinionPollingSystem.UserPages
             };
 
            _iuiservices.SaveUserVote(vd);
-
-           pnlGraphVoteCast.Visible = false;
-            GetPieChartData(); //Fill the chart
+           PostVotingControlSetting("thumbsup");
+           
         }
 
         protected void imgThumsDown_Click(object sender, ImageClickEventArgs e)
@@ -121,8 +135,36 @@ namespace SmartOpinionPollingSystem.UserPages
 
             _iuiservices.SaveUserVote(vd);
 
-            pnlGraphVoteCast.Visible = false;
+            PostVotingControlSetting("thumbsdown");
+           
+        }
+
+
+        protected void PostVotingControlSetting(string imgclicked)
+        {
+            pnlGraphVoteCast.Visible = true;
             GetPieChartData(); //Fill the chart
+
+            imgThumsDown.Enabled = false;
+            imgThumsUp.Enabled = false;
+
+            if (imgclicked.Equals("thumbsup"))
+            {
+                imgThumsUp.Width = 150;
+                imgThumsUp.Height = 150;
+                imgThumsUp.ImageUrl = "http://cdn.mysitemyway.com/etc-mysitemyway/icons/legacy-previews/icons/3d-glossy-green-orbs-icons-business/103478-3d-glossy-green-orb-icon-business-thumbs-up1.png";
+               
+            }
+            else if (imgclicked.Equals("thumbsdown"))
+            {
+                imgThumsDown.ImageUrl = "http://blog.2createawebsite.com/wp-content/uploads/2014/09/thumbsDown.png";
+                imgThumsDown.Width = 150;
+                imgThumsDown.Height = 150;
+                
+            }
+
+            lblUserVote.Text = "You have successfully casted your vote!!!! Thank you";
+            lblUserVote.BackColor = System.Drawing.Color.DarkOrchid;
         }
 
 
@@ -135,7 +177,10 @@ namespace SmartOpinionPollingSystem.UserPages
             var userVotingQuestion = _rptService.GetUserVotingQuestionDetails(HttpContext.Current.User.Identity.Name, PollingWindowEnum.All)
                                        .FirstOrDefault(r => r.QuestionID == Convert.ToInt32(_questionID));
 
-            List<VotingResultContainer> data = new List<VotingResultContainer>()
+            if (userVotingQuestion != null)
+            {
+
+                List<VotingResultContainer> data = new List<VotingResultContainer>()
                                                  { new VotingResultContainer()
                                                                 {
                                                                     VotingOption = "Yes",
@@ -150,21 +195,23 @@ namespace SmartOpinionPollingSystem.UserPages
 
 
 
-            var chartData = new object[data.Count + 1];
-            chartData[0] = new object[]{
+                var chartData = new object[data.Count + 1];
+                chartData[0] = new object[]{
                 "Voting Option",
                 "Count"
             };
-            int j = 0;
-            foreach (var i in data)
-            {
-                j++;
-                chartData[j] = new object[] { i.VotingOption.ToString(), i.VotingCount };
+                int j = 0;
+                foreach (var i in data)
+                {
+                    j++;
+                    chartData[j] = new object[] { i.VotingOption.ToString(), i.VotingCount };
+                }
+
+                return chartData;
             }
+            else return  new object[0];
 
-            return chartData;
+
         }
-
-
     }
 }

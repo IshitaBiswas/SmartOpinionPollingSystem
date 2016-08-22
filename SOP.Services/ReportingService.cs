@@ -37,6 +37,13 @@ namespace SOP.Services
         {
             return _rptAcessor.GetUserVotingQuestionDetails(userID, pwEnum);
         }
-
+        public IEnumerable<UserVotingDetail> GetPendingPollingQueue(string userID,  PollingWindowEnum pwEnum = PollingWindowEnum.Current)
+        {
+            return _rptAcessor.GetPendingPollingQueue(userID,pwEnum);
+        }
+        public IEnumerable<string> GetVotingCategorybyQuestionID(int questionID)
+        {
+            return _rptAcessor.GetVotingCategorybyQuestionID(questionID);
+        }
     }
 }
