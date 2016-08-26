@@ -15,6 +15,10 @@
         .auto-style2 {
             width: 270px;
         }
+        #body
+        {
+            background-image: url("http://voshsoutheast.org/wp-content/uploads/2014/05/Background-Texture-Images4.jpg");
+        }
     </style>
 
 </asp:Content>
@@ -73,7 +77,7 @@
     <table style="width: 100%">
         <caption>User Dashboard</caption>
         <tr>
-            <th class="auto-style2">Polling Questions</th>
+            <th class="auto-style2">User Activities : Click one</th>
             <th>Chart</th>
         </tr>
         <tr>
@@ -86,7 +90,7 @@
                     <br />
             </td>
 
-             <td>
+             <td style="text-align:center">
                 <div id="chart_div" style="width: 500px; height: 400px; text-align:center">
                     <%-- Here Chart Will Load --%>
                 </div>

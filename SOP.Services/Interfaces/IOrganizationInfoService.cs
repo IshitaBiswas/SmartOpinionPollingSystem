@@ -15,5 +15,7 @@ namespace SOP.Services.Interfaces
        void AddOrgPollingQuestionDetails(VotingQuestionDetail orgqstndetail);
 
        bool OrgLogin(Organization org);
+       Organization GetOrganization(string orgID);
+       void EditOrgProfile(Organization org);
     }
 }

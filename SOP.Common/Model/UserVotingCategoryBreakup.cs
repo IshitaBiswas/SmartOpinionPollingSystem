@@ -12,5 +12,6 @@ namespace SOP.Common.Model
         public int VotingCategoryID { get; set; }
 
         public string CategoryDescription { get; set; }
+
     }
 }

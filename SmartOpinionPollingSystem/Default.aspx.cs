@@ -6,25 +6,39 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using SOP.Services.Interfaces;
 using SOP.Services;
+using SOP.Common;
 
 namespace SmartOpinionPollingSystem
 {
     public partial class _Default : Page
     {
 
-        IPollingStatusService ips;
 
         public _Default()
         {
-           ips = new PollingStatusService();
 
         }
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            gvUsers.DataSource = ips.GetRegisteredUsers();
-            gvUsers.DataBind();
-            
+
+            if (Request.IsAuthenticated)
+            {
+                if (Session["LoginType"] != null)
+                {
+                    if (((LoginTypeEnum)Session["LoginType"]) == LoginTypeEnum.User)
+                    {
+                        Response.Redirect("~/UserPages/UserProfile");
+                    }
+                    else if (((LoginTypeEnum)Session["LoginType"]) == LoginTypeEnum.Organization)
+                    {
+                        Response.Redirect("~/OrganizationPages/OrgProfile");
+                    }
+                }              
+            }
+
+           // gvUsers.DataSource = ips.GetRegisteredUsers();
+           // gvUsers.DataBind();
         }
     }
 }

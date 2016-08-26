@@ -149,6 +149,14 @@ namespace SOP.Data
 				return this.GetTable<tblVotingQuestionDetail>();
 			}
 		}
+		
+		public System.Data.Linq.Table<tblDiscussion> tblDiscussions
+		{
+			get
+			{
+				return this.GetTable<tblDiscussion>();
+			}
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tblOrganization")]
@@ -1937,6 +1945,87 @@ namespace SOP.Data
 		{
 			this.SendPropertyChanging();
 			entity.tblVotingQuestionDetail = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tblDiscussion")]
+	public partial class tblDiscussion
+	{
+		
+		private string _UserID;
+		
+		private System.Nullable<int> _QuestionID;
+		
+		private string _DiscussionText;
+		
+		private System.Nullable<System.DateTime> _DateDiscussionCreated;
+		
+		public tblDiscussion()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserID", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string UserID
+		{
+			get
+			{
+				return this._UserID;
+			}
+			set
+			{
+				if ((this._UserID != value))
+				{
+					this._UserID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_QuestionID", DbType="Int")]
+		public System.Nullable<int> QuestionID
+		{
+			get
+			{
+				return this._QuestionID;
+			}
+			set
+			{
+				if ((this._QuestionID != value))
+				{
+					this._QuestionID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DiscussionText", DbType="NVarChar(500)")]
+		public string DiscussionText
+		{
+			get
+			{
+				return this._DiscussionText;
+			}
+			set
+			{
+				if ((this._DiscussionText != value))
+				{
+					this._DiscussionText = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DateDiscussionCreated", DbType="DateTime")]
+		public System.Nullable<System.DateTime> DateDiscussionCreated
+		{
+			get
+			{
+				return this._DateDiscussionCreated;
+			}
+			set
+			{
+				if ((this._DateDiscussionCreated != value))
+				{
+					this._DateDiscussionCreated = value;
+				}
+			}
 		}
 	}
 }

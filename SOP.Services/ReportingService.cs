@@ -45,5 +45,18 @@ namespace SOP.Services
         {
             return _rptAcessor.GetVotingCategorybyQuestionID(questionID);
         }
+
+
+        public IEnumerable<Discussion> GetQuestionDiscussions(int questionID)
+        {
+            return _rptAcessor.GetQuestionDiscussions(questionID);
+        }
+
+        public void SaveQuestionDiscussion(Discussion discussion)
+        {
+            _rptAcessor.SaveQuestionDiscussion(discussion);
+
+        }
+
     }
 }

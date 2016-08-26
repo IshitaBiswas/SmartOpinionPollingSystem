@@ -13,5 +13,7 @@ namespace SOP.Data.Interfaces
        void RegisterUser(User user);
        bool DoesUserExist(User user);
        void SaveUserVote(UserVotingDetail vd);
+       User GetUser(string userID);
+       void EditUserProfile(User user);
     }
 }

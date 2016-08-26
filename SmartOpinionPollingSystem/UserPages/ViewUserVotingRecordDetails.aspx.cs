@@ -12,6 +12,7 @@ using System.Linq;
 using System.Security.Principal;
 using SOP.Common;
 using System.IO;
+using System.Text;
 using System.Web.Script.Serialization;
 
 namespace SmartOpinionPollingSystem.UserPages
@@ -47,6 +48,25 @@ namespace SmartOpinionPollingSystem.UserPages
                     {
                         pnlPrevious.Visible = true;
 
+                        StringBuilder sb = new StringBuilder();
+                        var discussions = _rptService.GetQuestionDiscussions(votingRecord.QuestionID).ToList();
+
+                        discussions.ForEach(d =>
+                                        {
+                                            sb.Append("<strong><font size='2' face='Verdana'>");
+                                            sb.Append(d.UserFName  + " : ");
+                                            sb.Append("</font></strong>");
+
+                                            sb.Append("<font size='2' face='Verdana'>");
+                                            sb.Append(d.DiscussionText + " ");
+                                            sb.Append("</font>");
+                                            sb.Append("<br/>" + "Posted on: " + d.DateDiscussionCreated);
+                                            sb.Append("<br/>");
+
+                                        });
+
+                        lblPreviousDiscussion.Text = sb.ToString();
+
                         lblOrgName.Text = votingRecord.OrgName;
                         lblQuestion.Text = votingRecord.QuestionText;
                         lblCategoryDescription.Text = votingRecord.CategoryDescription;
@@ -69,6 +89,7 @@ namespace SmartOpinionPollingSystem.UserPages
                         pnlCurrent.Visible = true;
                         pnlVoteCasted.Visible = true;
                         pnlGraphVoteCast.Visible = true; //This will only be set to true post casting of the vote
+                        pnlCurrentUserComments.Visible = true;
 
                         lblCurrentCategoryDescription.Text = votingRecord.CategoryDescription; 
                         lblCurrentOrgName.Text = votingRecord.OrgName;
@@ -87,6 +108,7 @@ namespace SmartOpinionPollingSystem.UserPages
                         UserVotingDetail pendingVotingRecord = pendingVotingRecords.FirstOrDefault(r => r.QuestionID == Convert.ToInt32(_questionID));
                         pnlCurrent.Visible = true;
                         pnlGraphVoteCast.Visible = false;
+                        pnlCurrentUserComments.Visible = true;
 
                         pnlToCastVote.Visible = true;
                         lblCurrentOrgName.Text = pendingVotingRecord.OrgName; 
@@ -95,10 +117,11 @@ namespace SmartOpinionPollingSystem.UserPages
                         lblCurrentCategoryDescription.Text = String.Join(" , ", _rptService.GetVotingCategorybyQuestionID(Convert.ToInt32(_questionID)));
                        
                     }
-                    else
+                    else if (_pollingWindow == PollingWindowEnum.Future)
                     {
-                        pnlMessage.Visible = true;
-                        lblMesage.Text = "The polling window has not started for this question!!!";
+                        pnlFuture.Visible = true;
+                        pnlFuturemsg.Visible = true;
+                        lblFuturemsg.Text = "The polling window has not started for this question!!!";
                     }
 
                 }

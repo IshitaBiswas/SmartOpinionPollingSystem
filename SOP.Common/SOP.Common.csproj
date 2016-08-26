@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="LoginTypeEnum.cs" />
+    <Compile Include="Model\Discussion.cs" />
     <Compile Include="Model\OrgQuestionTargetAudience.cs" />
     <Compile Include="Model\UserVotingCategoryBreakup.cs" />
     <Compile Include="Model\UserVotingDetail.cs" />

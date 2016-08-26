@@ -42,6 +42,7 @@
       <Column Name="Occupation" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
       <Association Name="tblUser_tblUserVotingCategory" Member="tblUserVotingCategories" ThisKey="UserID" OtherKey="UserID" Type="tblUserVotingCategory" />
       <Association Name="tblUser_tblUserVotingDetail" Member="tblUserVotingDetails" ThisKey="UserID" OtherKey="UserID" Type="tblUserVotingDetail" />
+      <Association Name="tblUser_tblDiscussion" Member="tblDiscussions" ThisKey="UserID" OtherKey="UserID" Type="tblDiscussion" />
     </Type>
   </Table>
   <Table Name="dbo.tblUserVotingCategory" Member="tblUserVotingCategories">
@@ -84,6 +85,17 @@
       <Column Name="TargetAudienceGender" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
       <Association Name="tblVotingQuestionDetail_tblOrgQuestionTargetAudience" Member="tblOrgQuestionTargetAudiences" ThisKey="QuestionID" OtherKey="QuestionID" Type="tblOrgQuestionTargetAudience" />
       <Association Name="tblVotingQuestionDetail_tblUserVotingDetail" Member="tblUserVotingDetails" ThisKey="QuestionID" OtherKey="QuestionID" Type="tblUserVotingDetail" />
+      <Association Name="tblVotingQuestionDetail_tblDiscussion" Member="tblDiscussions" ThisKey="QuestionID" OtherKey="QuestionID" Type="tblDiscussion" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblDiscussion" Member="tblDiscussions">
+    <Type Name="tblDiscussion">
+      <Column Name="UserID" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="QuestionID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DiscussionText" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="DateDiscussionCreated" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="tblVotingQuestionDetail_tblDiscussion" Member="tblVotingQuestionDetail" ThisKey="QuestionID" OtherKey="QuestionID" Type="tblVotingQuestionDetail" IsForeignKey="true" />
+      <Association Name="tblUser_tblDiscussion" Member="tblUser" ThisKey="UserID" OtherKey="UserID" Type="tblUser" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>

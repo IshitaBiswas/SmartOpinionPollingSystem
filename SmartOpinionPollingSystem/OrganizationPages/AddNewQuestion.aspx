@@ -1,5 +1,11 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="AddNewQuestion.aspx.cs" Inherits="SmartOpinionPollingSystem.OrganizationPages.AddNewQuestion" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
+    <style>
+         #body
+        {
+            background-image: url("http://www.myfreetextures.com/wp-content/uploads/2011/06/illust18.jpg");
+        }
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="FeaturedContent" runat="server">
 </asp:Content>

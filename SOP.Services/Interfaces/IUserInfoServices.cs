@@ -11,6 +11,8 @@ namespace SOP.Services.Interfaces
     {
         void RegisterUser(User user);
         void SaveUserVote(UserVotingDetail vd);
+        User GetUser(string userID);
+        void EditUserProfile(User user);
 
     }
 }

@@ -32,5 +32,16 @@ namespace SOP.Services
         {
             _udAcessor.SaveUserVote(vd);
         }
+
+        public User GetUser(string userID)
+        {
+            return _udAcessor.GetUser(userID);
+
+        }
+
+        public void EditUserProfile(User user)
+        {
+            _udAcessor.EditUserProfile(user);
+        }
     }
 }

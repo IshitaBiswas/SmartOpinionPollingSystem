@@ -33,5 +33,12 @@ namespace SOP.Common.Model
                 this._orgVotingCategoryIDs = value;
             }
         }
+
+        private List<VotingCategoryDesc> _orgVotingCategoryDescriptions;
+        public List<VotingCategoryDesc> OrgVotingCategoryDescriptions
+        {
+            get { return this._orgVotingCategoryDescriptions ?? (this._orgVotingCategoryDescriptions = new List<VotingCategoryDesc>()); }
+            set { this._orgVotingCategoryDescriptions = value; }
+        }
     }
 }

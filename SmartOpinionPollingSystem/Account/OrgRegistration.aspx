@@ -1,5 +1,11 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="OrgRegistration.aspx.cs" Inherits="SmartOpinionPollingSystem.Account.OrgRegistration" %>
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
+    <style>
+        #body
+        {
+            background-image: url("http://www.myfreetextures.com/wp-content/uploads/2011/06/illust18.jpg");
+        }
+    </style>
     <hgroup class="title">
         <h1><%: Title %> Organization user  - Use the form below to create a new account.</h1>
     </hgroup>
@@ -36,7 +42,7 @@
                                     CssClass="field-validation-error" ErrorMessage="The Organization CAtegory field is required." />
                             </li>
                              <li>
-                                <asp:Label runat="server" AssociatedControlID="chkOrgVotingCategory">Organization Voting Category</asp:Label>
+                                <asp:Label runat="server" AssociatedControlID="chkOrgVotingCategory">Target Audience Domain</asp:Label>
                                    <asp:CheckBoxList ID="chkOrgVotingCategory" runat="server" RepeatDirection="Horizontal"></asp:CheckBoxList>
                             </li>
 

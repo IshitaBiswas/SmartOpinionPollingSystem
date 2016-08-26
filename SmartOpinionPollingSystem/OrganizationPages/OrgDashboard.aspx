@@ -15,6 +15,11 @@
         .auto-style1 {
             height: 185px;
         }
+
+        #body
+        {
+            background-image: url("http://www.myfreetextures.com/wp-content/uploads/2011/06/illust18.jpg");
+        }
     </style>
 
     </asp:Content>

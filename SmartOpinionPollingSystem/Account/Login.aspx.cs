@@ -50,11 +50,14 @@ namespace SmartOpinionPollingSystem.Account
 
                 if (_iGenService.ValidateLogin(genlogin) == LoginTypeEnum.Organization) 
                 {
+                    Session["LoginType"] = LoginTypeEnum.Organization;
+
                     FormsAuthentication.SetAuthCookie(genlogin.LoginID, RememberMe.Checked);
                     Response.Redirect("~/OrganizationPages/OrgDashboard.aspx");
                 }
                 else if (_iGenService.ValidateLogin(genlogin) == LoginTypeEnum.User)
                 {
+                    Session["LoginType"] = LoginTypeEnum.User;
                     FormsAuthentication.SetAuthCookie(genlogin.LoginID, RememberMe.Checked);
                     Response.Redirect("~/UserPages/UserDashboard.aspx");
                 }

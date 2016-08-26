@@ -15,8 +15,9 @@ namespace SOP.Data.Interfaces
       IEnumerable<VotingQuestionDetail> GetVotingQuestionDetails(string OrgID, PollingWindowEnum pwEnum);
       IEnumerable<UserVotingDetail> GetUserVotingQuestionDetails(string userID, PollingWindowEnum pwEnum);
       IEnumerable<UserVotingDetail> GetPendingPollingQueue(string userID, PollingWindowEnum pwEnum = PollingWindowEnum.Current);
-
       IEnumerable<string> GetVotingCategorybyQuestionID(int questionID);
+      IEnumerable<Discussion> GetQuestionDiscussions(int questionID);
+      void SaveQuestionDiscussion(Discussion discussion);
 
     }
 }

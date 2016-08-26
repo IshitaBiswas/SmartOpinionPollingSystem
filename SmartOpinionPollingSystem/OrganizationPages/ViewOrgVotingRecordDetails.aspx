@@ -44,6 +44,10 @@
         {
             background-color: white;
         }
+         #body
+        {
+            background-image: url("http://www.myfreetextures.com/wp-content/uploads/2011/06/illust18.jpg");
+        }
     </style>
     <script>
         var chartData; // globar variable for hold chart data

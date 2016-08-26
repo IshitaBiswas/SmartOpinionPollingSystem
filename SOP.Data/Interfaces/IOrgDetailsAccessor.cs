@@ -15,6 +15,8 @@ namespace SOP.Data.Interfaces
          bool DoesOrgExist(string OrgID);
          DataSet GetOrgPollingQuestionCategories(String orgID);
          void AddOrgPollingQuestionDetails(VotingQuestionDetail orgqstndetail);
+         Organization GetOrganization(string orgID);
+         void EditOrgProfile(Organization org);
 
          bool OrgLogin(Organization org);
 

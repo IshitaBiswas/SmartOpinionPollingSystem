@@ -36,5 +36,12 @@ namespace SOP.Common.Model
             get { return this._userVotingCategoryIDs ?? (this._userVotingCategoryIDs = new List<int>()); }
             set { this._userVotingCategoryIDs = value; }
         }
+
+        private List<VotingCategoryDesc> _userVotingCategoryDescriptions;
+        public List<VotingCategoryDesc> UserVotingCategoryDescriptions
+        {
+            get { return this._userVotingCategoryDescriptions ?? (this._userVotingCategoryDescriptions = new List<VotingCategoryDesc>()); }
+            set { this._userVotingCategoryDescriptions = value; }
+        }
     }
 }

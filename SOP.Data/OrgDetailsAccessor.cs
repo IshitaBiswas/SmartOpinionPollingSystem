@@ -121,6 +121,27 @@ namespace SOP.Data
             return (count > 0);
         }
 
+        public Organization GetOrganization(string orgID)
+        {
+            using (var _db = new SOPDbDataContext())
+            {
+                return _db.tblOrganizations
+                           .Where(or => or.OrgID == orgID)
+                           .Select(s => new Organization
+                           {
+                               OrgID = orgID,
+                               OrgName = s.OrgName,
+                               OrgWebsite = s.OrgWebsite,
+                               OrgCategory = s.OrgCategory,
+                               OrgVotingCategoryDescriptions = GetOrgPollingQuestionCategories(orgID).Tables[0].AsEnumerable()
+                                                               .Select(dataRow => new VotingCategoryDesc {
+                                                                                         VotingCategoryID = dataRow.Field<int>("OrgVotingCategoryID") ,
+                                                                                         CategoryDescription = dataRow.Field<string>("CategoryDescription")}).ToList()
+                           }).FirstOrDefault();
+            }
+
+        }
+
         public DataSet GetOrgPollingQuestionCategories(String orgID)
         {
             string sql = "SELECT OrgVotingCategoryID,CategoryDescription FROM tblOrgVotingCategory vcat inner join tblVotingCategoryDesc vdes on vcat.OrgVotingCategoryID = vdes.VotingCategoryID where OrgID = @orgID";
@@ -168,6 +189,46 @@ namespace SOP.Data
                 });
 
                 _db.SubmitChanges();
+            }
+        }
+
+        public void EditOrgProfile(Organization org)
+        {
+            using (var _db = new SOPDbDataContext())
+            {
+                //Update User table
+                tblOrganization or = _db.tblOrganizations.First(r => r.OrgID == org.OrgID);
+
+                or.OrgName = org.OrgName;
+                or.OrgWebsite = org.OrgWebsite;
+                or.OrgCategory = org.OrgCategory;
+
+
+                //delete all existing voting category records for this user from tblUserVotingCategories
+                var orgvc = _db.tblOrgVotingCategories.Where(s => s.OrgID == org.OrgID);
+
+                if (orgvc.Any())
+                {
+                    _db.tblOrgVotingCategories.DeleteAllOnSubmit(orgvc);
+
+                }
+
+                //Insert new voting category records for this user into tblUserVotingCategories
+
+                org.OrgVotingCategoryIDs.ForEach(v =>
+                {
+                    var singleVotingCategoryRecord = new tblOrgVotingCategory
+                    {
+                        OrgID = org.OrgID,
+                        OrgVotingCategoryID = v
+                    };
+                    _db.tblOrgVotingCategories.InsertOnSubmit(singleVotingCategoryRecord);
+                });
+
+
+                _db.SubmitChanges();
+
+
             }
         }
     }

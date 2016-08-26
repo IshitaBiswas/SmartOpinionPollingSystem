@@ -1,17 +1,31 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ViewUserVotingRecordDetails.aspx.cs" Inherits="SmartOpinionPollingSystem.UserPages.ViewUserVotingRecordDetails" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
+
+    <style>
+
+        #body
+        {
+            background-image: url("http://voshsoutheast.org/wp-content/uploads/2014/05/Background-Texture-Images4.jpg");
+        }
+
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="FeaturedContent" runat="server">
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="server">
 
-<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
 <link href="../Content/themes/base/jquery-ui.css" rel="stylesheet" />
 <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
 
     <link href="../Content/style15.css" rel="stylesheet" />
 
     <style>
+        textarea {
+            margin :0px;
+            padding :0px;
+            width : 100%;
+        }
         table {
             border-collapse: collapse;
             width: 100%;
@@ -27,9 +41,6 @@
             background-color: #f5f5f5;
         }
 
-        .auto-style1 {
-            
-        }
         article
         {
             width:auto;
@@ -44,6 +55,13 @@
         {
             background-color: white;
         }
+
+        .discussion {
+            margin: 10px;
+            padding: 10px;
+            background: #ffffcc;
+            border: 1px solid #999999;
+}
     </style>
     <script>
         var chartData; // globar variable for hold chart data
@@ -183,7 +201,7 @@
                     </header>
                     <table>
                         <tr>
-                           <td>
+                            <td>
 
                                 <b>Number of votes in favour:</b>
 
@@ -193,7 +211,7 @@
                             </td>
                         </tr>
                         <tr>
-                           <td>
+                            <td>
                                 <b>Number of votes against:</b>
 
                             </td>
@@ -202,7 +220,7 @@
                             </td>
                         </tr>
                         <tr>
-                           <td>
+                            <td>
                                 <b>Who own:</b>
 
                             </td>
@@ -227,8 +245,22 @@
             </aside>
 
         </div>
+        <br />
+        
+        <div class="discussion">
 
+            <header>
+                <hgroup>
+                    <h2>Discussion Board</h2>
+                </hgroup>
+            </header>
+            <asp:Panel ID="Panel1" runat="Server"  Height="100px"  ScrollBars="Auto">
+                    <asp:Label ID="lblPreviousDiscussion" runat="server" ReadOnly ="true" BackColor="#ffffcc" style="height:50px;overflow:scroll"></asp:Label>
+            </asp:Panel>
+        </div>
     </asp:Panel>
+    
+    
     <asp:Panel runat="server" ID="pnlCurrent" Visible="false">
 
         <h1 class="main_header" style="text-align: center">Current Polling</h1>
@@ -323,37 +355,13 @@
                     </asp:Panel>
 
                     <div class="wrapperasideright">
-                        <header>
+
+                      <header>
                             <hgroup>
                                 <h2>Discussion Board</h2>
                             </hgroup>
                         </header>
-                        <table>
-                            <tr>
-                                <td>
-                                    <b>Category Description:</b>
-                                </td>
-                                <td>
-                                    <asp:Label ID="Label1" runat="server"></asp:Label>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <b>Organization conducting the poll:</b>
-                                </td>
-                                <td>
-                                    <asp:Label ID="Label2" runat="server"></asp:Label>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <b>Question:</b>
-                                </td>
-                                <td>
-                                    <asp:Label ID="Label3" runat="server"></asp:Label><br>
-                                </td>
-                            </tr>
-                        </table>
+                        <asp:TextBox ID="txtCurrentDiscussion" runat="server" TextMode="MultiLine" style= "height: 400px;" BackColor="#ffffcc" ReadOnly="true"></asp:TextBox>
                     </div>
 
                 </div>
@@ -364,7 +372,33 @@
      </asp:Panel>
 
     <asp:Panel runat="server" ID="pnlFuture" Visible="false">
-        <h1 id="main_header2" style="text-align: center">Future Polling</h1>
+        <h1 class="main_header" style="text-align: center">Future Polling</h1>
+        
+        <br /><br />
+        <asp:Panel runat="server" ID="pnlFuturemsg" Visible="false">
+            <asp:Label ID="lblFuturemsg" runat="server"></asp:Label><br>
+      </asp:Panel>
+        <br /><br />
+        <div class="discussion">
+
+            <header>
+                <hgroup>
+                    <h2>Discussion Board</h2>
+                </hgroup>
+            </header>
+
+            <asp:TextBox ID="txtFutureDiscussion" runat="server" TextMode ="MultiLine" ReadOnly ="true">Discussion Board will open when the Polling Window for this Question Opens</asp:TextBox>
+        </div>
+    </asp:Panel>
+
+    <asp:Panel  runat="server" ID="pnlCurrentUserComments" Visible="false">
+        <b>User Comments : </b>
+        <div class="discussion">
+            <asp:TextBox ID="txtUserComments" runat="server" TextMode ="MultiLine"></asp:TextBox>
+        </div>
+        
+        <asp:Button ID="btnSaveUserComments" runat="server" Text="Post" style="margin-left:auto; display:block;" />
+        
     </asp:Panel>
 
 

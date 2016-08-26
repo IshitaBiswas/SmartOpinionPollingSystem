@@ -44,6 +44,15 @@ namespace SOP.Services
             return _odAccessor.GetOrgPollingQuestionCategories(orgID);
         }
 
+        public Organization GetOrganization(string orgID)
+        {
+            return _odAccessor.GetOrganization(orgID);
+        }
+        public void EditOrgProfile(Organization org)
+        {
+            _odAccessor.EditOrgProfile(org);
+        }
+
         public bool OrgLogin(Organization org)
         {
              return _odAccessor.OrgLogin(org);

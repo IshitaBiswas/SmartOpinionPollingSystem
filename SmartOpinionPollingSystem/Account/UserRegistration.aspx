@@ -1,6 +1,13 @@
 ﻿<%@ Page Title="Register" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="UserRegistration.aspx.cs" Inherits="SmartOpinionPollingSystem.Account.UserRegister" %>
 
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
+
+    <style>
+        #body
+        {
+            background-image: url("http://voshsoutheast.org/wp-content/uploads/2014/05/Background-Texture-Images4.jpg");
+        }
+    </style>
     <hgroup class="title">
         <h1><%: Title %>.</h1>
         <h2>Use the form below to create a new account.</h2>
@@ -17,7 +24,7 @@
                                 <asp:Label runat="server" AssociatedControlID="txtUserID">User ID</asp:Label>
                                 <asp:TextBox runat="server" ID="txtUserID" />
                                 <asp:RequiredFieldValidator runat="server" ControlToValidate="txtUserID"
-                                    CssClass="field-validation-error" ErrorMessage="The USer ID field is required." />
+                                    CssClass="field-validation-error" ErrorMessage="The User ID field is required." />
                             </li>
                             <li>
                                 <asp:Label runat="server" AssociatedControlID="txtFirstName">First Name</asp:Label>
