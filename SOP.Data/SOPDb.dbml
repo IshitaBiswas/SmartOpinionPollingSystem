@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="dbSmartOpinion" Class="SOPDbDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=golumolu-;Initial Catalog=dbSmartOpinion;Integrated Security=True" SettingsObjectName="SOP.Data.Properties.Settings" SettingsPropertyName="dbSmartOpinionConnectionString" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=dbsmartpoll.cbzttr2x6vux.us-west-2.rds.amazonaws.com;Initial Catalog=dbSmartOpinion;User ID=sa" SettingsObjectName="SOP.Data.Properties.Settings" SettingsPropertyName="dbSmartOpinionConnectionString" Provider="System.Data.SqlClient" />
   <Table Name="dbo.tblOrganization" Member="tblOrganizations">
     <Type Name="tblOrganization">
       <Column Name="OrgID" Type="System.String" DbType="NVarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -90,10 +90,10 @@
   </Table>
   <Table Name="dbo.tblDiscussion" Member="tblDiscussions">
     <Type Name="tblDiscussion">
-      <Column Name="UserID" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="QuestionID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="UserID" Type="System.String" DbType="NVarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="QuestionID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="DiscussionText" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
-      <Column Name="DateDiscussionCreated" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="DateDiscussionCreated" Type="System.DateTime" DbType="DateTime NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Association Name="tblVotingQuestionDetail_tblDiscussion" Member="tblVotingQuestionDetail" ThisKey="QuestionID" OtherKey="QuestionID" Type="tblVotingQuestionDetail" IsForeignKey="true" />
       <Association Name="tblUser_tblDiscussion" Member="tblUser" ThisKey="UserID" OtherKey="UserID" Type="tblUser" IsForeignKey="true" />
     </Type>

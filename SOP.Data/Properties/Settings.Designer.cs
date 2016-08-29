@@ -26,7 +26,8 @@ namespace SOP.Data.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=golumolu-;Initial Catalog=dbSmartOpinion;Integrated Security=True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=dbsmartpoll.cbzttr2x6vux.us-west-2.rds.amazonaws.com;Initial Catalog=" +
+            "dbSmartOpinion;User ID=sa;Password=GutenMorgan1985")]
         public string dbSmartOpinionConnectionString {
             get {
                 return ((string)(this["dbSmartOpinionConnectionString"]));

@@ -29,6 +29,8 @@ namespace SmartOpinionPollingSystem.UserPages
 
             if (Request.IsAuthenticated)
             {
+                UserDashBoard.NavigateUrl = "UserDashBoard";
+
                 if (!Page.IsPostBack)
                 {
                     User user = _iUserServices.GetUser(HttpContext.Current.User.Identity.Name);

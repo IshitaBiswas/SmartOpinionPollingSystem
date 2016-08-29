@@ -11,6 +11,7 @@ using SOP.Services;
 using System.Linq;
 using System.Security.Principal;
 using SOP.Common;
+using SOP.Common.Model;
 using System.IO;
 using System.Text;
 using System.Web.Script.Serialization;
@@ -35,10 +36,15 @@ namespace SmartOpinionPollingSystem.UserPages
 
             if (Request.IsAuthenticated)
             {
+                hlnkUserDashBoard.NavigateUrl = "UserDashBoard";
+                hlnkPollingDetails.NavigateUrl = "UserPollingDetails";
+
                 if (Request.QueryString["QuestionID"] != null)
                 {
                     _questionID = Request.QueryString["QuestionID"];
                     PollingWindowEnum _pollingWindow = (PollingWindowEnum)Session["pollingWindow"];
+
+                    hlnkPollingDetails.Text = "View " +  _pollingWindow.ToString() +" Polling Details";
 
                     UserVotingDetail votingRecord = _rptService
                                                     .GetUserVotingQuestionDetails(HttpContext.Current.User.Identity.Name, _pollingWindow)
@@ -60,8 +66,8 @@ namespace SmartOpinionPollingSystem.UserPages
                                             sb.Append("<font size='2' face='Verdana'>");
                                             sb.Append(d.DiscussionText + " ");
                                             sb.Append("</font>");
-                                            sb.Append("<br/>" + "Posted on: " + d.DateDiscussionCreated);
-                                            sb.Append("<br/>");
+                                            sb.Append("<br/><font color='gray' size='1' >Posted on:  " + d.DateDiscussionCreated);
+                                            sb.Append("</font><br/><br/>");
 
                                         });
 
@@ -87,6 +93,26 @@ namespace SmartOpinionPollingSystem.UserPages
                     {
                                         
                         pnlCurrent.Visible = true;
+
+                        StringBuilder sb = new StringBuilder();
+                        var discussions = _rptService.GetQuestionDiscussions(votingRecord.QuestionID).ToList();
+
+                        discussions.ForEach(d =>
+                        {
+                            sb.Append("<strong><font size='2' face='Verdana'>");
+                            sb.Append(d.UserFName + " : ");
+                            sb.Append("</font></strong>");
+
+                            sb.Append("<font size='2' face='Verdana'>");
+                            sb.Append(d.DiscussionText + " ");
+                            sb.Append("</font>");
+                            sb.Append("<br/><font color='gray' size='1' >Posted on:  " + d.DateDiscussionCreated);
+                            sb.Append("</font><br/><br/>");
+
+                        });
+
+                        lblCurrentDiscussion.Text = sb.ToString();
+
                         pnlVoteCasted.Visible = true;
                         pnlGraphVoteCast.Visible = true; //This will only be set to true post casting of the vote
                         pnlCurrentUserComments.Visible = true;
@@ -106,7 +132,28 @@ namespace SmartOpinionPollingSystem.UserPages
                         //Retrive the Pending Polling Queue for the user
                         IEnumerable<UserVotingDetail> pendingVotingRecords = _rptService.GetPendingPollingQueue(HttpContext.Current.User.Identity.Name);
                         UserVotingDetail pendingVotingRecord = pendingVotingRecords.FirstOrDefault(r => r.QuestionID == Convert.ToInt32(_questionID));
+
                         pnlCurrent.Visible = true;
+
+                        StringBuilder sb = new StringBuilder();
+                        var discussions = _rptService.GetQuestionDiscussions(Convert.ToInt32(_questionID)).ToList();
+
+                        discussions.ForEach(d =>
+                        {
+                            sb.Append("<strong><font size='2' face='Verdana'>");
+                            sb.Append(d.UserFName + " : ");
+                            sb.Append("</font></strong>");
+
+                            sb.Append("<font size='2' face='Verdana'>");
+                            sb.Append(d.DiscussionText + " ");
+                            sb.Append("</font>");
+                            sb.Append("<br/><font color='gray' size='1' >Posted on:  " + d.DateDiscussionCreated);
+                            sb.Append("</font><br/><br/>");
+
+                        });
+
+                        pnlCurrentDiscussion.Height = 150;
+                        lblCurrentDiscussion.Text = sb.ToString();
                         pnlGraphVoteCast.Visible = false;
                         pnlCurrentUserComments.Visible = true;
 
@@ -125,8 +172,42 @@ namespace SmartOpinionPollingSystem.UserPages
                     }
 
                 }
-
             }
+        }
+
+        protected void btnSaveUserComments_Click(object sender, EventArgs e)
+        {
+            Discussion dis = new Discussion
+            {
+                UserID = HttpContext.Current.User.Identity.Name,
+                QuestionID = Convert.ToInt32(_questionID),
+                DiscussionText = txtUserComments.Text
+
+            };
+
+            _rptService.SaveQuestionDiscussion(dis);
+
+            txtUserComments.Text = "";
+
+            StringBuilder sb = new StringBuilder();
+            var discussions = _rptService.GetQuestionDiscussions(Convert.ToInt32(_questionID)).ToList();
+
+            discussions.ForEach(d =>
+            {
+                sb.Append("<strong><font size='2' face='Verdana'>");
+                sb.Append(d.UserFName + " : ");
+                sb.Append("</font></strong>");
+
+                sb.Append("<font size='2' face='Verdana'>");
+                sb.Append(d.DiscussionText + " ");
+                sb.Append("</font>");
+                sb.Append("<br/><font color='gray' size='1' >Posted on:  " + d.DateDiscussionCreated);
+                sb.Append("</font><br/><br/>");
+
+            });
+
+            lblCurrentDiscussion.Text = sb.ToString();
+
         }
 
 
@@ -236,5 +317,7 @@ namespace SmartOpinionPollingSystem.UserPages
 
 
         }
+
+        
     }
 }

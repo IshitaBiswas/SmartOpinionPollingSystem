@@ -45,11 +45,19 @@ namespace SmartOpinionPollingSystem.UserPages
                              : (qString == "future" ? PollingWindowEnum.Future : PollingWindowEnum.All));
 
                     Session["pollingWindow"] = _pollingWindow; //Save to session
+                    lblPollingSummaryHeading.Text = _pollingWindow + " Polling Summary";
 
                     if(_pollingWindow ==PollingWindowEnum.Current )
                     {
                         pnlPendingVotingRecord.Visible = true;
                     }
+                }
+
+                //Useful when user clicks on the hyperlink "View Current Polling details"
+                if (Session["pollingWindow"] != null && ((PollingWindowEnum)Session["pollingWindow"]) == PollingWindowEnum.Current)
+                {
+                    lblPollingSummaryHeading.Text = ((PollingWindowEnum)Session["pollingWindow"]) + " Polling Summary";
+                    pnlPendingVotingRecord.Visible = true;
                 }
 
 

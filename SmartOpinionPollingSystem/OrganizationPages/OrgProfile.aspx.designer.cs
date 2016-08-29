@@ -13,6 +13,15 @@ namespace SmartOpinionPollingSystem.OrganizationPages {
     public partial class OrgProfile {
         
         /// <summary>
+        /// OrgDashBoard control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink OrgDashBoard;
+        
+        /// <summary>
         /// ErrorMessage control.
         /// </summary>
         /// <remarks>

@@ -26,6 +26,7 @@ namespace SmartOpinionPollingSystem.OrganizationPages
         {
             if (Request.IsAuthenticated)
             {
+                OrgDashBoard.NavigateUrl = "OrgDashBoard";
                 if (!Page.IsPostBack)
                 {
                     Organization org = _iOrgServices.GetOrganization(HttpContext.Current.User.Identity.Name);

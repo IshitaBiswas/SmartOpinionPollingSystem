@@ -362,8 +362,9 @@ namespace SOP.Data
                 var singleAddDiscussionRecord = new tblDiscussion
                 {
                     UserID = discussion.UserID,
-                    QuestionID = discussion.QuestionID,
+                    QuestionID = discussion.QuestionID??0,
                     DiscussionText = discussion.DiscussionText,
+                    DateDiscussionCreated = DateTime.Now
                 };
 
                 _db.tblDiscussions.InsertOnSubmit(singleAddDiscussionRecord);

@@ -13,6 +13,24 @@ namespace SmartOpinionPollingSystem.UserPages {
     public partial class ViewUserVotingRecordDetails {
         
         /// <summary>
+        /// hlnkUserDashBoard control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink hlnkUserDashBoard;
+        
+        /// <summary>
+        /// hlnkPollingDetails control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink hlnkPollingDetails;
+        
+        /// <summary>
         /// pnlMessage control.
         /// </summary>
         /// <remarks>
@@ -274,13 +292,22 @@ namespace SmartOpinionPollingSystem.UserPages {
         protected global::System.Web.UI.WebControls.Panel pnlGraphVoteCast;
         
         /// <summary>
-        /// txtCurrentDiscussion control.
+        /// pnlCurrentDiscussion control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCurrentDiscussion;
+        protected global::System.Web.UI.WebControls.Panel pnlCurrentDiscussion;
+        
+        /// <summary>
+        /// lblCurrentDiscussion control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblCurrentDiscussion;
         
         /// <summary>
         /// pnlFuture control.
@@ -310,13 +337,22 @@ namespace SmartOpinionPollingSystem.UserPages {
         protected global::System.Web.UI.WebControls.Label lblFuturemsg;
         
         /// <summary>
-        /// txtFutureDiscussion control.
+        /// pnlFutureDiscussion control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtFutureDiscussion;
+        protected global::System.Web.UI.WebControls.Panel pnlFutureDiscussion;
+        
+        /// <summary>
+        /// lblFutureDiscussion control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblFutureDiscussion;
         
         /// <summary>
         /// pnlCurrentUserComments control.

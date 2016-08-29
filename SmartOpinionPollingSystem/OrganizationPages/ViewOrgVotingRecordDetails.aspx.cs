@@ -11,6 +11,7 @@ using SOP.Services;
 using System.Linq;
 using System.Security.Principal;
 using SOP.Common;
+using System.Text;
 using System.IO;
 using System.Web.Script.Serialization;
 
@@ -34,10 +35,15 @@ namespace SmartOpinionPollingSystem.OrganizationPages
 
                 if (Request.IsAuthenticated)
                 {
+                    hlnkOrgDashBoard.NavigateUrl = "OrgDashBoard";
+                    hlnkPollingDetails.NavigateUrl = "OrgPollingDetails";
+
                     if (Request.QueryString["QuestionID"] != null)
                     {
                         _questionID = Request.QueryString["QuestionID"];
                         PollingWindowEnum _pollingWindow = (PollingWindowEnum)Session["pollingWindow"];
+
+                        hlnkPollingDetails.Text = "View " + _pollingWindow.ToString() + " Polling Details";
 
                         VotingQuestionDetail votingRecord = _rptService
                                                         .GetVotingQuestionDetails(HttpContext.Current.User.Identity.Name, _pollingWindow)
@@ -46,6 +52,8 @@ namespace SmartOpinionPollingSystem.OrganizationPages
                         if (votingRecord != null && _pollingWindow == PollingWindowEnum.Previous)
                         {
                             pnlPrevious.Visible = true;
+
+                            lblPreviousDiscussion.Text = getDiscussions();
 
                             lblQuestion.Text = votingRecord.QuestionText;
                             lblCategoryDescription.Text = votingRecord.CategoryDescription;
@@ -68,16 +76,47 @@ namespace SmartOpinionPollingSystem.OrganizationPages
                             lblCurrentStartDate.Text = votingRecord.VotingStartDate.ToShortDateString();
                             lblCurrentEndDate.Text = votingRecord.VotingEndDate.ToShortDateString();
 
+                            lblCurrentDiscussion.Text =  getDiscussions();
+
                         }
-                        else
+                        else if (_pollingWindow == PollingWindowEnum.Future)
                         {
-                            pnlMessage.Visible = true;
-                            lblMesage.Text = "The polling window has not started for this question!!!";
+                            pnlFuture.Visible = true;
+                            pnlFuturemsg.Visible = true;
+                            lblFuturemsg.Text = "The polling window has not started for this question!!!";
                         }
 
                     }
 
                 }
+            }
+
+            private string getDiscussions()
+            {
+
+                StringBuilder sb = new StringBuilder();
+                var discussions = _rptService.GetQuestionDiscussions(Convert.ToInt32(_questionID)).ToList();
+
+                if (discussions != null && discussions.Any())
+                {
+                    discussions.ForEach(d =>
+                    {
+                        sb.Append("<strong><font size='2' face='Verdana'>");
+                        sb.Append(d.UserFName + " : ");
+                        sb.Append("</font></strong>");
+
+                        sb.Append("<font size='2' face='Verdana'>");
+                        sb.Append(d.DiscussionText + " ");
+                        sb.Append("</font>");
+                        sb.Append("<br/><font color='gray' size='1' >Posted on:  " + d.DateDiscussionCreated);
+                        sb.Append("</font><br/><br/>");
+
+                    });
+                }
+
+                return sb.ToString();
+
+                
             }
           
 

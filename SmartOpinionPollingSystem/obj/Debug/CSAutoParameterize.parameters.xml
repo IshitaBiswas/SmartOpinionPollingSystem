@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="dbSmartOpinionConnectionString-Web.config Connection String" description="dbSmartOpinionConnectionString Connection String used in web.config by the application to access the database." defaultValue="Data Source=dbsmartpoll.cbzttr2x6vux.us-west-2.rds.amazonaws.com,1433;database=dbSmartOpinion;User Id=sa;Password=GutenMorgan1985;Persist Security Info=True;Persist Security Info=True;" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Ishita\.Net\\Ishita\\capstonproject\\SmartOpinionPollingSystem\\SmartOpinionPollingSystem\\obj\\Debug\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='dbSmartOpinionConnectionString']/@connectionString" />
+  </parameter>
+</parameters>

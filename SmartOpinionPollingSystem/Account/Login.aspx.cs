@@ -30,7 +30,7 @@ namespace SmartOpinionPollingSystem.Account
             OrgRegisterHyperLink.NavigateUrl = "OrgRegistration";
           
 
-            var returnUrl = HttpUtility.UrlEncode(Request.QueryString["ReturnUrl"]);
+            var returnUrl = HttpUtility.UrlEncode(Request.QueryString["ReturnUrl"]);    
             if (!String.IsNullOrEmpty(returnUrl))
             {
                 UserRegisterHyperLink.NavigateUrl += "?ReturnUrl=" + returnUrl;

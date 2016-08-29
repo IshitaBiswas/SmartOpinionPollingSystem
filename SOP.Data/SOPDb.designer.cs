@@ -54,6 +54,9 @@ namespace SOP.Data
     partial void InserttblVotingQuestionDetail(tblVotingQuestionDetail instance);
     partial void UpdatetblVotingQuestionDetail(tblVotingQuestionDetail instance);
     partial void DeletetblVotingQuestionDetail(tblVotingQuestionDetail instance);
+    partial void InserttblDiscussion(tblDiscussion instance);
+    partial void UpdatetblDiscussion(tblDiscussion instance);
+    partial void DeletetblDiscussion(tblDiscussion instance);
     #endregion
 		
 		public SOPDbDataContext() : 
@@ -802,6 +805,8 @@ namespace SOP.Data
 		
 		private EntitySet<tblUserVotingDetail> _tblUserVotingDetails;
 		
+		private EntitySet<tblDiscussion> _tblDiscussions;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -830,6 +835,7 @@ namespace SOP.Data
 		{
 			this._tblUserVotingCategories = new EntitySet<tblUserVotingCategory>(new Action<tblUserVotingCategory>(this.attach_tblUserVotingCategories), new Action<tblUserVotingCategory>(this.detach_tblUserVotingCategories));
 			this._tblUserVotingDetails = new EntitySet<tblUserVotingDetail>(new Action<tblUserVotingDetail>(this.attach_tblUserVotingDetails), new Action<tblUserVotingDetail>(this.detach_tblUserVotingDetails));
+			this._tblDiscussions = new EntitySet<tblDiscussion>(new Action<tblDiscussion>(this.attach_tblDiscussions), new Action<tblDiscussion>(this.detach_tblDiscussions));
 			OnCreated();
 		}
 		
@@ -1039,6 +1045,19 @@ namespace SOP.Data
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblUser_tblDiscussion", Storage="_tblDiscussions", ThisKey="UserID", OtherKey="UserID")]
+		public EntitySet<tblDiscussion> tblDiscussions
+		{
+			get
+			{
+				return this._tblDiscussions;
+			}
+			set
+			{
+				this._tblDiscussions.Assign(value);
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -1078,6 +1097,18 @@ namespace SOP.Data
 		}
 		
 		private void detach_tblUserVotingDetails(tblUserVotingDetail entity)
+		{
+			this.SendPropertyChanging();
+			entity.tblUser = null;
+		}
+		
+		private void attach_tblDiscussions(tblDiscussion entity)
+		{
+			this.SendPropertyChanging();
+			entity.tblUser = this;
+		}
+		
+		private void detach_tblDiscussions(tblDiscussion entity)
 		{
 			this.SendPropertyChanging();
 			entity.tblUser = null;
@@ -1666,6 +1697,8 @@ namespace SOP.Data
 		
 		private EntitySet<tblUserVotingDetail> _tblUserVotingDetails;
 		
+		private EntitySet<tblDiscussion> _tblDiscussions;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -1694,6 +1727,7 @@ namespace SOP.Data
 		{
 			this._tblOrgQuestionTargetAudiences = new EntitySet<tblOrgQuestionTargetAudience>(new Action<tblOrgQuestionTargetAudience>(this.attach_tblOrgQuestionTargetAudiences), new Action<tblOrgQuestionTargetAudience>(this.detach_tblOrgQuestionTargetAudiences));
 			this._tblUserVotingDetails = new EntitySet<tblUserVotingDetail>(new Action<tblUserVotingDetail>(this.attach_tblUserVotingDetails), new Action<tblUserVotingDetail>(this.detach_tblUserVotingDetails));
+			this._tblDiscussions = new EntitySet<tblDiscussion>(new Action<tblDiscussion>(this.attach_tblDiscussions), new Action<tblDiscussion>(this.detach_tblDiscussions));
 			OnCreated();
 		}
 		
@@ -1903,6 +1937,19 @@ namespace SOP.Data
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblVotingQuestionDetail_tblDiscussion", Storage="_tblDiscussions", ThisKey="QuestionID", OtherKey="QuestionID")]
+		public EntitySet<tblDiscussion> tblDiscussions
+		{
+			get
+			{
+				return this._tblDiscussions;
+			}
+			set
+			{
+				this._tblDiscussions.Assign(value);
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -1946,25 +1993,60 @@ namespace SOP.Data
 			this.SendPropertyChanging();
 			entity.tblVotingQuestionDetail = null;
 		}
+		
+		private void attach_tblDiscussions(tblDiscussion entity)
+		{
+			this.SendPropertyChanging();
+			entity.tblVotingQuestionDetail = this;
+		}
+		
+		private void detach_tblDiscussions(tblDiscussion entity)
+		{
+			this.SendPropertyChanging();
+			entity.tblVotingQuestionDetail = null;
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tblDiscussion")]
-	public partial class tblDiscussion
+	public partial class tblDiscussion : INotifyPropertyChanging, INotifyPropertyChanged
 	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
 		private string _UserID;
 		
-		private System.Nullable<int> _QuestionID;
+		private int _QuestionID;
 		
 		private string _DiscussionText;
 		
-		private System.Nullable<System.DateTime> _DateDiscussionCreated;
+		private System.DateTime _DateDiscussionCreated;
+		
+		private EntityRef<tblVotingQuestionDetail> _tblVotingQuestionDetail;
+		
+		private EntityRef<tblUser> _tblUser;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnUserIDChanging(string value);
+    partial void OnUserIDChanged();
+    partial void OnQuestionIDChanging(int value);
+    partial void OnQuestionIDChanged();
+    partial void OnDiscussionTextChanging(string value);
+    partial void OnDiscussionTextChanged();
+    partial void OnDateDiscussionCreatedChanging(System.DateTime value);
+    partial void OnDateDiscussionCreatedChanged();
+    #endregion
 		
 		public tblDiscussion()
 		{
+			this._tblVotingQuestionDetail = default(EntityRef<tblVotingQuestionDetail>);
+			this._tblUser = default(EntityRef<tblUser>);
+			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserID", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserID", DbType="NVarChar(50) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
 		public string UserID
 		{
 			get
@@ -1975,13 +2057,21 @@ namespace SOP.Data
 			{
 				if ((this._UserID != value))
 				{
+					if (this._tblUser.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnUserIDChanging(value);
+					this.SendPropertyChanging();
 					this._UserID = value;
+					this.SendPropertyChanged("UserID");
+					this.OnUserIDChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_QuestionID", DbType="Int")]
-		public System.Nullable<int> QuestionID
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_QuestionID", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int QuestionID
 		{
 			get
 			{
@@ -1991,7 +2081,15 @@ namespace SOP.Data
 			{
 				if ((this._QuestionID != value))
 				{
+					if (this._tblVotingQuestionDetail.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnQuestionIDChanging(value);
+					this.SendPropertyChanging();
 					this._QuestionID = value;
+					this.SendPropertyChanged("QuestionID");
+					this.OnQuestionIDChanged();
 				}
 			}
 		}
@@ -2007,13 +2105,17 @@ namespace SOP.Data
 			{
 				if ((this._DiscussionText != value))
 				{
+					this.OnDiscussionTextChanging(value);
+					this.SendPropertyChanging();
 					this._DiscussionText = value;
+					this.SendPropertyChanged("DiscussionText");
+					this.OnDiscussionTextChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DateDiscussionCreated", DbType="DateTime")]
-		public System.Nullable<System.DateTime> DateDiscussionCreated
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DateDiscussionCreated", DbType="DateTime NOT NULL", IsPrimaryKey=true)]
+		public System.DateTime DateDiscussionCreated
 		{
 			get
 			{
@@ -2023,8 +2125,100 @@ namespace SOP.Data
 			{
 				if ((this._DateDiscussionCreated != value))
 				{
+					this.OnDateDiscussionCreatedChanging(value);
+					this.SendPropertyChanging();
 					this._DateDiscussionCreated = value;
+					this.SendPropertyChanged("DateDiscussionCreated");
+					this.OnDateDiscussionCreatedChanged();
 				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblVotingQuestionDetail_tblDiscussion", Storage="_tblVotingQuestionDetail", ThisKey="QuestionID", OtherKey="QuestionID", IsForeignKey=true)]
+		public tblVotingQuestionDetail tblVotingQuestionDetail
+		{
+			get
+			{
+				return this._tblVotingQuestionDetail.Entity;
+			}
+			set
+			{
+				tblVotingQuestionDetail previousValue = this._tblVotingQuestionDetail.Entity;
+				if (((previousValue != value) 
+							|| (this._tblVotingQuestionDetail.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._tblVotingQuestionDetail.Entity = null;
+						previousValue.tblDiscussions.Remove(this);
+					}
+					this._tblVotingQuestionDetail.Entity = value;
+					if ((value != null))
+					{
+						value.tblDiscussions.Add(this);
+						this._QuestionID = value.QuestionID;
+					}
+					else
+					{
+						this._QuestionID = default(int);
+					}
+					this.SendPropertyChanged("tblVotingQuestionDetail");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblUser_tblDiscussion", Storage="_tblUser", ThisKey="UserID", OtherKey="UserID", IsForeignKey=true)]
+		public tblUser tblUser
+		{
+			get
+			{
+				return this._tblUser.Entity;
+			}
+			set
+			{
+				tblUser previousValue = this._tblUser.Entity;
+				if (((previousValue != value) 
+							|| (this._tblUser.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._tblUser.Entity = null;
+						previousValue.tblDiscussions.Remove(this);
+					}
+					this._tblUser.Entity = value;
+					if ((value != null))
+					{
+						value.tblDiscussions.Add(this);
+						this._UserID = value.UserID;
+					}
+					else
+					{
+						this._UserID = default(string);
+					}
+					this.SendPropertyChanged("tblUser");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
 		}
 	}

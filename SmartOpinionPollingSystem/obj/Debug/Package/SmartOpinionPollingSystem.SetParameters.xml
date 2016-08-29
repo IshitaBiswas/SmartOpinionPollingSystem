@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <setParameter name="IIS Web Application Name" value="Default Web Site/" />
+  <setParameter name="dbSmartOpinionConnectionString-Web.config Connection String" value="Data Source=dbsmartpoll.cbzttr2x6vux.us-west-2.rds.amazonaws.com,1433;database=dbSmartOpinion;User Id=sa;Password=GutenMorgan1985;Persist Security Info=True;Persist Security Info=True;" />
+</parameters>

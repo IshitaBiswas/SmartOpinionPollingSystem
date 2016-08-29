@@ -69,7 +69,7 @@ namespace SmartOpinionPollingSystem.Account
 
 
 
-                FormsAuthentication.SetAuthCookie(org.OrgName, createPersistentCookie: false);
+                FormsAuthentication.SetAuthCookie(org.OrgID, createPersistentCookie: false);
                 Response.Redirect("~/OrganizationPages/OrgDashboard.aspx");
             }
             catch (ApplicationException aex)

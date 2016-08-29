@@ -22,15 +22,6 @@ namespace SmartOpinionPollingSystem.UserPages {
         protected global::System.Web.UI.WebControls.Panel pnlAlreadyVotedRecord;
         
         /// <summary>
-        /// pnlPendingVotingRecord control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlPendingVotingRecord;
-        
-        /// <summary>
         /// UserDashBoard control.
         /// </summary>
         /// <remarks>
@@ -38,5 +29,23 @@ namespace SmartOpinionPollingSystem.UserPages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HyperLink UserDashBoard;
+        
+        /// <summary>
+        /// lblPollingSummaryHeading control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblPollingSummaryHeading;
+        
+        /// <summary>
+        /// pnlPendingVotingRecord control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlPendingVotingRecord;
     }
 }

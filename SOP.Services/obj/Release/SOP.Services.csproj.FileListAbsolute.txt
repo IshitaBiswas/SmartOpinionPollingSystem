@@ -1,0 +1,15 @@
+C:\Ishita.Net\Ishita\capstonproject\SmartOpinionPollingSystem\SOP.Services\bin\Release\SOP.Services.dll
+C:\Ishita.Net\Ishita\capstonproject\SmartOpinionPollingSystem\SOP.Services\bin\Release\SOP.Services.pdb
+C:\Ishita.Net\Ishita\capstonproject\SmartOpinionPollingSystem\SOP.Services\bin\Release\SOP.Common.dll
+C:\Ishita.Net\Ishita\capstonproject\SmartOpinionPollingSystem\SOP.Services\bin\Release\SOP.Data.dll
+C:\Ishita.Net\Ishita\capstonproject\SmartOpinionPollingSystem\SOP.Services\bin\Release\SOP.Common.pdb
+C:\Ishita.Net\Ishita\capstonproject\SmartOpinionPollingSystem\SOP.Services\bin\Release\SOP.Data.pdb
+C:\Ishita.Net\Ishita\capstonproject\SmartOpinionPollingSystem\SOP.Services\obj\Release\SOP.Services.csprojResolveAssemblyReference.cache
+C:\Ishita.Net\Ishita\capstonproject\SmartOpinionPollingSystem\SOP.Services\obj\Release\SOP.Services.dll
+C:\Ishita.Net\Ishita\capstonproject\SmartOpinionPollingSystem\SOP.Services\obj\Release\SOP.Services.pdb
+C:\Ishita.Net\Ishita\capstonproject\SmartOpinionPollingSystem\SOP.Services\bin\Release\AWSSDK.Core.dll
+C:\Ishita.Net\Ishita\capstonproject\SmartOpinionPollingSystem\SOP.Services\bin\Release\AWSSDK.ElasticBeanstalk.dll
+C:\Ishita.Net\Ishita\capstonproject\SmartOpinionPollingSystem\SOP.Services\bin\Release\AWSSDK.Core.pdb
+C:\Ishita.Net\Ishita\capstonproject\SmartOpinionPollingSystem\SOP.Services\bin\Release\AWSSDK.Core.xml
+C:\Ishita.Net\Ishita\capstonproject\SmartOpinionPollingSystem\SOP.Services\bin\Release\AWSSDK.ElasticBeanstalk.pdb
+C:\Ishita.Net\Ishita\capstonproject\SmartOpinionPollingSystem\SOP.Services\bin\Release\AWSSDK.ElasticBeanstalk.xml

@@ -246,6 +246,7 @@
     <Content Include="OrganizationPages\OrgProfile.aspx" />
     <Content Include="OrganizationPages\ViewOrgVotingRecordDetails.aspx" />
     <Content Include="packages.config" />
+    <None Include="Properties\PublishProfiles\SmartPolingSystem.pubxml" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\JqGrid\css\ellipsis-xbl.xml" />
     <Content Include="Scripts\JqGrid\css\ui.jqgrid.css" />
