@@ -11,21 +11,7 @@
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="server">
 
-
- <%--   <link href="../Content/themes/base/jquery-ui.css" rel="stylesheet" />
-    <link href="../Scripts/JqGrid/css/ui.jqgrid.css" rel="stylesheet" />
-    <script src="../Scripts/JqGrid/js/jquery-1.7.2.min.js"></script>
-    <script src="../Scripts/JqGrid/js/jquery.jqGrid.min.js"></script>
-    <script src="../Scripts/JqGrid/js/i18n/grid.locale-en.js"></script>--%>
-
     <link href="../Scripts/NewJQGrid/Content/themes/base/jquery-ui.css" rel="stylesheet" />
-<%--    <link href="../Scripts/NewJQGrid/Content/jquery.jqGrid/ui.jqgrid.css" rel="stylesheet" />
-    <script src="../Scripts/NewJQGrid/Scripts/jquery-1.9.1.min.js"></script>
-    <script src="../Scripts/NewJQGrid/Scripts/jquery-ui-1.10.4.min.js"></script>
-    <script src="../Scripts/NewJQGrid/Scripts/i18n/grid.locale-en.js"></script>
-    <script src="../Scripts/NewJQGrid/Scripts/jquery.jqGrid.min.js"></script>--%>
-
-
     <link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.15/themes/redmond/jquery-ui.css" />
     <link rel="stylesheet" type="text/css" href="http://www.ok-soft-gmbh.com/jqGrid/jquery.jqGrid-4.1.2/css/ui.jqgrid.css" />
     <link rel="stylesheet" type="text/css" href="http://www.ok-soft-gmbh.com/jqGrid/jquery.jqGrid-4.1.2/plugin/ui.multiselect.css" />
@@ -42,7 +28,7 @@
 
 
          function returnHyperLink(cellValue, options, rowdata, action) {
-             return "<a href='ViewOrgVotingRecordDetails.aspx?QuestionID=" + options.rowId + "' >View Details</a>";
+             return "<a href='ViewOrgVotingRecordDetails.aspx?QuestionID=" + options.rowId + "' >" + options.rowId + "</a>";
          }
 
          $(function () {
@@ -57,10 +43,10 @@
                  },
                  jsonReader: { repeatitems: false, root: "d.rows", page: "d.page", total: "d.total", records: "d.records" },
                  loadonce: true,
-                 colNames: ['ViewDetails', 'CategoryDescription', 'QuestionText', 'VotedYes', 'VotedNo', 'VotingStartDate', 'VotingEndDate'],
+                 colNames: ['ViewDetails', 'TargetAudienceCategories', 'QuestionText', 'VotedYes', 'VotedNo', 'VotingStartDate', 'VotingEndDate'],
                  colModel: [
-                                 { name: 'QuestionID', index: 'QuestionID', width: 180, editable: false, key: true, formatter: returnHyperLink },//added custom formatter function 
-                                 { name: 'CategoryDescription', index: 'CategoryDescription', width: 180, editable: true },
+                                 { name: 'QuestionID', index: 'QuestionID', width: 80, editable: false, key: true, formatter: returnHyperLink },//added custom formatter function 
+                                 { name: 'AllCategories', index: 'AllCategories', width: 180, editable: true },
                                  { name: 'QuestionText', index: 'QuestionText', width: 180, editable: true },
                                  { name: 'VotedYes', index: 'VotedYes', width: 60, editable: false },
                                  { name: 'VotedNo', index: 'VotedNo', width: 60, editable: false },

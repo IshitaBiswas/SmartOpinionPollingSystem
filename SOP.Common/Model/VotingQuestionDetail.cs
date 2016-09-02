@@ -53,5 +53,7 @@ namespace SOP.Common.Model
 
         public string CategoryDescription { get; set; }
 
+        public IEnumerable<string> AllCategories { get; set; }
+
     }
 }

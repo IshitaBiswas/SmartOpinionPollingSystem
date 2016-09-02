@@ -13,6 +13,7 @@ namespace SOP.Data.Interfaces
     {
          void AddOrganization(Organization org);
          bool DoesOrgExist(string OrgID);
+         bool DoesOrgWebsiteExist(Organization org);
          DataSet GetOrgPollingQuestionCategories(String orgID);
          void AddOrgPollingQuestionDetails(VotingQuestionDetail orgqstndetail);
          Organization GetOrganization(string orgID);

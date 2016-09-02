@@ -67,7 +67,7 @@
                             <p>
                                 Hello, <a runat="server" class="username" href="~/Account/Manage" title="Manage your account">
                                     <asp:LoginName runat="server" CssClass="username" /></a>!
-                                <a id="profilepage" runat="server" href="~/Default.aspx">Settings</a>
+                                <a id="profilepage" runat="server" href="~/Default.aspx">Profile Settings</a>
                                 <asp:LoginStatus runat="server" LogoutAction="Redirect" LogoutText="Log off" LogoutPageUrl="~/Account/Login.aspx"/>
                             </p>
                         </LoggedInTemplate>

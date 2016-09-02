@@ -27,6 +27,9 @@ namespace SOP.Services
             if (_odAccessor.DoesOrgExist(org.OrgID))
                 throw new ApplicationException("An Organization with this ID is already registered.");
 
+            if (_odAccessor.DoesOrgWebsiteExist(org))
+                throw new ApplicationException("An Organization with this website is already registered in the system.");
+
             //Business Valoidation...End
             
             

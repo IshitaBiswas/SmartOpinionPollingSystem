@@ -17,9 +17,9 @@ namespace SmartOpinionPollingSystem
             //    consumerKey: "your Twitter consumer key",
             //    consumerSecret: "your Twitter consumer secret");
 
-            //OpenAuth.AuthenticationClients.AddFacebook(
-            //    appId: "your Facebook app id",
-            //    appSecret: "your Facebook app secret");
+            OpenAuth.AuthenticationClients.AddFacebook(
+                  appId: "320758091591870",
+                  appSecret: "51e13f8ce89e6a248c64bb24f342caa7");
 
             //OpenAuth.AuthenticationClients.AddMicrosoft(
             //    clientId: "your Microsoft account client id",

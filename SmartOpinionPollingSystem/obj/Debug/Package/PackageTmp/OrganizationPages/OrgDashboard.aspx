@@ -77,7 +77,7 @@
 
 
     <table style="width: 100%">
-        <caption>Organization Dashboard</caption>
+        <caption><h2>Organization Dashboard</h2></caption>
         <tr>
             <th>Polling Action</th>
             <th>Chart</th>
@@ -92,6 +92,7 @@
                     <asp:Button ID="btnCurrentPollingStatus" runat="server" Text="Check Current Polling Status" Width="295px" OnClick="btnCurrentPollingStatus_Click"  />
                     <br />
                     <asp:Button ID="btnFuturePollingStatus" runat="server" Text="Check Future Polling Status" Width="295px" OnClick="btnFuturePollingStatus_Click" />
+                    <asp:Button ID="btnViewOrgReport" runat="server" Text="View Report" Width="295px" OnClick="btnViewOrgReport_Click" />
             </td>
             <td>
                 <div id="chart_div" style="width: 500px; height: 400px; text-align:center">

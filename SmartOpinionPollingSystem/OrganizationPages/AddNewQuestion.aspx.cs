@@ -24,6 +24,8 @@ namespace SmartOpinionPollingSystem.OrganizationPages
         }
         protected void Page_Load(object sender, EventArgs e)
         {
+            hlnkOrgDashBoard.NavigateUrl = "OrgDashBoard";
+
             if(!IsPostBack)
             {
                 lstTargetAudience.DataSource = _iOrgServices.GetOrgPollingQuestionCategories(HttpContext.Current.User.Identity.Name);
@@ -47,8 +49,8 @@ namespace SmartOpinionPollingSystem.OrganizationPages
                     VotingEndDate = DateTime.Parse(txtPollingEndDate.Value),
                     VotedYes = 0,
                     VotedNo = 0,
-                    MinVotingAge = Convert.ToInt32(txtTargetAudienceMinAge.Text.Trim()),
-                    MaxVotingAge = Convert.ToInt32(txtTargetAudienceMaxAge.Text.Trim()),
+                    MinVotingAge = txtTargetAudienceMinAge.Text.Trim() == "" ? (int?)null : Convert.ToInt32(txtTargetAudienceMinAge.Text.Trim()),
+                    MaxVotingAge = txtTargetAudienceMaxAge.Text.Trim() == "" ? (int?)null : Convert.ToInt32(txtTargetAudienceMaxAge.Text.Trim())
                      
                 };
 
@@ -67,9 +69,16 @@ namespace SmartOpinionPollingSystem.OrganizationPages
 
                 _iOrgServices.AddOrgPollingQuestionDetails(orgqstndetail);
 
+                if(orgqstndetail.VotingStartDate > DateTime.Now)
+                {
+                    Response.Redirect("~/OrganizationPages/OrgPollingDetails.aspx?pollingwindow=future");
 
+                }
+                else if (orgqstndetail.VotingStartDate.ToShortDateString() == DateTime.Now.ToShortDateString())
+                {
+                    Response.Redirect("~/OrganizationPages/OrgPollingDetails.aspx?pollingwindow=current");
+                }
 
-               // Response.Redirect("~/OrganizationPages/OrgDashboard.aspx");
             }
             catch (ApplicationException aex)
             {
@@ -98,6 +107,7 @@ namespace SmartOpinionPollingSystem.OrganizationPages
 
         protected void Cancel(object sender, EventArgs e)
         {
+            Response.Redirect("~/OrganizationPages/OrgDashboard.aspx");
         }
     }
 }

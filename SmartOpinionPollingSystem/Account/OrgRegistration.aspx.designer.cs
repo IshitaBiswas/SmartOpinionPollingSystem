@@ -49,13 +49,13 @@ namespace SmartOpinionPollingSystem.Account {
         protected global::System.Web.UI.WebControls.TextBox txtOrgWebSite;
         
         /// <summary>
-        /// txtOrgCategory control.
+        /// ddlOrgCategory control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtOrgCategory;
+        protected global::System.Web.UI.WebControls.DropDownList ddlOrgCategory;
         
         /// <summary>
         /// chkOrgVotingCategory control.

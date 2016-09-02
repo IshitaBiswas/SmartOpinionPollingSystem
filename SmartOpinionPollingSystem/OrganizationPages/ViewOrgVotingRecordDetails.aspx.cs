@@ -56,7 +56,7 @@ namespace SmartOpinionPollingSystem.OrganizationPages
                             lblPreviousDiscussion.Text = getDiscussions();
 
                             lblQuestion.Text = votingRecord.QuestionText;
-                            lblCategoryDescription.Text = votingRecord.CategoryDescription;
+                            lblCategoryDescription.Text = string.Join(",", votingRecord.AllCategories);
                             lblVotingStartDate.Text = votingRecord.VotingStartDate.ToShortDateString();
                             lblVotingEndDate.Text = votingRecord.VotingEndDate.ToShortDateString();
                             lblVotedYes.Text = votingRecord.VotedYes.ToString();
@@ -71,7 +71,7 @@ namespace SmartOpinionPollingSystem.OrganizationPages
                         else if (votingRecord != null && _pollingWindow == PollingWindowEnum.Current)
                         {
                             pnlCurrent.Visible = true;
-                            lblCurrentCategoryDescription.Text = votingRecord.CategoryDescription;
+                            lblCurrentCategoryDescription.Text = string.Join(",", votingRecord.AllCategories);
                             lblCurrentQuestion.Text = votingRecord.QuestionText;
                             lblCurrentStartDate.Text = votingRecord.VotingStartDate.ToShortDateString();
                             lblCurrentEndDate.Text = votingRecord.VotingEndDate.ToShortDateString();
@@ -136,12 +136,12 @@ namespace SmartOpinionPollingSystem.OrganizationPages
                                                  { new VotingResultContainer()
                                                                 {
                                                                     VotingOption = "Yes",
-                                                                    VotingCount = votingQuestion.VotedYes
+                                                                    VotingCount = votingQuestion.VotedYes??0
                                                                 },
                                                               new VotingResultContainer()
                                                                 {
                                                                     VotingOption = "No",
-                                                                    VotingCount = votingQuestion.VotedNo
+                                                                    VotingCount = votingQuestion.VotedNo??0
                                                                 }
                                                 };
 

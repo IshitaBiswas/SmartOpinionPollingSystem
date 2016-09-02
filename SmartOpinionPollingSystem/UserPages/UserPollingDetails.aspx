@@ -60,10 +60,10 @@
                  },
                  jsonReader: { repeatitems: false, root: "d.rows", page: "d.page", total: "d.total", records: "d.records" },
                  loadonce: true,
-                 colNames: [ 'QID#', 'CategoryDescription', 'Organization',  'QuestionText', 'UserVote' , 'DateVoteCasted',  'CountOfYes', 'CountOfNo', 'VotingStartDate', 'VotingEndDate'],
+                 colNames: ['Action', 'TargetAudienceCategories', 'Organization', 'QuestionText', 'UserVote', 'DateVoteCasted', 'CountOfYes', 'CountOfNo', 'VotingStartDate', 'VotingEndDate'],
                  colModel: [
                                  { name: 'QuestionID', index: 'QuestionID', width: 180, editable: false,  key: true, formatter: returnHyperLink },//added custom formatter function 
-                                 { name: 'CategoryDescription', index: 'CategoryDescription', width: 180, editable: true },
+                                 { name: 'AllCategories', index: 'AllCategories', width: 180, editable: true },
                                  { name: 'OrgName', index: 'OrgName', width: 180, editable: false },
                                  { name: 'QuestionText', index: 'QuestionText', width: 180, editable: true },
                                  { name: 'B_UserVote', index: 'B_UserVote', width: 100, editable: false },
@@ -104,7 +104,7 @@
                  },
                  jsonReader: { repeatitems: false, root: "d.rows", page: "d.page", total: "d.total", records: "d.records" },
                  loadonce: true,
-                 colNames: ['QID#', 'Organization', 'QuestionText', 'VotingStartDate', 'VotingEndDate'],
+                 colNames: ['Action', 'Organization', 'QuestionText', 'VotingStartDate', 'VotingEndDate'],
                  colModel: [
                                  { name: 'QuestionID', index: 'QuestionID', width: 180, editable: false, key: true, formatter: returnHyperLink },//added custom formatter function 
                                  { name: 'OrgName', index: 'OrgName', width: 180, editable: false },

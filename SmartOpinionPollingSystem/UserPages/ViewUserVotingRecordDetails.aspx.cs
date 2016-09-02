@@ -11,7 +11,6 @@ using SOP.Services;
 using System.Linq;
 using System.Security.Principal;
 using SOP.Common;
-using SOP.Common.Model;
 using System.IO;
 using System.Text;
 using System.Web.Script.Serialization;
@@ -75,7 +74,7 @@ namespace SmartOpinionPollingSystem.UserPages
 
                         lblOrgName.Text = votingRecord.OrgName;
                         lblQuestion.Text = votingRecord.QuestionText;
-                        lblCategoryDescription.Text = votingRecord.CategoryDescription;
+                        lblCategoryDescription.Text = string.Join(",", votingRecord.AllCategories);
                         lblB_UserVote.Text = votingRecord.B_UserVote;
                         lblVotingStartDate.Text = votingRecord.VotingStartDate.ToShortDateString();
                         lblVotingEndDate.Text = votingRecord.VotingEndDate.ToShortDateString();
@@ -113,17 +112,20 @@ namespace SmartOpinionPollingSystem.UserPages
 
                         lblCurrentDiscussion.Text = sb.ToString();
 
-                        pnlVoteCasted.Visible = true;
+                        if (!pnlToCastVote.Visible)
+                        {
+                            pnlVoteCasted.Visible = true;
+                        }
                         pnlGraphVoteCast.Visible = true; //This will only be set to true post casting of the vote
                         pnlCurrentUserComments.Visible = true;
 
-                        lblCurrentCategoryDescription.Text = votingRecord.CategoryDescription; 
+                        lblCurrentCategoryDescription.Text = string.Join(",", votingRecord.AllCategories); 
                         lblCurrentOrgName.Text = votingRecord.OrgName;
                         lblCurrentQuestion.Text = votingRecord.QuestionText;
                         if (votingRecord.B_UserVote == "Yes")
                             pnlVotedYesImg.Visible = true;
                         else if (votingRecord.B_UserVote == "No")
-                            pnlVotedYesImg.Visible = true;
+                            pnlVotedNoImg.Visible = true;
                         GetPieChartData(); 
 
                     }
@@ -268,7 +270,7 @@ namespace SmartOpinionPollingSystem.UserPages
             }
 
             lblUserVote.Text = "You have successfully casted your vote!!!! Thank you";
-            lblUserVote.BackColor = System.Drawing.Color.DarkOrchid;
+            lblUserVote.BackColor = System.Drawing.Color.Aqua;
         }
 
 

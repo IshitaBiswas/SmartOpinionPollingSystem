@@ -8,7 +8,7 @@ using SOP.Common.Model;
 using SOP.Services;
 using SOP.Services.Interfaces;
 using System.Web.Security;
-
+using SOP.Common;
 namespace SmartOpinionPollingSystem.Account
 {
     public partial class OrgRegistration : System.Web.UI.Page
@@ -42,17 +42,13 @@ namespace SmartOpinionPollingSystem.Account
 
         protected void RegisterButton_Click(object sender, EventArgs e)
         {
-            //Organization org = new Organization();
-            //org.OrgID = txtOrgID.Text.Trim();
-           // org.OrgName = txtOrganizationName.Text.Trim();
-
             try
             {
                 Organization org = new Organization()
                 {
                     OrgID = txtOrgID.Text.Trim(),
                     OrgName = txtOrganizationName.Text.Trim(),
-                    OrgCategory = txtOrgCategory.Text.Trim(),
+                    OrgCategory = ddlOrgCategory.SelectedValue.Trim(),
                     OrgWebsite = txtOrgWebSite.Text.Trim(),
                     OrgRegPassword = txtOrgPassword.Text.Trim()
                 };
@@ -67,7 +63,7 @@ namespace SmartOpinionPollingSystem.Account
 
                 _orgInfoService.AddOrgDetails(org);
 
-
+                Session["LoginType"] = LoginTypeEnum.Organization;
 
                 FormsAuthentication.SetAuthCookie(org.OrgID, createPersistentCookie: false);
                 Response.Redirect("~/OrganizationPages/OrgDashboard.aspx");

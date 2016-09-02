@@ -8,32 +8,16 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using SOP.Services;
 using Newtonsoft.Json;
-using SOP.Services;
 using SOP.Services.Interfaces;
 using SOP.Common;
 using SOP.Common.Model;
 
-//using System;
-//using System.Collections.Generic;
-//using System.Linq;
-//using System.Web;
-//using System.Web.Script.Services;
-//using System.Web.Services;
-//using System.Web.UI;
-//using System.Web.UI.WebControls;
-//using SOP.Common.Model;
-//using SOP.Services.Interfaces;
-//using SOP.Services;
-//using System.Linq;
-//using Newtonsoft.Json;
-//using SOP.Common;
 
 namespace SmartOpinionPollingSystem.UserPages
 {
     public partial class UserDashboard : System.Web.UI.Page
     {
         static IReportingService _rptService;
-        static PollingWindowEnum _pollingWindow;
 
 
         public UserDashboard()
@@ -48,7 +32,7 @@ namespace SmartOpinionPollingSystem.UserPages
         {
             if (Request.IsAuthenticated)
             {
-                GetChartData();
+               // GetChartData();
             }
 
         }
@@ -62,7 +46,8 @@ namespace SmartOpinionPollingSystem.UserPages
             var chartData = new object[data.Count + 1];
             chartData[0] = new object[]{
                 "Voting Category",
-                "Users Count who Registerd"
+                "Registerd Users Count"
+
             };
             int j = 0;
             foreach (var i in data)

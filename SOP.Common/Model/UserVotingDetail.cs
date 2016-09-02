@@ -35,6 +35,7 @@ namespace SOP.Common.Model
 
         public System.DateTime VotingEndDate { get; set; }
         public string CategoryDescription { get; set; }
+        public IEnumerable<string> AllCategories { get; set; }
 
         public int? MinVotingAge { get; set; }
 

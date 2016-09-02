@@ -78,7 +78,13 @@ namespace SOP.Data
             }
            
         }
-        
+
+        public bool DoesOrgWebsiteExist(Organization org)
+        {
+            var _db = new SOPDbDataContext();
+            return _db.tblOrganizations.Any(o => o.OrgWebsite.Trim() == org.OrgWebsite.Trim());
+        }
+
         public bool DoesOrgExist(string OrgID)
         {
             int count = 0;

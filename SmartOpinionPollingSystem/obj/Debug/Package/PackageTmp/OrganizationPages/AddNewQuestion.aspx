@@ -60,6 +60,11 @@ tr .age{
     
 </style>
 
+<p style="float:right;padding-right:15px">
+            <asp:HyperLink runat="server" ID="hlnkOrgDashBoard" ViewStateMode="Disabled" ForeColor="Blue" Text="Organization DashBoard"></asp:HyperLink> 
+</p>
+<br /><br />
+
 <h2>Add A New Polling Question</h2>
 <p>Participating organizations need to fill up this form to post a question for polling.</p>
 

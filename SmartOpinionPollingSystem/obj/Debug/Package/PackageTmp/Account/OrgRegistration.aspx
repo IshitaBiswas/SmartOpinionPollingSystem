@@ -36,10 +36,18 @@
                                     CssClass="field-validation-error" ErrorMessage="The Organization Website field is required." />
                             </li>
                             <li>
-                                <asp:Label runat="server" AssociatedControlID="txtOrgCategory">Organization Category</asp:Label>
-                                <asp:TextBox runat="server" ID="txtOrgCategory"  />
-                                <asp:RequiredFieldValidator runat="server" ControlToValidate="txtOrgCategory"
-                                    CssClass="field-validation-error" ErrorMessage="The Organization CAtegory field is required." />
+                                <asp:Label runat="server" AssociatedControlID="ddlOrgCategory">Organization Category</asp:Label>
+                                <%--<asp:TextBox runat="server" ID="txtOrgCategory"  />--%>
+                                <asp:DropDownList runat="server" ID="ddlOrgCategory" Width="154px" Height="30px" style="margin-left: 11px">
+                                   <asp:ListItem Text="Please select" Value="Please select" Selected="True"></asp:ListItem>
+                                    <asp:ListItem Text="Banking" Value="Banking"></asp:ListItem>
+                                    <asp:ListItem Text="Insurance" Value="Insurance"></asp:ListItem>
+                                    <asp:ListItem Text="IT" Value="IT"></asp:ListItem>
+                                    <asp:ListItem Text="Entertainment" Value="Entertainment"></asp:ListItem>
+                                    <asp:ListItem Text="Political" Value="Political"></asp:ListItem>
+                                </asp:DropDownList>
+                                <asp:RequiredFieldValidator runat="server" ControlToValidate="ddlOrgCategory"
+                                    CssClass="field-validation-error" InitialValue="Please select" ErrorMessage="The Organization Category field is required." />
                             </li>
                              <li>
                                 <asp:Label runat="server" AssociatedControlID="chkOrgVotingCategory">Target Audience Domain</asp:Label>

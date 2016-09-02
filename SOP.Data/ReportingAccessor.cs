@@ -31,6 +31,9 @@ namespace SOP.Data
 
         }
 
+
+
+
         public IEnumerable<UserVotingCategoryBreakup> GetUserVotingCategoryBreakup()
         {
             using (var _db = new SOPDbDataContext())
@@ -49,7 +52,9 @@ namespace SOP.Data
 
         }
 
+   
 
+        //Organization Page
         public IEnumerable<VotingQuestionDetail> GetVotingQuestionDetails(string OrgID, PollingWindowEnum pwEnum) // enum
         {
             using (var _db = new SOPDbDataContext())
@@ -71,11 +76,12 @@ namespace SOP.Data
                                         QuestionText = z.qd.QuestionText,
                                         VotedYes = z.qd.VotedYes,
                                         VotedNo = z.qd.VotedNo,
-                                        VotingQuestionCategoryID = z.ta.VotingQuestionCategoryID,
+                                      //  VotingQuestionCategoryID = z.ta.VotingQuestionCategoryID,
                                         VotingStartDate = z.qd.VotingStartDate,
                                         VotingEndDate = z.qd.VotingEndDate,
-                                        CategoryDescription = GetVotingQuestionCategory(z.ta.VotingQuestionCategoryID)
-                                    })
+                                       // CategoryDescription = GetVotingQuestionCategory(z.ta.VotingQuestionCategoryID)
+                                        AllCategories = GetVotingCategorybyQuestionID(z.ta.QuestionID)
+                                    }).Distinct()
                            .ToArray();
                         break;
                     case PollingWindowEnum.Current:
@@ -92,11 +98,12 @@ namespace SOP.Data
                                      QuestionText = z.qd.QuestionText,
                                      VotedYes = z.qd.VotedYes,
                                      VotedNo = z.qd.VotedNo,
-                                     VotingQuestionCategoryID = z.ta.VotingQuestionCategoryID,
+                                    // VotingQuestionCategoryID = z.ta.VotingQuestionCategoryID,
                                      VotingStartDate = z.qd.VotingStartDate,
                                      VotingEndDate = z.qd.VotingEndDate,
-                                     CategoryDescription = GetVotingQuestionCategory(z.ta.VotingQuestionCategoryID)
-                                 })
+                                     //CategoryDescription = GetVotingQuestionCategory(z.ta.VotingQuestionCategoryID)
+                                     AllCategories = GetVotingCategorybyQuestionID(z.ta.QuestionID)
+                                 }).Distinct()
                                .ToArray();
                         break;
                     case PollingWindowEnum.Future:
@@ -113,11 +120,12 @@ namespace SOP.Data
                                     QuestionText = z.qd.QuestionText,
                                     VotedYes = z.qd.VotedYes,
                                     VotedNo = z.qd.VotedNo,
-                                    VotingQuestionCategoryID = z.ta.VotingQuestionCategoryID,
+                                   // VotingQuestionCategoryID = z.ta.VotingQuestionCategoryID,
                                     VotingStartDate = z.qd.VotingStartDate,
                                     VotingEndDate = z.qd.VotingEndDate,
-                                    CategoryDescription = GetVotingQuestionCategory(z.ta.VotingQuestionCategoryID)
-                                })
+                                  //  CategoryDescription = GetVotingQuestionCategory(z.ta.VotingQuestionCategoryID),
+                                    AllCategories = GetVotingCategorybyQuestionID(z.ta.QuestionID)
+                                }).Distinct()
                                .ToArray();
                         break;
                     case PollingWindowEnum.All:
@@ -134,11 +142,12 @@ namespace SOP.Data
                                     QuestionText = z.qd.QuestionText,
                                     VotedYes = z.qd.VotedYes,
                                     VotedNo = z.qd.VotedNo,
-                                    VotingQuestionCategoryID = z.ta.VotingQuestionCategoryID,
+                                   // VotingQuestionCategoryID = z.ta.VotingQuestionCategoryID,
                                     VotingStartDate = z.qd.VotingStartDate,
                                     VotingEndDate = z.qd.VotingEndDate,
-                                    CategoryDescription = GetVotingQuestionCategory(z.ta.VotingQuestionCategoryID)
-                                })
+                                    //CategoryDescription = GetVotingQuestionCategory(z.ta.VotingQuestionCategoryID)
+                                    AllCategories = GetVotingCategorybyQuestionID(z.ta.QuestionID)
+                                }).Distinct()
                                .ToArray();
                         break;
                     default:
@@ -202,6 +211,7 @@ namespace SOP.Data
             }
         }
 
+        //User page
         public IEnumerable<UserVotingDetail> GetUserVotingQuestionDetails(string userID, PollingWindowEnum pwEnum) // enum
         {
             using (var _db = new SOPDbDataContext())
@@ -232,9 +242,7 @@ namespace SOP.Data
                                 MinVotingAge = z.qd.MinVotingAge,
                                 MaxVotingAge = z.qd.MaxVotingAge,
                                 TargetAudienceGender = z.qd.TargetAudienceGender,
-                                CategoryDescription = GetVotingQuestionCategory(z.qd.tblOrgQuestionTargetAudiences
-                                                                                  .FirstOrDefault(a => a.QuestionID == z.uv.QuestionID)
-                                                                                  .VotingQuestionCategoryID)
+                                AllCategories = GetVotingCategorybyQuestionID(z.qd.QuestionID)
                             })
                            .ToArray();
                         break;
@@ -260,11 +268,8 @@ namespace SOP.Data
                                 MinVotingAge = z.qd.MinVotingAge,
                                 MaxVotingAge = z.qd.MaxVotingAge,
                                 TargetAudienceGender = z.qd.TargetAudienceGender,
-                                CategoryDescription = GetVotingQuestionCategory(z.qd.tblOrgQuestionTargetAudiences
-                                                                              .FirstOrDefault(a => a.QuestionID == z.uv.QuestionID)
-                                                                              .VotingQuestionCategoryID)
-                            })
-                           .ToArray();
+                                AllCategories = GetVotingCategorybyQuestionID(z.qd.QuestionID)
+                            }).ToArray();
                         break;
                     case PollingWindowEnum.All:
                         vqds = _db.tblVotingQuestionDetails
@@ -288,9 +293,7 @@ namespace SOP.Data
                                  MinVotingAge = z.qd.MinVotingAge,
                                  MaxVotingAge = z.qd.MaxVotingAge,
                                  TargetAudienceGender = z.qd.TargetAudienceGender,
-                                 CategoryDescription = GetVotingQuestionCategory(z.qd.tblOrgQuestionTargetAudiences
-                                                                              .FirstOrDefault(a => a.QuestionID == z.uv.QuestionID)
-                                                                              .VotingQuestionCategoryID)
+                                 AllCategories = GetVotingCategorybyQuestionID(z.qd.QuestionID)
                              })
                             .ToArray();
                         break;

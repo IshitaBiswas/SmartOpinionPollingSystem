@@ -20,11 +20,14 @@ namespace SOP.Services
         }
         public void RegisterUser(User user)
         {
-            //Business Valoidation...Start
+            //Business Validation...Start
             if (_udAcessor.DoesUserExist(user))
                 throw new ApplicationException("An User with this ID is already registered.");
 
-            //Business Valoidation...End
+             if (_udAcessor.DoesEmailIdExist(user))
+                throw new ApplicationException("An user with this email id is already registered in the system.");
+
+            //Business Validation...End
             _udAcessor.RegisterUser(user);
         }
 

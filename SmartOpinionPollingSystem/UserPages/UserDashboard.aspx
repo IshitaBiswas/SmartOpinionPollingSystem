@@ -13,7 +13,7 @@
             margin-left: 80px;
         }
         .auto-style2 {
-            width: 270px;
+            width: 506px;
         }
         #body
         {
@@ -75,7 +75,7 @@
 
 
     <table style="width: 100%">
-        <caption>User Dashboard</caption>
+        <caption><h2>User Dashboard</h2></caption>
         <tr>
             <th class="auto-style2">User Activities : Click one</th>
             <th>Chart</th>

@@ -138,6 +138,11 @@ namespace SOP.Data
             return _db.tblUsers.Any(u =>  u.UserID == user.UserID);
         }
 
+        public bool DoesEmailIdExist(User user)
+        {
+            var _db = new SOPDbDataContext();
+            return _db.tblUsers.Any(u => u.Email.Trim() == user.Email.Trim());
+        }
 
         public void SaveUserVote(UserVotingDetail vd)
         {

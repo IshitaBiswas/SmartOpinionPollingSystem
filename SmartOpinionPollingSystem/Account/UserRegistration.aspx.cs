@@ -65,6 +65,8 @@ namespace SmartOpinionPollingSystem.Account
 
                 _iuiservices.RegisterUser(user);
 
+                Session["LoginType"] = LoginTypeEnum.User;
+
                 FormsAuthentication.SetAuthCookie(user.UserID, createPersistentCookie: false);
                 Response.Redirect("~/UserPages/UserDashboard.aspx");
                 

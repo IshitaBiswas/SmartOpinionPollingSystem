@@ -146,7 +146,9 @@
     <Content Include="About.aspx" />
     <Content Include="Account\Login.aspx" />
     <Content Include="Account\Manage.aspx" />
+    <Content Include="Account\OpenAuthProviders.ascx" />
     <Content Include="Account\OrgRegistration.aspx" />
+    <Content Include="Account\RegisterExternalLogin.aspx" />
     <Content Include="Account\UserRegistration.aspx" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\Site.css" />
@@ -244,6 +246,7 @@
     <Content Include="OrganizationPages\OrgDashboard.aspx" />
     <Content Include="OrganizationPages\OrgPollingDetails.aspx" />
     <Content Include="OrganizationPages\OrgProfile.aspx" />
+    <Content Include="OrganizationPages\OrgReport.aspx" />
     <Content Include="OrganizationPages\ViewOrgVotingRecordDetails.aspx" />
     <Content Include="packages.config" />
     <None Include="Properties\PublishProfiles\SmartPolingSystem.pubxml" />
@@ -555,12 +558,26 @@
     <Compile Include="Account\Manage.aspx.designer.cs">
       <DependentUpon>Manage.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Account\OpenAuthProviders.ascx.cs">
+      <DependentUpon>OpenAuthProviders.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\OpenAuthProviders.ascx.designer.cs">
+      <DependentUpon>OpenAuthProviders.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Account\OrgRegistration.aspx.cs">
       <DependentUpon>OrgRegistration.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Account\OrgRegistration.aspx.designer.cs">
       <DependentUpon>OrgRegistration.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\RegisterExternalLogin.aspx.cs">
+      <DependentUpon>RegisterExternalLogin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\RegisterExternalLogin.aspx.designer.cs">
+      <DependentUpon>RegisterExternalLogin.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\AuthConfig.cs" />
@@ -630,6 +647,13 @@
     </Compile>
     <Compile Include="OrganizationPages\OrgProfile.aspx.designer.cs">
       <DependentUpon>OrgProfile.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OrganizationPages\OrgReport.aspx.cs">
+      <DependentUpon>OrgReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="OrganizationPages\OrgReport.aspx.designer.cs">
+      <DependentUpon>OrgReport.aspx</DependentUpon>
     </Compile>
     <Compile Include="OrganizationPages\ViewOrgVotingRecordDetails.aspx.cs">
       <DependentUpon>ViewOrgVotingRecordDetails.aspx</DependentUpon>

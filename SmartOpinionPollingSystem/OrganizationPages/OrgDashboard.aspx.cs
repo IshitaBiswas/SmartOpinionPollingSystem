@@ -9,7 +9,6 @@ using System.Web.UI.WebControls;
 using SOP.Common.Model;
 using SOP.Services.Interfaces;
 using SOP.Services;
-using System.Linq;
 using Newtonsoft.Json;
 using SOP.Common;
 
@@ -21,7 +20,6 @@ namespace SmartOpinionPollingSystem.OrganizationPages
     {
 
         static IReportingService _rptService;
-        static PollingWindowEnum _pollingWindow;
 
 
         public OrgDashboard()
@@ -36,7 +34,7 @@ namespace SmartOpinionPollingSystem.OrganizationPages
         {
             if (Request.IsAuthenticated)
             {
-                GetChartData();
+               // GetChartData();
             }
 
         }
@@ -63,11 +61,6 @@ namespace SmartOpinionPollingSystem.OrganizationPages
         }
 
 
-
-
-
-
-
         protected void btnPrevPollingStatus_Click(object sender, EventArgs e)
         {
             Response.Redirect("~/OrganizationPages/OrgPollingDetails.aspx?pollingwindow=previous");
@@ -86,6 +79,11 @@ namespace SmartOpinionPollingSystem.OrganizationPages
         protected void btnAddQuestion_Click(object sender, EventArgs e)
         {
             Response.Redirect("~/OrganizationPages/AddNewQuestion.aspx");
+        }
+
+        protected void btnViewOrgReport_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/OrganizationPages/OrgReport.aspx");
         }
 
     }
